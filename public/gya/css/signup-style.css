@@ -1,0 +1,1792 @@
+@font-face {
+  font-family: "BasierSquare-Regular";
+  src: url("../css/fonts/BasierSquare-Regular.eot");
+  src: url("../css/fonts/BasierSquare-Regular.eot?#iefix") format("embedded-opentype"), url("../css/fonts/BasierSquare-Regular.woff2") format("woff2"), url("../css/fonts/BasierSquare-Regular.woff") format("woff"), url("../css/fonts/BasierSquare-Regular.ttf") format("truetype"), url("../css/fonts/BasierSquare-Regular.svg#BasierSquare-Regular") format("svg");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "BasierSquare-SemiBold";
+  src: url("../css/fonts/BasierSquare-SemiBold.eot");
+  src: url("../css/fonts/BasierSquare-SemiBold.eot?#iefix") format("embedded-opentype"), url("../css/fonts/BasierSquare-SemiBold.woff2") format("woff2"), url("../css/fonts/BasierSquare-SemiBold.woff") format("woff"), url("../css/fonts/BasierSquare-SemiBold.ttf") format("truetype"), url("../css/fonts/BasierSquare-SemiBold.svg#BasierSquare-SemiBold") format("svg");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "BasierSquare-Bold";
+  src: url("../css/fonts/BasierSquare-Bold.eot");
+  src: url("../css/fonts/BasierSquare-Bold.eot?#iefix") format("embedded-opentype"), url("../css/fonts/BasierSquare-Bold.woff2") format("woff2"), url("../css/fonts/BasierSquare-Bold.woff") format("woff"), url("../css/fonts/BasierSquare-Bold.ttf") format("truetype"), url("../css/fonts/BasierSquare-Bold.svg#BasierSquare-Bold") format("svg");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+html {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+}
+
+span {
+  display: inline-block;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+input,
+textarea {
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.hd-typ1 {
+  line-height: 40px;
+  color: #4A4A4A;
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 31px;
+  font-weight: 700;
+  font-family: "BasierSquare-Bold";
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hd-typ2 {
+  color: #4A4A4A;
+  margin-bottom: 40px;
+  font-size: 24px;
+  text-transform: capitalize;
+  font-weight: 400;
+  font-family: "BasierSquare-Regular";
+}
+
+.hd-typ3 {
+  color: #4A4A4A;
+  margin-bottom: 40px;
+  font-weight: 400;
+  font-family: "BasierSquare-Regular";
+  font-size: 24px;
+  letter-spacing: -0.8px;
+}
+
+.hd-typ4 {
+  color: #4A4A4A;
+  font-size: 20px;
+  font-family: "BasierSquare-SemiBold";
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.btn-typ1 {
+  display: flex;
+  align-items: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  justify-content: center;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  padding: 11px 15px 12px 15px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  background: #0273F0;
+  max-width: 148px;
+}
+.btn-typ1 .icon {
+  margin-right: 15px;
+}
+.btn-typ1 .txt {
+  line-height: 1;
+  letter-spacing: -0.28px;
+  color: rgba(0, 0, 0, 0);
+  font-size: 14px;
+  text-shadow: 0 0 #ffffff, 0 1.5em #ffffff;
+  font-weight: 400;
+  font-family: "BasierSquare-Regular";
+  transition: all 0.6s;
+  -moz-transition: all 0.6s;
+  -webkit-transition: all 0.6s;
+  overflow: hidden;
+}
+.btn-typ1:hover .txt {
+  text-shadow: 0 -2em #ffffff, 0 0 #ffffff;
+}
+
+.btn-typ2 {
+  text-align: center;
+  font-size: 14px;
+  padding: 13px 20px 15px 20px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border: 1px solid #D9D9D9;
+  transition: all 0.9s;
+  -moz-transition: all 0.9s;
+  -webkit-transition: all 0.9s;
+}
+.btn-typ2 .inner {
+  display: flex;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+}
+.btn-typ2 .inner .txt {
+  line-height: 0;
+  margin-right: 9px;
+  color: #4A4A4A;
+  transition: all 0.9s;
+  -moz-transition: all 0.9s;
+  -webkit-transition: all 0.9s;
+  font-weight: 400;
+  font-family: "BasierSquare-Regular";
+}
+.btn-typ2 .inner .icon {
+  line-height: 0;
+  transition: all 0.9s;
+  -moz-transition: all 0.9s;
+  -webkit-transition: all 0.9s;
+}
+
+.modal.fade {
+  transition: opacity 0.15s linear, padding 0.15s linear;
+}
+
+.modal.fade.show .modal-dialog {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.modal.fade:not(.show) .modal-dialog {
+  opacity: 0;
+  transform: translate(0, 0);
+}
+
+.modal-content {
+  transform: translateY(-50px);
+  transition: transform 0.15s ease-out;
+  opacity: 0;
+}
+
+.modal.show .modal-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal-content {
+  transform: scale(0.8);
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+  opacity: 0;
+}
+
+.modal.show .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.section {
+  padding: 50px 0;
+}
+
+.header {
+  backdrop-filter: blur(4px);
+  -moz-backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background: rgba(2, 115, 240, 0.05);
+  position: relative;
+}
+.header.active-acount-menu {
+  z-index: 999999;
+}
+.header .headercontainer-wrapper {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 8px 0;
+}
+.header .container .inner {
+  display: flex;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+.header .container .inner .lftbox {
+  display: flex;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+}
+.header .container .inner .lftbox .logo {
+  display: inline-block;
+  max-width: 53px;
+}
+.header .container .inner .lftbox .coursescolleges-wrapper {
+  display: none;
+  position: relative;
+}
+.header .container .inner .lftbox .coursescolleges-wrapper::before {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  height: 30px;
+  width: 1px;
+  content: "";
+  position: absolute;
+  background: #D9D9D9;
+}
+.header .container .inner .lftbox .coursescolleges-wrapper .item {
+  display: inline-block;
+  background-color: #ffffff;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  padding: 12px 20px 12px 20px;
+  transition: all 0.9s ease;
+  -moz-transition: all 0.9s ease;
+  -webkit-transition: all 0.9s ease;
+}
+.header .container .inner .lftbox .coursescolleges-wrapper .item .wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header .container .inner .lftbox .coursescolleges-wrapper .item .wrap .icon {
+  margin-bottom: 10px;
+  display: inline-block;
+}
+.header .container .inner .lftbox .coursescolleges-wrapper .item .wrap .icon svg path {
+  transition: all 0.9s ease;
+  -moz-transition: all 0.9s ease;
+  -webkit-transition: all 0.9s ease;
+}
+.header .container .inner .lftbox .coursescolleges-wrapper .item .wrap .title {
+  font-size: 14px;
+  color: #4A4A4A;
+  font-weight: 400;
+  font-family: "BasierSquare-Regular";
+  transition: all 0.9s ease;
+  -moz-transition: all 0.9s ease;
+  -webkit-transition: all 0.9s ease;
+}
+.header .container .inner .lftbox .coursescolleges-wrapper .item.active {
+  background: #F4F4F4;
+}
+.header .container .inner .lftbox .coursescolleges-wrapper .item.active .icon svg path {
+  fill: #0273F0;
+}
+.header .container .inner .lftbox .coursescolleges-wrapper .item.active .title {
+  color: #0273F0;
+}
+.header .container .inner .rgtbox .wrap {
+  display: flex;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+}
+.header .container .inner .rgtbox .wrap .item {
+  display: flex;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  display: inline-block;
+  padding: 0px;
+  margin-left: 30px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  transition: all 0.9s ease;
+  -moz-transition: all 0.9s ease;
+  -webkit-transition: all 0.9s ease;
+}
+.header .container .inner .rgtbox .wrap .item:first-child {
+  margin-left: 0;
+}
+.header .container .inner .rgtbox .wrap .item .icon svg path {
+  transition: all 0.9s ease;
+  -moz-transition: all 0.9s ease;
+  -webkit-transition: all 0.9s ease;
+}
+.header .container .inner .rgtbox .wrap .item .txt {
+  display: none;
+  font-size: 14px;
+  color: #4A4A4A;
+  text-align: center;
+  letter-spacing: -0.28px;
+  text-transform: capitalize;
+  font-weight: 400;
+  font-family: "BasierSquare-Regular";
+  transition: all 0.9s ease;
+  -moz-transition: all 0.9s ease;
+  -webkit-transition: all 0.9s ease;
+}
+.header .container .inner .rgtbox .wrap .item.account-dropdown {
+  position: relative;
+  background: linear-gradient(0deg, #ffffff 0%, #ffffff 100%), #ffffff;
+}
+.header .container .inner .rgtbox .wrap .item.account-dropdown .arrow {
+  display: none;
+  margin-left: 7px;
+}
+.header .container .inner .rgtbox .wrap .item.account-dropdown .arrow svg path {
+  transition: all 0.9s ease;
+  -moz-transition: all 0.9s ease;
+  -webkit-transition: all 0.9s ease;
+}
+.header .container .inner .rgtbox .wrap .item.account-dropdown .account-submenu {
+  width: -moz-max-content;
+  width: max-content;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  top: 50px;
+  right: 0;
+  display: block;
+  transition: all 0.5s ease;
+  padding: 5px 20px;
+  position: absolute;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border: 1px solid #F4F4F4;
+  background: linear-gradient(0deg, #ffffff 0%, #ffffff 100%), #ffffff;
+}
+.header .container .inner .rgtbox .wrap .item.account-dropdown .account-submenu a {
+  padding: 10px 0;
+  display: block;
+  color: #4A4A4A;
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  border-top: 1px solid #F4F4F4;
+  font-weight: 400;
+  position: relative;
+  font-family: "BasierSquare-Regular";
+  transition: color 0.9s ease, transform 0.4s ease;
+  -moz-transition: color 0.9s ease, transform 0.4s ease;
+  -webkit-transition: color 0.9s ease, transform 0.4s ease;
+}
+.header .container .inner .rgtbox .wrap .item.account-dropdown .account-submenu a:first-child {
+  border-top: 0;
+}
+.header .container .inner .rgtbox .wrap .item.account-dropdown .account-submenu.active {
+  top: 50px;
+  height: auto;
+  opacity: 1;
+}
+
+.institute-signup {
+  background: rgba(2, 115, 240, 0.05);
+}
+.institute-signup .inner {
+  margin-top: 40px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 80px;
+}
+.institute-signup .inner.student-signup-inner {
+  gap: 40px;
+}
+.institute-signup .inner.student-signup-inner .enrol-details::after {
+  content: none;
+}
+.institute-signup .inner .hd-typ2 {
+  margin-bottom: 30px;
+}
+.institute-signup .inner .enrol-details {
+  position: relative;
+}
+.institute-signup .inner .enrol-details:last-child::after {
+  content: none;
+}
+.institute-signup .inner .enrol-details::after {
+  content: "";
+  position: absolute;
+  bottom: -40px;
+  width: 100%;
+  height: 1px;
+  background-color: #F4F4F4;
+}
+.institute-signup .inner .form-wrapper {
+  background-color: #F4F4F4;
+  padding: 20px 16px;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+.institute-signup .inner .form-wrapper.student-form-wrapper {
+  background-color: #ffffff;
+  padding: 0;
+}
+.institute-signup .inner .form-bottom {
+  margin-top: 20px;
+}
+.institute-signup .inner .item-wrapper {
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #D9D9D9;
+  padding-right: 15px;
+}
+.institute-signup .inner .item-wrapper.review-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 0 10px 0;
+}
+.institute-signup .inner .item-wrapper.review-wrapper .review-txt {
+  font-size: 16px;
+  color: #4A4A4A;
+  font-family: "BasierSquare-Regular";
+  font-weight: 400;
+  line-height: 1.5625;
+  flex-basis: 175px;
+}
+.institute-signup .inner .item-wrapper.comment-wrapper {
+  width: 100%;
+}
+.institute-signup .inner .item-wrapper.three-item-wrapper {
+  padding-right: 0;
+  width: calc(50% - 10px);
+}
+.institute-signup .inner .item-wrapper.item-heading-wrapper {
+  width: 100%;
+}
+.institute-signup .inner .item-wrapper textarea {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  margin-top: 25px;
+  height: 50px;
+  margin-bottom: 10px;
+  padding: 0;
+  display: block;
+  font-size: 16px;
+  color: #4A4A4A;
+  font-family: "BasierSquare-Regular";
+  font-weight: 400;
+  line-height: 1.5625;
+}
+.institute-signup .inner .item-wrapper textarea ~ .comment-txt {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  font-size: 16px;
+  color: #4A4A4A;
+  font-family: "BasierSquare-Regular";
+  font-weight: 400;
+  line-height: 1.5625;
+}
+.institute-signup .inner .item-wrapper textarea::-webkit-scrollbar {
+  display: none;
+}
+.institute-signup .inner .item-wrapper textarea:focus {
+  outline: none;
+}
+.institute-signup .inner .item-wrapper input {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  height: 25px;
+  margin-bottom: 10px;
+}
+.institute-signup .inner .item-wrapper input::-moz-placeholder {
+  font-size: 16px;
+  line-height: 1.5625;
+  font-family: "BasierSquare-Regular";
+  font-weight: 400;
+  color: #4A4A4A;
+}
+.institute-signup .inner .item-wrapper input::placeholder {
+  font-size: 16px;
+  line-height: 1.5625;
+  font-family: "BasierSquare-Regular";
+  font-weight: 400;
+  color: #4A4A4A;
+}
+.institute-signup .inner .item-wrapper input:focus {
+  outline: none;
+}
+.institute-signup .inner .item-wrapper label {
+  position: absolute;
+  right: 0;
+}
+.institute-signup .inner .item-wrapper .file-input-container {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 11px;
+  gap: 5px;
+  cursor: pointer;
+}
+.institute-signup .inner .item-wrapper .file-input-container input[type=file] {
+  position: absolute;
+  right: 0;
+  display: block;
+  width: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.institute-signup .inner .item-wrapper .file-input {
+  display: flex;
+  border: none;
+  padding: 0;
+  justify-content: center;
+  background-color: transparent;
+}
+.institute-signup .inner .item-wrapper .file-name {
+  font-size: 16px;
+  color: #4A4A4A;
+  font-family: "BasierSquare-Regular";
+  font-weight: 400;
+  display: block;
+}
+.institute-signup .inner .check-item {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  align-items: start;
+}
+.institute-signup .inner .check-item input {
+  margin-top: 5px;
+}
+.institute-signup .inner .check-item input[type=checkbox] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #4A4A4A;
+  border-radius: 3px;
+  position: relative;
+  flex-shrink: 0;
+}
+.institute-signup .inner .check-item input[type=checkbox]:checked {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #0273F0;
+  border-color: #0273F0;
+}
+.institute-signup .inner .check-item input[type=checkbox]:checked ~ label::before {
+  content: "";
+  background: url(../images/check-mark.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 8px;
+  width: 9px;
+  position: absolute;
+  left: -20.5px;
+  top: 7px;
+}
+.institute-signup .inner .check-item label {
+  font-size: 16px;
+  line-height: 1.5625;
+  font-family: "BasierSquare-Regular";
+  font-weight: 400;
+  color: #4A4A4A;
+  position: relative;
+}
+.institute-signup .inner .check-item label .link {
+  font-size: 16px;
+  line-height: 1.5625;
+  font-family: "BasierSquare-Regular";
+  font-weight: 400;
+  color: #4A4A4A;
+  text-decoration: underline;
+}
+.institute-signup .inner .approval-item {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+.institute-signup .inner .approval-item .check-item {
+  flex-basis: calc(100% - 107px);
+  padding-right: 10px;
+}
+.institute-signup .inner .approval-item .file-input-container {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  width: 107px;
+  cursor: pointer;
+  gap: 5px;
+}
+.institute-signup .inner .approval-item .file-input-container input[type=file] {
+  position: absolute;
+  right: 0;
+  display: block;
+  width: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.institute-signup .inner .approval-item .file-input {
+  display: flex;
+  border: none;
+  padding: 0;
+  justify-content: left;
+  background-color: transparent;
+}
+.institute-signup .inner .approval-item .file-name {
+  position: absolute;
+  right: 0;
+  font-size: 16px;
+  color: #4A4A4A;
+  font-family: "BasierSquare-Regular";
+  font-weight: 400;
+  display: block;
+  cursor: pointer;
+}
+.institute-signup .inner .sep-line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #D9D9D9;
+}
+.institute-signup .inner .acceptAndSignup, .institute-signup .inner .acceptAndApply {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+}
+.institute-signup .inner .acceptAndSignup {
+  margin-top: 30px;
+}
+.institute-signup .inner .submit-btn, .institute-signup .inner .applyNow-btn {
+  margin-left: auto;
+  margin-right: 0;
+}
+.institute-signup .inner .signup-btn, .institute-signup .inner .applyNow-btn, .institute-signup .inner .submit-btn {
+  display: block;
+  border: none;
+  line-height: 1.2;
+  font-weight: 400;
+  cursor: pointer;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: -0.28px;
+  transition: all 0.6s;
+  -moz-transition: all 0.6s;
+  -webkit-transition: all 0.6s;
+  background: #0273F0;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  padding: 10px 40px 10px 40px;
+  font-size: 14px;
+  font-family: "BasierSquare-Regular";
+}
+
+.footer {
+  background: #23241C;
+}
+.footer #gototop {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  position: fixed;
+  bottom: 80px;
+  right: 30px;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  border-radius: 10px;
+  z-index: 1000;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -moz-transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -webkit-transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: url(../images/backtotop-bg.svg) no-repeat 0 0/cover;
+}
+.footer #gototop .inner {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 999;
+}
+.footer #gototop .inner svg path {
+  transition: 0.5s all cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.footer #gototop:after {
+  top: 0;
+  left: 0;
+  width: 0;
+  border-radius: 0 50% 50% 0;
+  height: 100%;
+  z-index: 99;
+  content: "";
+  position: absolute;
+  background: #017BFA;
+  transition: 0.4s width cubic-bezier(0.25, 0.46, 0.45, 0.94), 0.4s border-radius cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.footer #gototop.show {
+  opacity: 1;
+  visibility: visible;
+}
+.footer .container .wrapper {
+  text-align: center;
+}
+.footer .container .wrapper .ft-logo {
+  max-width: 70px;
+  margin: 0 auto 40px;
+}
+.footer .container .wrapper .ft-logo a {
+  display: inline-block;
+}
+.footer .container .wrapper .quick-links ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 44px;
+  gap: 30px;
+  justify-content: center;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+}
+.footer .container .wrapper .quick-links ul li {
+  margin-left: 10px;
+}
+.footer .container .wrapper .quick-links ul li:first-child, .footer .container .wrapper .quick-links ul li:nth-child(4) {
+  margin-left: 0;
+}
+.footer .container .wrapper .quick-links ul li a {
+  line-height: 1.2;
+  color: rgba(0, 0, 0, 0);
+  display: inline-block;
+  font-size: 16px;
+  font-family: "BasierSquare-Regular";
+  font-weight: 400;
+  text-shadow: 0 0 #ffffff, 0 1.5em #ffffff;
+  transition: all 0.6s;
+  -moz-transition: all 0.6s;
+  -webkit-transition: all 0.6s;
+  overflow: hidden;
+}
+.footer .container .wrapper .ft-bottom {
+  margin-top: 30px;
+  padding-top: 30px;
+  max-width: 432px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+.footer .container .wrapper .ft-bottom::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 1px;
+  width: 214px;
+  background-color: #3D3D3D;
+}
+.footer .container .wrapper .ft-bottom .ft-socialicons ul {
+  display: flex;
+  justify-content: center;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+}
+.footer .container .wrapper .ft-bottom .ft-socialicons ul li {
+  margin-left: 40px;
+}
+.footer .container .wrapper .ft-bottom .ft-socialicons ul li:first-child {
+  margin-left: 0;
+}
+.footer .container .wrapper .ft-bottom .ft-socialicons ul li a svg path {
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+}
+.footer .container .wrapper .ft-bottom .ft-socialicons ul li a:hover svg path {
+  fill: #0273F0;
+}
+.footer .container .wrapper .ft-bottom .copyright {
+  line-height: 1.5;
+  margin: 40px auto 0;
+  text-align: center;
+  color: #5A5A5A;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "BasierSquare-Regular";
+  max-width: 287px;
+}
+
+.login-popup .modal-dialog {
+  max-width: 690px;
+  margin-top: 40px;
+}
+.login-popup .modal-dialog .modal-content {
+  border-radius: 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(2px);
+  -moz-backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border: none;
+}
+.login-popup .modal-dialog .modal-content .close-btn {
+  right: 30px;
+  top: 30px;
+  height: 15px;
+  width: 15px;
+  padding: 0;
+  z-index: 99;
+  position: absolute;
+  background: none;
+  border: none;
+  line-height: 0;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner {
+  background: #ffffff;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols:first-child {
+  display: none;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .imgbox-wrapper {
+  height: 100%;
+  padding-top: 50px;
+  background: rgba(2, 115, 240, 0.05);
+  display: flex;
+  align-items: flex-end;
+  -moz-align-items: flex-end;
+  -webkit-align-items: flex-end;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .imgbox-wrapper .inner-wrap {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  -moz-justify-content: space-between;
+  justify-content: space-between;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .imgbox-wrapper .inner-wrap .hd-welcome {
+  font-weight: 700;
+  line-height: 80px;
+  margin-bottom: 16px;
+  color: #4A4A4A;
+  text-align: center;
+  font-size: 30px;
+  font-family: "BasierSquare-Bold";
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .imgbox-wrapper .inner-wrap picture {
+  display: inline-block;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper {
+  display: flex;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap {
+  width: 100%;
+  margin: 30px 20px;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .hide-frm {
+  display: none;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .logo {
+  width: 60px;
+  display: block;
+  margin: 0 auto 30px auto;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li {
+  margin-top: 20px;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li:first-child, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li:first-child {
+  margin-top: 0;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .input-field, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .input-field {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #D9D9D9;
+  position: relative;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .input-field input, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .input-field input {
+  padding: 0;
+  width: 100%;
+  font-weight: 400;
+  line-height: 25px;
+  color: #4A4A4A;
+  font-size: 14px;
+  font-family: "BasierSquare-Regular";
+  border: none;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .input-field input[type=password], .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .input-field input[type=password] {
+  padding-right: 20px;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .input-field .icon, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .input-field .icon {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .checkbox-field, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .checkbox-field {
+  display: flex;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .checkbox-field label, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .checkbox-field label {
+  color: #4A4A4A;
+  font-weight: 400;
+  line-height: 25px;
+  text-align: center;
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 14px;
+  font-family: "BasierSquare-Regular";
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .btnbar, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .btnbar {
+  text-align: center;
+  margin: 40px 0 20px 0;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .btnbar .login-btn, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .btnbar .login-btn {
+  border: none;
+  line-height: 1.2;
+  font-weight: 400;
+  cursor: pointer;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: -0.28px;
+  transition: all 0.6s;
+  -moz-transition: all 0.6s;
+  -webkit-transition: all 0.6s;
+  background: #0273F0;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  padding: 10px 40px 10px 40px;
+  font-size: 14px;
+  font-family: "BasierSquare-Regular";
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate {
+  text-align: center;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li {
+  margin-top: 5px;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li:first-child {
+  margin-top: 0;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .lnk {
+  color: #4A4A4A;
+  font-weight: 400;
+  line-height: 25px;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  font-family: "BasierSquare-Regular";
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .lnk.frgtpswd {
+  color: #BDBDBD;
+  text-decoration-line: underline;
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .createaccount {
+  color: #4A4A4A;
+  font-weight: 400;
+  line-height: 25px;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  font-family: "BasierSquare-Regular";
+}
+.login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .createaccount .link {
+  color: #4A4A4A;
+  font-weight: 400;
+  line-height: 25px;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  font-family: "BasierSquare-Regular";
+  text-decoration-line: underline;
+  transition: all 0.4s ease;
+}
+
+.modal-backdrop.show {
+  background: rgba(217, 217, 217, 0.7);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  --bs-backdrop-opacity:none;
+}
+
+@media screen and (min-width: 369px) {
+  .hd-typ1 {
+    font-size: 35px;
+  }
+  .hd-typ2 {
+    font-size: 24px;
+  }
+  .hd-typ3 {
+    font-size: 24px;
+  }
+  .hd-typ4 {
+    font-size: 20px;
+  }
+  .btn-typ1 .txt {
+    font-size: 14px;
+  }
+  .btn-typ2 {
+    font-size: 14px;
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper .item .wrap .title {
+    font-size: 14px;
+  }
+  .header .container .inner .rgtbox .wrap .item .txt {
+    font-size: 14px;
+  }
+  .header .container .inner .rgtbox .wrap .item.account-dropdown .account-submenu a {
+    font-size: 14px;
+  }
+  .footer .container .wrapper .ft-bottom .copyright {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog {
+    margin-top: 100px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .input-field input, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .input-field input {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .checkbox-field label, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .checkbox-field label {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .btnbar .login-btn, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .btnbar .login-btn {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .lnk {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .createaccount {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .createaccount .link {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .imgbox-wrapper .inner-wrap .hd-welcome {
+    font-size: 30px;
+  }
+}
+@media screen and (min-width: 390px) {
+  .hd-typ1 {
+    font-size: 35px;
+  }
+  .hd-typ2 {
+    font-size: 24px;
+  }
+  .hd-typ3 {
+    font-size: 24px;
+  }
+  .hd-typ4 {
+    font-size: 20px;
+  }
+  .btn-typ1 .txt {
+    font-size: 14px;
+  }
+  .btn-typ2 {
+    font-size: 14px;
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper .item .wrap .title {
+    font-size: 14px;
+  }
+  .header .container .inner .rgtbox .wrap .item .txt {
+    font-size: 14px;
+  }
+  .header .container .inner .rgtbox .wrap .item.account-dropdown .account-submenu a {
+    font-size: 14px;
+  }
+  .footer .container .wrapper .ft-bottom .copyright {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap {
+    width: 280px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .input-field input, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .input-field input {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .checkbox-field label, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .checkbox-field label {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .btnbar .login-btn, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .btnbar .login-btn {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .lnk {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .createaccount {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .createaccount .link {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .imgbox-wrapper .inner-wrap .hd-welcome {
+    font-size: 30px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .hd-typ1 {
+    line-height: 64px;
+    font-size: 50px;
+  }
+  .hd-typ2 {
+    font-size: 32px;
+  }
+  .hd-typ3 {
+    font-size: 40px;
+  }
+  .hd-typ4 {
+    font-size: 22px;
+  }
+  .btn-typ1 .txt {
+    font-size: 14px;
+  }
+  .btn-typ2 {
+    font-size: 14px;
+  }
+  .section {
+    padding: 70px 0;
+  }
+  .header .container .inner .lftbox .logo {
+    max-width: 78px;
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper {
+    display: flex;
+    padding-left: 16px;
+    margin-left: 16px;
+    gap: 20px;
+    position: relative;
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper .item .wrap .title {
+    font-size: 14px;
+  }
+  .header .container .inner .rgtbox .wrap .item {
+    margin-left: 40px;
+  }
+  .header .container .inner .rgtbox .wrap .item .txt {
+    font-size: 14px;
+  }
+  .header .container .inner .rgtbox .wrap .item.account-dropdown .account-submenu {
+    top: 75px;
+  }
+  .header .container .inner .rgtbox .wrap .item.account-dropdown .account-submenu.active {
+    top: 63px;
+  }
+  .header .container .inner .rgtbox .wrap .item.account-dropdown .account-submenu a {
+    font-size: 14px;
+  }
+  .institute-signup .inner .form-wrapper {
+    padding: 20px;
+    justify-content: space-between;
+  }
+  .institute-signup .inner .form-bottom {
+    margin-top: 20px;
+  }
+  .institute-signup .inner .student-form-wrapper .item-wrapper {
+    width: calc(50% - 50px);
+  }
+  .institute-signup .inner .student-form-wrapper .item-wrapper.comment-wrapper {
+    width: 100%;
+  }
+  .institute-signup .inner .item-wrapper {
+    width: calc(50% - 30px);
+    padding-right: 0;
+  }
+  .institute-signup .inner .item-wrapper.three-item-wrapper, .institute-signup .inner .item-wrapper.item-heading-wrapper {
+    width: calc(33.33333333% - 20px);
+  }
+  .institute-signup .inner .check-item {
+    width: calc(50% - 30px);
+  }
+  .institute-signup .inner .signup-btn, .institute-signup .inner .applyNow-btn, .institute-signup .inner .submit-btn {
+    font-size: 16px;
+  }
+  .footer .container .wrapper .ft-logo {
+    max-width: 80px;
+    margin-bottom: 50px;
+  }
+  .footer .container .wrapper .quick-links ul {
+    gap: 60px;
+  }
+  .footer .container .wrapper .quick-links ul li {
+    margin-left: 0;
+  }
+  .footer .container .wrapper .ft-bottom::before {
+    width: 100%;
+  }
+  .footer .container .wrapper .ft-bottom .copyright {
+    margin-top: 30px;
+    max-width: -moz-max-content;
+    max-width: max-content;
+    line-height: normal;
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog {
+    margin-top: 100px;
+  }
+  .login-popup .modal-dialog .modal-content .close-btn {
+    right: 50px;
+    top: 50px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols:first-child {
+    display: block;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap {
+    width: 275px;
+    margin: 50px 20px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .logo {
+    width: 78px;
+    margin: 0 auto 60px auto;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .input-field input, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .input-field input {
+    font-size: 16px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .checkbox-field label, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .checkbox-field label {
+    font-size: 16px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .btnbar .login-btn, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .btnbar .login-btn {
+    font-size: 16px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li {
+    margin-top: 20px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .lnk {
+    font-size: 16px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .createaccount {
+    font-size: 16px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .createaccount .link {
+    font-size: 16px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .imgbox-wrapper .inner-wrap {
+    overflow: hidden;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .imgbox-wrapper .inner-wrap .hd-welcome {
+    font-size: 40px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .imgbox-wrapper .inner-wrap picture {
+    margin-left: -20px;
+    width: 120%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .institute-signup .inner .signup-btn, .institute-signup .inner .applyNow-btn, .institute-signup .inner .submit-btn {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap {
+    width: 315px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .input-field input, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .input-field input {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .checkbox-field label, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .checkbox-field label {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .btnbar .login-btn, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .btnbar .login-btn {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .lnk {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .createaccount {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .createaccount .link {
+    font-size: 14px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .imgbox-wrapper .inner-wrap .hd-welcome {
+    font-size: 30px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  :root {
+    --typ1-FontSize:12px;
+    --typ2-FontSize:14px;
+    --typ3-FontSize:16px;
+    --typ4-FontSize:18px;
+    --typ5-FontSize:20px;
+    --typ6-FontSize:22px;
+    --typ7-FontSize:20px;
+    --typ8-FontSize:26px;
+    --typ9-FontSize:28px;
+    --typ10-FontSize:30px;
+    --typ11-FontSize:26px;
+    --typ12-FontSize:34px;
+    --typ13-FontSize:36px;
+    --typ14-FontSize:38px;
+    --typ15-FontSize:32px;
+    --typ16-FontSize:40px;
+    --typ17-FontSize:50px;
+    --typ18-FontSize:24px;
+    --typ19-FontSize:16px;
+  }
+  .hd-typ1 {
+    line-height: 1.2;
+    font-size: var(--typ17-FontSize);
+  }
+  .hd-typ2 {
+    font-size: var(--typ11-FontSize);
+  }
+  .hd-typ3 {
+    font-size: var(--typ15-FontSize);
+    margin-bottom: 60px;
+  }
+  .hd-typ4 {
+    font-size: var(--typ7-FontSize);
+  }
+  .btn-typ1 .txt {
+    font-size: var(--typ2-FontSize);
+  }
+  .btn-typ2 {
+    position: relative;
+    overflow: hidden;
+    font-size: var(--typ2-FontSize);
+  }
+  .btn-typ2 .inner:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    width: 0;
+    height: 100%;
+    background-color: #0273F0;
+    border-radius: 0 50% 50% 0;
+    transition: 0.4s width cubic-bezier(0.25, 0.46, 0.45, 0.94), 0.4s border-radius cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .btn-typ2 .inner .txt {
+    z-index: 99;
+    position: relative;
+  }
+  .btn-typ2 .inner .icon {
+    z-index: 99;
+    position: relative;
+  }
+  .btn-typ2:hover {
+    border-color: #0273F0;
+  }
+  .btn-typ2:hover .inner .txt {
+    color: #ffffff;
+  }
+  .btn-typ2:hover .inner svg path {
+    stroke: #ffffff;
+  }
+  .btn-typ2:hover .inner:after {
+    width: 100%;
+    border-radius: 0;
+  }
+  .header .headercontainer-wrapper {
+    padding: 6px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 79px;
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper {
+    padding-left: 40px;
+    margin-left: 40px;
+    gap: 14px;
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper .item {
+    padding: 6px 12px;
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper .item .wrap .icon {
+    margin-bottom: 4px;
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper .item .wrap .title {
+    font-size: var(--typ2-FontSize);
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper .item:hover {
+    background: #F4F4F4;
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper .item:hover .icon svg path {
+    fill: #0273F0;
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper .item:hover .title {
+    color: #0273F0;
+  }
+  .header .container .inner .rgtbox .wrap .item {
+    margin-left: 14px;
+    padding: 3px 14px 4px 13px;
+  }
+  .header .container .inner .rgtbox .wrap .item .icon {
+    margin-right: 11px;
+  }
+  .header .container .inner .rgtbox .wrap .item .txt {
+    font-size: var(--typ2-FontSize);
+    display: inline-block;
+  }
+  .header .container .inner .rgtbox .wrap .item.account-dropdown {
+    padding: 0;
+  }
+  .header .container .inner .rgtbox .wrap .item.account-dropdown .title-account {
+    padding: 7px 17px 8px 17px;
+  }
+  .header .container .inner .rgtbox .wrap .item.account-dropdown .arrow {
+    display: inline-block;
+  }
+  .header .container .inner .rgtbox .wrap .item.account-dropdown:hover .arrow svg path {
+    stroke: #0273F0;
+  }
+  .header .container .inner .rgtbox .wrap .item.account-dropdown .account-submenu {
+    left: 0;
+    top: 55px;
+    right: 0;
+    width: -moz-max-content;
+    width: max-content;
+    transition: opacity 0.4s ease, scale 0.4s ease;
+  }
+  .header .container .inner .rgtbox .wrap .item.account-dropdown .account-submenu a {
+    padding: 10px 0;
+    font-size: var(--typ2-FontSize);
+    transform: translateY(20px);
+  }
+  .header .container .inner .rgtbox .wrap .item.account-dropdown .account-submenu a:hover {
+    color: #0273F0;
+  }
+  .header .container .inner .rgtbox .wrap .item.account-dropdown .account-submenu.active {
+    transition: opacity 0.4s ease, scale 0.4s ease;
+    top: 55px;
+  }
+  .header .container .inner .rgtbox .wrap .item.account-dropdown .account-submenu.active a {
+    transform: translateY(0);
+  }
+  .header .container .inner .rgtbox .wrap .item:hover {
+    background: #F4F4F4;
+  }
+  .header .container .inner .rgtbox .wrap .item:hover .icon svg path {
+    fill: #0273F0;
+  }
+  .header .container .inner .rgtbox .wrap .item:hover .txt {
+    color: #0273F0;
+  }
+  .institute-signup .inner {
+    max-width: 1052px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+  }
+  .institute-signup .inner .enrol-details {
+    max-width: 762px;
+    width: 762px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .institute-signup .inner .enrol-details::after {
+    width: 1052px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .institute-signup .inner .form-wrapper {
+    padding: 20px;
+    justify-content: space-between;
+  }
+  .institute-signup .inner .form-bottom {
+    margin-top: 20px;
+  }
+  .institute-signup .inner .item-wrapper {
+    width: calc(50% - 30px);
+    padding-right: 0;
+  }
+  .institute-signup .inner .item-wrapper.three-item-wrapper, .institute-signup .inner .item-wrapper.item-heading-wrapper {
+    width: calc(33.33333333% - 20px);
+  }
+  .institute-signup .inner .check-item {
+    width: calc(50% - 30px);
+  }
+  .institute-signup .inner .signup-btn, .institute-signup .inner .applyNow-btn, .institute-signup .inner .submit-btn {
+    font-size: 16px;
+    border: 1px solid #0273F0;
+    background-color: #0273F0;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: var(--typ3-FontSize);
+    background-image: linear-gradient(0, #0273F0, #0273F0);
+    background-size: 0;
+    background-repeat: no-repeat;
+  }
+  .institute-signup .inner .signup-btn:hover, .institute-signup .inner .applyNow-btn:hover, .institute-signup .inner .submit-btn:hover {
+    box-shadow: 0px 8px 24px 0px rgba(205, 230, 255, 0.74);
+  }
+  .footer #gototop {
+    cursor: pointer;
+  }
+  .footer #gototop:hover .inner svg path {
+    stroke: #ffffff;
+  }
+  .footer #gototop:hover:after {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .footer .container .wrapper .quick-links ul li a:hover {
+    text-shadow: 0 -2em #ffffff, 0 0 #ffffff;
+  }
+  .footer .container .wrapper .ft-bottom .copyright {
+    font-size: var(--typ2-FontSize);
+  }
+  .login-popup .modal-dialog {
+    max-width: 1080px;
+    margin-top: 100px;
+  }
+  .login-popup .modal-dialog .modal-content {
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(2px);
+    -moz-backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+  .login-popup .modal-dialog .modal-content .close-btn {
+    right: 50px;
+    top: 50px;
+    height: 15px;
+    width: 15px;
+  }
+  .login-popup .modal-dialog .modal-content .close-btn svg path {
+    transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+  }
+  .login-popup .modal-dialog .modal-content .close-btn:hover svg path {
+    fill: #0273F0;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body {
+    padding: 20px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .input-field input, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .input-field input {
+    font-size: var(--typ3-FontSize);
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .input-field input:focus-visible, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .input-field input:focus-visible {
+    outline: none;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .checkbox-field label, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .checkbox-field label {
+    font-size: var(--typ3-FontSize);
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .btnbar .login-btn, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .btnbar .login-btn {
+    border: 1px solid #0273F0;
+    background-color: #0273F0;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: var(--typ3-FontSize);
+    background-image: linear-gradient(0, #0273F0, #0273F0);
+    background-size: 0;
+    background-repeat: no-repeat;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .btnbar .login-btn:hover, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .btnbar .login-btn:hover {
+    color: #0273F0;
+    background-size: 100%;
+    border-color: #0273F0;
+    background-color: #ffffff;
+    background-image: linear-gradient(0, #ffffff, #ffffff);
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .lnk {
+    font-size: var(--typ3-FontSize);
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .lnk:hover {
+    color: #4A4A4A;
+    text-decoration-line: none;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .createaccount {
+    font-size: var(--typ3-FontSize);
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .createaccount .link {
+    font-size: var(--typ3-FontSize);
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .createaccount .link:hover {
+    color: #BDBDBD;
+    text-decoration-line: none;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .imgbox-wrapper {
+    padding-top: 100px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .imgbox-wrapper .inner-wrap picture {
+    margin-left: 0;
+    width: 100%;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .imgbox-wrapper .inner-wrap .hd-welcome {
+    font-size: var(--typ16-FontSize);
+  }
+}
+@media screen and (min-width: 1400px) {
+  :root {
+    --typ1-FontSize:12px;
+    --typ2-FontSize:14px;
+    --typ3-FontSize:16px;
+    --typ4-FontSize:18px;
+    --typ5-FontSize:20px;
+    --typ6-FontSize:22px;
+    --typ7-FontSize:22px;
+    --typ8-FontSize:26px;
+    --typ9-FontSize:28px;
+    --typ10-FontSize:30px;
+    --typ11-FontSize:28px;
+    --typ12-FontSize:34px;
+    --typ13-FontSize:36px;
+    --typ14-FontSize:38px;
+    --typ15-FontSize:36px;
+    --typ16-FontSize:48px;
+    --typ17-FontSize:56px;
+    --typ18-FontSize:24px;
+    --typ19-FontSize:16px;
+  }
+  .section {
+    padding: 80px 0;
+  }
+  .header .headercontainer-wrapper {
+    height: 95px;
+    padding: 8px 0;
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper {
+    padding-left: 48px;
+    margin-left: 48px;
+    gap: 16px;
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper .item {
+    padding: 10px 16px;
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper .item .wrap .icon {
+    margin-bottom: 8px;
+  }
+  .header .container .inner .rgtbox .wrap .item {
+    margin-left: 16px;
+    padding: 5px 16px 6px 15px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .input-field input, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .input-field input {
+    font-size: var(--typ3-FontSize);
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .checkbox-field label, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .checkbox-field label {
+    font-size: var(--typ3-FontSize);
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .btnbar .login-btn, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .btnbar .login-btn {
+    font-size: var(--typ3-FontSize);
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .lnk {
+    font-size: var(--typ3-FontSize);
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .imgbox-wrapper .inner-wrap .hd-welcome {
+    font-size: var(--typ16-FontSize);
+  }
+}
+@media screen and (min-width: 1699px) {
+  :root {
+    --typ1-FontSize:12px;
+    --typ2-FontSize:14px;
+    --typ3-FontSize:16px;
+    --typ4-FontSize:18px;
+    --typ5-FontSize:20px;
+    --typ6-FontSize:22px;
+    --typ7-FontSize:24px;
+    --typ8-FontSize:26px;
+    --typ9-FontSize:28px;
+    --typ10-FontSize:30px;
+    --typ11-FontSize:32px;
+    --typ12-FontSize:34px;
+    --typ13-FontSize:36px;
+    --typ14-FontSize:38px;
+    --typ15-FontSize:40px;
+    --typ16-FontSize:60px;
+    --typ17-FontSize:70px;
+    --typ18-FontSize:24px;
+    --typ19-FontSize:16px;
+  }
+  .container {
+    max-width: 1644px;
+  }
+  .section {
+    padding: 100px 0;
+  }
+  .header .headercontainer-wrapper {
+    height: 101px;
+    padding: 8px 0;
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper {
+    padding-left: 60px;
+    margin-left: 60px;
+    gap: 20px;
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper .item {
+    padding: 12px 20px;
+  }
+  .header .container .inner .lftbox .coursescolleges-wrapper .item .wrap .icon {
+    margin-bottom: 10px;
+  }
+  .header .container .inner .rgtbox .wrap .item {
+    margin-left: 20px;
+    padding: 7px 20px 8px 19px;
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .input-field input, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .input-field input {
+    font-size: var(--typ3-FontSize);
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .checkbox-field label, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .checkbox-field label {
+    font-size: var(--typ3-FontSize);
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .login-frm ul li .btnbar .login-btn, .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgot-frm ul li .btnbar .login-btn {
+    font-size: var(--typ3-FontSize);
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .frm-wrapper .inner-wrap .forgotandcreate ul li .lnk {
+    font-size: var(--typ3-FontSize);
+  }
+  .login-popup .modal-dialog .modal-content .modal-body .login-inner .row .cols .imgbox-wrapper .inner-wrap .hd-welcome {
+    font-size: var(--typ16-FontSize);
+  }
+}/*# sourceMappingURL=signup-style.css.map */
