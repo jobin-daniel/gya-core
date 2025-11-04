@@ -59,11 +59,13 @@ export default function Header() {
                       <img src="/images/account.svg" alt="Account" width="23" height="22" />
                     </span>
                     <span className="txt">Account</span>
-                    <span className="arrow">
-                      <img src="/images/arrow.svg" alt="Arrow" width="10" height="6" />
+                    <span className={`arrow ${accountDropdownOpen ? 'active' : ''}`}>
+                      <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L5 5L9 1" stroke="#4A4A4A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
                     </span>
                   </span>
-                  <span className="account-submenu" style={{ display: accountDropdownOpen ? 'block' : 'none' }}>
+                  <span className={`account-submenu ${accountDropdownOpen ? 'active' : ''}`}>
                     <a href="/login" title="Login">Login</a>
                     <a href="/student-signup" title="Student Sign Up">Student Sign Up</a>
                     <a href="/institute-signup" title="Institute Sign Up">Institute Sign Up</a>
