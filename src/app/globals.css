@@ -48,7 +48,7 @@ body {
   padding: 5px 20px;
   position: absolute;
   border-radius: 10px;
-  border: 1px solid #F4F4F4;
+  border: 1px solid #f4f4f4;
   background: linear-gradient(0deg, #ffffff 0%, #ffffff 100%), #ffffff;
   pointer-events: none;
 }
@@ -60,16 +60,16 @@ body {
 }
 
 .header .container .inner .rgtbox .wrap .item.account-dropdown:hover .arrow svg path {
-  stroke: #0273F0;
+  stroke: #0273f0;
 }
 
 .header .container .inner .rgtbox .wrap .item.account-dropdown .account-submenu a {
   padding: 10px 0;
   display: block;
-  color: #4A4A4A;
+  color: #4a4a4a;
   font-size: 14px;
   letter-spacing: -0.28px;
-  border-top: 1px solid #F4F4F4;
+  border-top: 1px solid #f4f4f4;
   font-weight: 400;
   font-family: "BasierSquare-Regular";
   transition: color 0.3s ease;
@@ -80,5 +80,5 @@ body {
 }
 
 .header .container .inner .rgtbox .wrap .item.account-dropdown .account-submenu a:hover {
-  color: #0273F0;
+  color: #0273f0;
 }

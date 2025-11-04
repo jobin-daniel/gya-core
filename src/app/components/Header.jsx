@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
+import { useState } from "react";
 
 export default function Header() {
-  const [accountDropdownOpen, setAccountDropdownOpen] = useState(false)
+  const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
 
   const toggleAccountDropdown = () => {
-    setAccountDropdownOpen(!accountDropdownOpen)
-  }
+    setAccountDropdownOpen(!accountDropdownOpen);
+  };
 
   return (
     <header className="header">
@@ -48,27 +48,30 @@ export default function Header() {
                   </span>
                   <span className="txt">Help</span>
                 </a>
-                
+
                 {/* Account Dropdown - React-controlled */}
-                <span 
-                  className={`item account-dropdown ${accountDropdownOpen ? 'active' : ''}`}
-                  onClick={toggleAccountDropdown}
-                >
+                <span className={`item account-dropdown ${accountDropdownOpen ? "active" : ""}`} onClick={toggleAccountDropdown}>
                   <span className="title-account">
                     <span className="icon">
                       <img src="/images/account.svg" alt="Account" width="23" height="22" />
                     </span>
                     <span className="txt">Account</span>
-                    <span className={`arrow ${accountDropdownOpen ? 'active' : ''}`}>
+                    <span className={`arrow ${accountDropdownOpen ? "active" : ""}`}>
                       <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 1L5 5L9 1" stroke="#4A4A4A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M1 1L5 5L9 1" stroke="#4A4A4A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </span>
                   </span>
-                  <span className={`account-submenu ${accountDropdownOpen ? 'active' : ''}`}>
-                    <a href="/login" title="Login">Login</a>
-                    <a href="/student-signup" title="Student Sign Up">Student Sign Up</a>
-                    <a href="/institute-signup" title="Institute Sign Up">Institute Sign Up</a>
+                  <span className={`account-submenu ${accountDropdownOpen ? "active" : ""}`}>
+                    <a href="/login" title="Login">
+                      Login
+                    </a>
+                    <a href="/student-signup" title="Student Sign Up">
+                      Student Sign Up
+                    </a>
+                    <a href="/institute-signup" title="Institute Sign Up">
+                      Institute Sign Up
+                    </a>
                   </span>
                 </span>
               </div>
@@ -77,5 +80,5 @@ export default function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }
