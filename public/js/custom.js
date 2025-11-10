@@ -19,18 +19,18 @@ btn.on('click', function(e) {
 **************************************/
 const tap = document.querySelector('.title-account');
 const toggleMenu = document.querySelector('.account-submenu');
-const headerClass = document.querySelector('.header');
+const headerElement = document.querySelector('.header'); // Changed from headerClass
 
 tap.addEventListener('click', function(event){
     toggleMenu.classList.toggle('active');
-    headerClass.classList.toggle('active-acount-menu');
+    headerElement.classList.toggle('active-acount-menu'); // Changed from headerClass
     event.stopPropagation();
 });
 
 document.addEventListener('click', function(event){
     if (!tap.contains(event.target)) {
         toggleMenu.classList.remove('active');
-        headerClass.classList.remove('active-acount-menu');
+        headerElement.classList.remove('active-acount-menu'); // Changed from headerClass
     }
 });
 
