@@ -1,14 +1,17 @@
+'use client';
+
 /*
  * Filename: /Users/jobindaniel/Desktop/nextjs-app/src/components/LoginModal.tsx
  * Path: /Users/jobindaniel/Desktop/nextjs-app
  * Created Date: Monday, November 10th 2025, 4:58:40 pm
  * Author: Jobin Daniel
- * 
+ *
  * Copyright (c) 2025 MissioRex Technologies LLP
  */
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getAuthHeader } from '../../lib/auth';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -18,12 +21,38 @@ interface LoginModalProps {
 const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Login attempt:', { email, password });
-    onClose();
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem('token', data.token);
+        // Trigger header update by dispatching custom event
+        window.dispatchEvent(new Event('loginSuccess'));
+        onClose();
+      } else {
+        setError(data.error || 'Login failed');
+      }
+    } catch (err) {
+      setError('Network error');
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -88,6 +117,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
           </div>
           
           <form onSubmit={handleSubmit}>
+          {error && <div className="mb-4 text-red-600 text-sm">{error}</div>}
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
             <input
@@ -124,14 +154,16 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
               type="button"
               onClick={onClose}
               className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400"
+              disabled={loading}
             >
               Cancel
             </button>
             <button
               type="submit"
               className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+              disabled={loading}
             >
-              Login
+              {loading ? 'Logging in...' : 'Login'}
             </button>
           </div>
         </form>

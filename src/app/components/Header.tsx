@@ -1,3 +1,5 @@
+'use client';
+
 /*
  * Filename: /Users/jobindaniel/Desktop/nextjs-app/src/components/Header.tsx
  * Path: /Users/jobindaniel/Desktop/nextjs-app
@@ -10,6 +12,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import LoginModal from './LoginModal';
+import { verifyToken } from '../../lib/auth';
 
 interface HeaderProps {
   onOpenLoginModal?: () => void;
@@ -32,6 +35,7 @@ const DropdownArrow: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
 const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
   const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [user, setUser] = useState<{ name: string } | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   const toggleAccountDropdown = () => setAccountDropdownOpen((s) => !s);
@@ -42,6 +46,31 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
     setAccountDropdownOpen(false);
     if (onOpenLoginModal) onOpenLoginModal();
   };
+
+  useEffect(() => {
+    const checkLogin = () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const decoded = verifyToken(token);
+        if (decoded) {
+          setUser({ name: decoded.name });
+        } else {
+          setUser(null);
+        }
+      } else {
+        setUser(null);
+      }
+    };
+
+    checkLogin();
+
+    // Listen for login success event
+    window.addEventListener('loginSuccess', checkLogin);
+
+    return () => {
+      window.removeEventListener('loginSuccess', checkLogin);
+    };
+  }, []);
 
   // Click-outside and Escape handling to close dropdown
   useEffect(() => {
@@ -118,7 +147,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
             <div ref={wrapperRef} className="relative cursor-pointer select-none" onClick={toggleAccountDropdown}>
               <span className="flex items-center space-x-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
                 <Image src="/images/account.svg" alt="Account" width={23} height={22} />
-                <span>Account</span>
+                <span>{user ? user.name : 'Account'}</span>
                 <DropdownArrow isOpen={accountDropdownOpen} />
               </span>
 
@@ -129,14 +158,30 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
                     : 'opacity-0 scale-95 invisible pointer-events-none'
                 }`}
               >
-                <a
-                  href="#"
-                  onClick={handleLoginClick}
-                  title="Login"
-                  className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors border-b border-gray-100"
-                >
-                  Login
-                </a>
+                {!user && (
+                  <a
+                    href="#"
+                    onClick={handleLoginClick}
+                    title="Login"
+                    className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors border-b border-gray-100"
+                  >
+                    Login
+                  </a>
+                )}
+                {user && (
+                  <a
+                    href="#"
+                    onClick={() => {
+                      localStorage.removeItem('token');
+                      setUser(null);
+                      setAccountDropdownOpen(false);
+                    }}
+                    title="Logout"
+                    className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors border-b border-gray-100"
+                  >
+                    Logout
+                  </a>
+                )}
                 <a
                   href="/student-signup"
                   title="Student Sign Up"

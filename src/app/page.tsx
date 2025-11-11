@@ -17,7 +17,7 @@ export default function Home() {
 
 
       {/* Hero / Banner */}
-      <section className="min-h-[60vh] bg-gradient-to-r from-blue-50 to-indigo-50 pt-16">
+      <section className="min-h-[60vh] bg-linear-to-r from-blue-50 to-indigo-50 pt-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
      
@@ -39,7 +39,7 @@ export default function Home() {
         </div>
       </section>
 
-      
+
     </main>
   );
 }

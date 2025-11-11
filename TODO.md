@@ -1,8 +1,7 @@
-# TODO for Replacing Bootstrap with Tailwind
+# TODO: Add JWT Authentication
 
-- [x] Remove Bootstrap CSS link from layout.js
-- [x] Remove Bootstrap JS script from layout.js
-- [x] Replace custom classes in Header.jsx with Tailwind classes
-- [x] Replace custom classes in Footer.jsx with Tailwind classes
-- [x] Update TODO.md to mark completed steps
-- [x] Test the layout to ensure styling works with Tailwind
+- [x] Create src/lib/auth.js: Utility for JWT sign, verify, decode, and getAuthHeader.
+- [x] Create src/app/api/auth/login/route.js: Handle POST for login, simulate user check, return JWT, with CORS.
+- [x] Create src/app/api/auth/me/route.js: Protected endpoint, verify JWT, return user.
+- [x] Update src/app/components/LoginModal.tsx: Add state for error, handle submit to POST to /api/auth/login, store token in localStorage, show error.
+- [x] Create src/middleware.js: Protect internal API routes by checking Bearer token.
