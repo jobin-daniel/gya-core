@@ -63,11 +63,24 @@ const Header: React.FC = () => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setUser(null);
-    setAccountDropdownOpen(false);
-    router.push('/');
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('/api/auth/logout', {
+        method: 'POST',
+        credentials: 'include', // Include cookies in the request
+      });
+
+      if (response.ok) {
+        console.log('✅ Logout successful');
+        setUser(null);
+        setAccountDropdownOpen(false);
+        router.push('/');
+      } else {
+        console.error('❌ Logout failed');
+      }
+    } catch (error) {
+      console.error('❌ Logout error:', error);
+    }
   };
 
   // Check auth status on mount
