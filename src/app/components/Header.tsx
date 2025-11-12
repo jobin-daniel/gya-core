@@ -1,21 +1,18 @@
 'use client';
 
-/*
- * Filename: /Users/jobindaniel/Desktop/nextjs-app/src/components/Header.tsx
- * Path: /Users/jobindaniel/Desktop/nextjs-app
- * Created Date: Monday, November 10th 2025, 4:58:27 pm
- * Author: Jobin Daniel
- *
- * Copyright (c) 2025 MissioRex Technologies LLP
- */
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import LoginModal from './LoginModal';
-import { verifyToken } from '../../lib/auth';
+import LoggedInUser from './LoggedInUser';
+import { verifyToken } from '../../lib/auth.js';
 
-interface HeaderProps {
-  onOpenLoginModal?: () => void;
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
 }
 
 const DropdownArrow: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
@@ -32,10 +29,11 @@ const DropdownArrow: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
   </svg>
 );
 
-const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
+const Header: React.FC = () => {
+  const router = useRouter();
   const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [user, setUser] = useState<{ name: string } | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   const toggleAccountDropdown = () => setAccountDropdownOpen((s) => !s);
@@ -44,32 +42,37 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
     e?.preventDefault();
     setShowLoginModal(true);
     setAccountDropdownOpen(false);
-    if (onOpenLoginModal) onOpenLoginModal();
   };
 
-  useEffect(() => {
-    const checkLogin = () => {
-      const token = localStorage.getItem('token');
-      if (token) {
-        const decoded = verifyToken(token);
-        if (decoded) {
-          setUser({ name: decoded.name });
-        } else {
-          setUser(null);
-        }
+  const checkAuthStatus = async () => {
+    try {
+      const response = await fetch('/api/auth/me', {
+        method: 'GET',
+        credentials: 'include', // Include cookies in the request
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data.user as User);
       } else {
         setUser(null);
       }
-    };
+    } catch (error) {
+      console.error('Auth check failed:', error);
+      setUser(null);
+    }
+  };
 
-    checkLogin();
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setUser(null);
+    setAccountDropdownOpen(false);
+    router.push('/');
+  };
 
-    // Listen for login success event
-    window.addEventListener('loginSuccess', checkLogin);
-
-    return () => {
-      window.removeEventListener('loginSuccess', checkLogin);
-    };
+  // Check auth status on mount
+  useEffect(() => {
+    checkAuthStatus();
   }, []);
 
   // Click-outside and Escape handling to close dropdown
@@ -113,7 +116,6 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
 
           {/* Middle: (optional) main nav */}
           <nav className="hidden md:flex items-center space-x-8">
-            
             <Link href="/courses" className="flex flex-col items-center text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors group">
               <Image
                 src="/images/courses.svg"
@@ -134,7 +136,6 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
               />
               <span>Institutes</span>
             </Link>
-            
           </nav>
 
           {/* Right Box - Help and Account */}
@@ -144,21 +145,22 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
               <span>Help</span>
             </a>
 
-            <div ref={wrapperRef} className="relative cursor-pointer select-none" onClick={toggleAccountDropdown}>
-              <span className="flex items-center space-x-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
-                <Image src="/images/account.svg" alt="Account" width={23} height={22} />
-                <span>{user ? user.name : 'Account'}</span>
-                <DropdownArrow isOpen={accountDropdownOpen} />
-              </span>
-
-              <div
-                className={`absolute top-full right-0 mt-3 p-2 bg-white border border-gray-100 rounded-lg shadow-xl z-50 w-48 transition-all duration-300 origin-top-right ${
-                  accountDropdownOpen
-                    ? 'opacity-100 scale-100 visible pointer-events-auto'
-                    : 'opacity-0 scale-95 invisible pointer-events-none'
-                }`}
-              >
-                {!user && (
+            {user ? (
+              <LoggedInUser user={user} onLogout={handleLogout} />
+            ) : (
+              <div ref={wrapperRef} className="relative cursor-pointer select-none" onClick={toggleAccountDropdown}>
+                <span className="flex items-center space-x-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
+                  <Image src="/images/account.svg" alt="Account" width={23} height={22} />
+                  <span>Account</span>
+                  <DropdownArrow isOpen={accountDropdownOpen} />
+                </span>
+                <div
+                  className={`absolute top-full right-0 mt-3 p-2 bg-white border border-gray-100 rounded-lg shadow-xl z-50 w-48 transition-all duration-300 origin-top-right ${
+                    accountDropdownOpen
+                      ? 'opacity-100 scale-100 visible pointer-events-auto'
+                      : 'opacity-0 scale-95 invisible pointer-events-none'
+                  }`}
+                >
                   <a
                     href="#"
                     onClick={handleLoginClick}
@@ -167,42 +169,47 @@ const Header: React.FC<HeaderProps> = ({ onOpenLoginModal }) => {
                   >
                     Login
                   </a>
-                )}
-                {user && (
                   <a
-                    href="#"
-                    onClick={() => {
-                      localStorage.removeItem('token');
-                      setUser(null);
-                      setAccountDropdownOpen(false);
-                    }}
-                    title="Logout"
+                    href="/student-signup"
+                    title="Student Sign Up"
                     className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors border-b border-gray-100"
                   >
-                    Logout
+                    Student Sign Up
                   </a>
-                )}
-                <a
-                  href="/student-signup"
-                  title="Student Sign Up"
-                  className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors border-b border-gray-100"
-                >
-                  Student Sign Up
-                </a>
-                <a
-                  href="/institute-signup"
-                  title="Institute Sign Up"
-                  className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors"
-                >
-                  Institute Sign Up
-                </a>
+                  <a
+                    href="/institute-signup"
+                    title="Institute Sign Up"
+                    className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors"
+                  >
+                    Institute Sign Up
+                  </a>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
 
-  <LoginModal isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} />
+      <LoginModal
+        isOpen={showLoginModal}
+        onClose={() => {
+          console.log('🚪 Closing login modal');
+          setShowLoginModal(false);
+          // Re-check auth status when modal closes
+          checkAuthStatus();
+        }}
+        onLoginSuccess={(userData) => {
+          console.log('🎉 Login success callback in Header:', userData);
+
+          // Close modal immediately
+          setShowLoginModal(false);
+
+          // Re-check auth status to get user data from server
+          setTimeout(() => {
+            checkAuthStatus();
+          }, 100);
+        }}
+      />
     </header>
   );
 };

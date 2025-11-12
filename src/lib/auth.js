@@ -20,14 +20,32 @@ import jwt from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
 
+console.log('🔑 JWT_SECRET loaded:', JWT_SECRET ? 'Yes (length: ' + JWT_SECRET.length + ')' : 'No - using default');
+
 export function signToken(payload) {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: "1d" });
+  const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "1d" });
+  console.log('🔐 Token signed with secret length:', JWT_SECRET.length);
+  return token;
 }
 
 export function verifyToken(token) {
   try {
-    return jwt.verify(token, JWT_SECRET);
+    console.log('🔍 Attempting to verify token...');
+    console.log('🔍 Secret being used for verification:', JWT_SECRET ? 'present (length: ' + JWT_SECRET.length + ')' : 'missing');
+    
+    const decoded = jwt.verify(token, JWT_SECRET);
+    console.log('✅ Token verified successfully:', decoded.email);
+    return decoded;
   } catch (error) {
+    console.error('❌ Token verification failed:', error.message);
+    console.error('❌ Error name:', error.name);
+    
+    if (error.name === 'TokenExpiredError') {
+      console.error('❌ Token has expired at:', error.expiredAt);
+    } else if (error.name === 'JsonWebTokenError') {
+      console.error('❌ JWT error - possibly wrong secret or malformed token');
+    }
+    
     return null;
   }
 }

@@ -1,26 +1,14 @@
 /*
- * ---------------------------------------------------------
- * File: route
- * Path: /src/app/api/auth/login
- * Project Name: gya-core
- * Author: Jobin Daniel , MissioRex Technologies LLP
- * Contact: support@missioRex.com
- * -----
- * Last Modified: Tue Nov 11 2025
- * Modified By: Jobin Daniel
- * -----
- * Copyright (c) 2025 MissioRex Technologies LLP
- * -----
- * HISTORY:
- * Date      	By	Comments
- * * Notes:
- * ---------------------------------------------------------
+ * Login route using NextResponse for better Next.js integration
  */
+import { NextResponse } from "next/server";
+
 export async function OPTIONS() {
-  return new Response(null, {
+  return new NextResponse(null, {
     status: 204,
     headers: {
-      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": "http://localhost:3000",
+      "Access-Control-Allow-Credentials": "true",
       "Access-Control-Allow-Methods": "POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type, Authorization",
     },
@@ -46,13 +34,16 @@ export async function POST(request) {
     const isValidMobile = mobile === dummyUser.mobile && password === dummyUser.password;
 
     if (!isValidEmail && !isValidMobile) {
-      return new Response(JSON.stringify({ error: "Invalid credentials" }), {
-        status: 401,
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-      });
+      return NextResponse.json(
+        { error: "Invalid credentials" },
+        {
+          status: 401,
+          headers: {
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+            "Access-Control-Allow-Credentials": "true",
+          }
+        }
+      );
     }
 
     // Import signToken here to avoid issues
@@ -67,20 +58,48 @@ export async function POST(request) {
 
     const token = signToken(payload);
 
-    return new Response(JSON.stringify({ token, user: payload }), {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
+    console.log('🔐 Token generated for user:', payload.email);
+    console.log('🔐 Token length:', token.length);
+    console.log('🔐 Token preview:', token.substring(0, 30) + '...');
+
+    // Create response with NextResponse
+    const response = NextResponse.json(
+      { token, user: payload },
+      {
+        status: 200,
+        headers: {
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Access-Control-Allow-Credentials": "true",
+        }
+      }
+    );
+
+    // Set cookie using NextResponse's cookies method
+    response.cookies.set({
+      name: "token",
+      value: token,
+      httpOnly: true,
+      path: "/",
+      maxAge: 60 * 60 * 24, // 1 day
+      sameSite: "strict",
+      secure: process.env.NODE_ENV === "production", // Only secure in production
     });
+
+    console.log('✅ Cookie set successfully for:', payload.email);
+    console.log('🍪 Cookie config: httpOnly=true, sameSite=strict, secure=', process.env.NODE_ENV === "production");
+
+    return response;
   } catch (error) {
-    return new Response(JSON.stringify({ error: "Internal server error" }), {
-      status: 500,
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
+    console.error("Login error:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      {
+        status: 500,
+        headers: {
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Access-Control-Allow-Credentials": "true",
+        }
+      }
+    );
   }
 }

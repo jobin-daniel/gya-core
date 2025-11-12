@@ -18,18 +18,19 @@
  */
 export async function GET(request) {
   try {
-    const authHeader = request.headers.get("authorization");
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    // Check for token in cookies instead of Authorization header
+    const token = request.cookies.get("token")?.value;
+
+    if (!token) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Access-Control-Allow-Credentials": "true",
         },
       });
     }
-
-    const token = authHeader.substring(7); // Remove 'Bearer '
 
     // Import verifyToken here
     const { verifyToken } = await import("../../../../lib/auth.js");
@@ -40,7 +41,8 @@ export async function GET(request) {
         status: 401,
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Access-Control-Allow-Credentials": "true",
         },
       });
     }
@@ -57,7 +59,8 @@ export async function GET(request) {
       status: 200,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Credentials": "true",
       },
     });
   } catch (error) {
@@ -65,7 +68,8 @@ export async function GET(request) {
       status: 500,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Credentials": "true",
       },
     });
   }
