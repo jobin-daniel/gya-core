@@ -17,7 +17,7 @@
  * ---------------------------------------------------------
  */
 
-export const runtime = 'nodejs'; // Force Node.js runtime for crypto support
+export const runtime = "nodejs"; // Force Node.js runtime for crypto support
 
 import { NextResponse } from "next/server";
 import { verifyToken } from "./lib/auth.js";
@@ -26,16 +26,7 @@ export function middleware(request) {
   const { pathname } = request.nextUrl;
 
   // Public routes that don't require authentication
-  const publicRoutes = [
-    "/",
-    "/unauthorized",
-    "/student-signup",
-    "/institute-signup",
-    "/forgot-password",
-    "/contact-us",
-    "/api",
-
-  ];
+  const publicRoutes = ["/", "/unauthorized", "/student-signup", "/institute-signup", "/forgot-password", "/contact-us", "/api"];
 
   // Check if current path is a public route
   if (publicRoutes.includes(pathname)) {
@@ -70,18 +61,26 @@ export function middleware(request) {
 
   // For all protected pages, check for token cookie
   const token = request.cookies.get("token")?.value;
-  
+
   if (!token) {
-    console.log("No token found in cookies for:", pathname);
+    console.log("❌ No token found in cookies for:", pathname);
     return NextResponse.redirect(new URL("/unauthorized", request.url));
   }
 
   const decoded = verifyToken(token);
   if (!decoded) {
-    console.log("Invalid token for:", pathname);
+    console.log("❌ Invalid token for:", pathname);
     return NextResponse.redirect(new URL("/unauthorized", request.url));
   }
 
+  // Check if user has required role (Admin or SuperAdmin)
+  const allowedRoles = ["Admin", "SuperAdmin"];
+  if (!decoded.role || !allowedRoles.includes(decoded.role)) {
+    console.log("❌ Insufficient permissions for:", pathname, "User role:", decoded.role);
+    return NextResponse.redirect(new URL("/unauthorized", request.url));
+  }
+
+  console.log("✅ Access granted for:", pathname, "User:", decoded.email, "Role:", decoded.role);
   return NextResponse.next();
 }
 
