@@ -13,7 +13,7 @@
  * -----
  * HISTORY:
  * Date      	By	Comments
- * * Notes: Updated middleware to redirect authenticated admins from root to admin-home
+ * * Notes:
  * ---------------------------------------------------------
  */
 
@@ -24,6 +24,14 @@ import { verifyToken } from "./lib/auth.js";
 
 export function middleware(request) {
   const { pathname } = request.nextUrl;
+
+  // Public routes that don't require authentication
+  const publicRoutes = ["/", "/unauthorized", "/student-signup", "/institute-signup", "/forgot-password", "/contact-us", "/api"];
+
+  // Check if current path is a public route
+  if (publicRoutes.includes(pathname)) {
+    return NextResponse.next();
+  }
 
   // Skip middleware for static files, public assets, and API routes
   if (
@@ -51,33 +59,9 @@ export function middleware(request) {
     return NextResponse.next();
   }
 
-  // Check for token cookie for all routes
+  // For all protected pages, check for token cookie
   const token = request.cookies.get("token")?.value;
 
-  if (token) {
-    const decoded = verifyToken(token);
-    if (decoded) {
-      // Check if user has required role (Admin or SuperAdmin)
-      const allowedRoles = ["Admin", "SuperAdmin"];
-      if (decoded.role && allowedRoles.includes(decoded.role)) {
-        // If authenticated admin user tries to access root, redirect to admin-home
-        if (pathname === "/") {
-          console.log("🔄 Redirecting authenticated admin from root to admin-home");
-          return NextResponse.redirect(new URL("/admin-home", request.url));
-        }
-      }
-    }
-  }
-
-  // Public routes that don't require authentication (only if not authenticated admin)
-  const publicRoutes = ["/", "/unauthorized", "/student-signup", "/institute-signup", "/forgot-password", "/contact-us"];
-
-  // Check if current path is a public route
-  if (publicRoutes.includes(pathname)) {
-    return NextResponse.next();
-  }
-
-  // For all protected pages, check for token cookie
   if (!token) {
     console.log("❌ No token found in cookies for:", pathname);
     return NextResponse.redirect(new URL("/unauthorized", request.url));
@@ -94,6 +78,12 @@ export function middleware(request) {
   if (!decoded.role || !allowedRoles.includes(decoded.role)) {
     console.log("❌ Insufficient permissions for:", pathname, "User role:", decoded.role);
     return NextResponse.redirect(new URL("/unauthorized", request.url));
+  }
+
+  // If authenticated admin user tries to access root, redirect to admin-home
+  if (pathname === "/") {
+    console.log("🔄 Redirecting authenticated admin from root to admin-home");
+    return NextResponse.redirect(new URL("/admin-home", request.url));
   }
 
   console.log("✅ Access granted for:", pathname, "User:", decoded.email, "Role:", decoded.role);

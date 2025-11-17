@@ -134,4 +134,52 @@ export function hasRequiredRole(role, allowedRoles = ["Admin", "SuperAdmin"]) {
   return allowedRoles.includes(role);
 }
 
+/**
+ * Get employee details by UserId
+ * @param {number} userId - User ID
+ * @returns {Promise} Employee object with details
+ */
+export async function getEmployeeByUserId(userId) {
+  const sql = `
+    SELECT 
+      e.EmployeeId,
+      e.UserId,
+      CONCAT(e.FirstName, ' ', COALESCE(e.MiddleName, ''), ' ', e.LastName) as FullName,
+      e.FirstName,
+      e.MiddleName,
+      e.LastName,
+      e.HouseNumberName,
+      e.AddressLine1,
+      e.AddressLine2,
+      e.District,
+      e.State,
+      e.PostalCode,
+      CONCAT_WS(', ', 
+        NULLIF(e.HouseNumberName, ''),
+        NULLIF(e.AddressLine1, ''),
+        NULLIF(e.AddressLine2, ''),
+        NULLIF(e.District, ''),
+        NULLIF(e.State, ''),
+        NULLIF(e.PostalCode, '')
+      ) as FullAddress,
+      e.EmailID,
+      e.PhoneNumber,
+      e.ImmediateToKin,
+      e.EmergencyContact,
+      e.TotalYearsOfExp,
+      e.DOB,
+      e.JoiningDate,
+      e.Role,
+      e.PhotoURL,
+      e.CreatedAt,
+      e.UpdatedAt
+    FROM employees e
+    WHERE e.UserId = ?
+    LIMIT 1
+  `;
+console.log("User id in db:" , userId);
+  const results = await query(sql, [userId]);
+  return results.length > 0 ? results[0] : null;
+}
+
 export default pool;

@@ -11,10 +11,29 @@ interface User {
   role: string;
 }
 
+interface Employee {
+  EmployeeId: number;
+  UserId: number;
+  FullName: string;
+  FirstName: string;
+  MiddleName?: string;
+  LastName: string;
+  FullAddress: string;
+  EmailID: string;
+  PhoneNumber?: string;
+  Role?: string;
+  JoiningDate?: string;
+  DOB?: string;
+  TotalYearsOfExp?: number;
+  PhotoURL?: string;
+}
+
 export default function AdminHome() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
+  const [employee, setEmployee] = useState<Employee | null>(null);
   const [loading, setLoading] = useState(true);
+  const [employeeLoading, setEmployeeLoading] = useState(false);
 
   useEffect(() => {
     // Fetch user data from the auth API
@@ -28,6 +47,11 @@ export default function AdminHome() {
         if (response.ok) {
           const data = await response.json();
           setUser(data.user);
+          
+          // Fetch employee data after getting user data
+          if (data.user?.id) {
+            fetchEmployeeData(data.user.id);
+          }
         } else {
           // If not authenticated, redirect to home
           router.push("/");
@@ -37,6 +61,35 @@ export default function AdminHome() {
         router.push("/");
       } finally {
         setLoading(false);
+      }
+    };
+
+    const fetchEmployeeData = async (userId: number) => {
+      setEmployeeLoading(true);
+      console.log("userid from page :"  ,userId);
+      try {
+        const response = await fetch(`/api/employee/${userId}`, {
+          method: "GET",
+          credentials: "include",
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setEmployee(data.employee);
+        } else {
+          const errorText = await response.text();
+          // Only log as error for actual server errors, not for missing employee data
+          if (response.status === 404) {
+            console.log("No employee data found for this user");
+            setEmployee(null);
+          } else {
+            console.error("Error fetching employee data:", errorText);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching employee data:", error);
+      } finally {
+        setEmployeeLoading(false);
       }
     };
 
@@ -73,35 +126,140 @@ export default function AdminHome() {
             </p>
           </div>
 
-          {/* User Info Card */}
-          <div className="max-w-2xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="100">
-            <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-100">
+          {/* Employee Info Card */}
+          <div className="max-w-4xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="100">
+            <div className="bg-white rounded-3xl shadow-lg p-8 border border-gray-100">
+              {/* Employee Header */}
               <div className="flex items-center space-x-4 mb-6">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
                   <Image
-                    src="/images/account.svg"
-                    alt="User"
+                    src={employee?.PhotoURL || "/images/account.svg"}
+                    alt="Employee"
                     width={32}
                     height={32}
                   />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">{user.name}</h2>
+                  <h2 className="text-2xl font-bold text-gray-900">
+                    {employee?.FullName || user.name}
+                  </h2>
                   <p className="text-gray-600">{user.email}</p>
                 </div>
               </div>
-              <div className="border-t border-gray-200 pt-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <p className="text-sm text-gray-500">User ID</p>
-                    <p className="font-semibold text-gray-900">{user.id}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Role</p>
-                    <p className="font-semibold text-gray-900 capitalize">{user.role}</p>
-                  </div>
+
+              {/* My Information Section */}
+              {employeeLoading ? (
+                <div className="text-center py-8">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                  <p className="mt-2 text-gray-600">Loading employee details...</p>
                 </div>
-              </div>
+              ) : employee ? (
+                <>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 mt-6">My Information</h3>
+                  <div className="border border-gray-200 rounded-lg overflow-hidden">
+                    <table className="w-full">
+                      <tbody>
+                        <tr className="border-b border-gray-200">
+                          <th className="bg-gray-50 px-4 py-3 text-left text-sm font-semibold text-gray-700 w-1/4">
+                            Employee ID
+                          </th>
+                          <td className="px-4 py-3 text-sm text-gray-900 w-1/4">
+                            {employee.EmployeeId}
+                          </td>
+                          <th className="bg-gray-50 px-4 py-3 text-left text-sm font-semibold text-gray-700 w-1/4">
+                            Employee Address
+                          </th>
+                          <td className="px-4 py-3 text-sm text-gray-900 w-1/4">
+                            {employee.FullAddress || "Not provided"}
+                          </td>
+                        </tr>
+                        <tr className="border-b border-gray-200">
+                          <th className="bg-gray-50 px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                            Contact Number
+                          </th>
+                          <td className="px-4 py-3 text-sm text-gray-900">
+                            {employee.PhoneNumber || "Not provided"}
+                          </td>
+                          <th className="bg-gray-50 px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                            Email ID
+                          </th>
+                          <td className="px-4 py-3 text-sm text-gray-900">
+                            {employee.EmailID}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th className="bg-gray-50 px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                            My Role
+                          </th>
+                          <td className="px-4 py-3 text-sm text-gray-900">
+                            {employee.Role || user.role}
+                          </td>
+                          <th className="bg-gray-50 px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                            Employed From
+                          </th>
+                          <td className="px-4 py-3 text-sm text-gray-900">
+                            {employee.JoiningDate
+                              ? new Date(employee.JoiningDate).toLocaleDateString("en-US", {
+                                  month: "2-digit",
+                                  day: "2-digit",
+                                  year: "numeric",
+                                })
+                              : "Not provided"}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* My Links Section */}
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 mt-6">My Links</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <button
+                      onClick={() => router.push("/courses")}
+                      className="flex items-center justify-center px-4 py-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
+                    >
+                      <Image
+                        src="/images/courses.svg"
+                        alt="Courses"
+                        width={20}
+                        height={20}
+                        className="mr-2"
+                      />
+                      <span className="font-semibold text-blue-700">Courses</span>
+                    </button>
+                    <button
+                      onClick={() => router.push("/institutes")}
+                      className="flex items-center justify-center px-4 py-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
+                    >
+                      <Image
+                        src="/images/institutes.svg"
+                        alt="Institutes"
+                        width={20}
+                        height={20}
+                        className="mr-2"
+                      />
+                      <span className="font-semibold text-green-700">Institutes</span>
+                    </button>
+                    <button
+                      onClick={() => router.push("/contact-us")}
+                      className="flex items-center justify-center px-4 py-3 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors"
+                    >
+                      <Image
+                        src="/images/help.svg"
+                        alt="Help"
+                        width={20}
+                        height={20}
+                        className="mr-2"
+                      />
+                      <span className="font-semibold text-purple-700">Help & Support</span>
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <div className="text-center py-8">
+                  <p className="text-gray-600">No employee data found</p>
+                </div>
+              )}
             </div>
           </div>
 
