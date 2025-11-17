@@ -221,6 +221,12 @@ const Header: React.FC = () => {
           setTimeout(() => {
             checkAuthStatus();
           }, 100);
+
+          // Redirect to admin-home after successful login
+          setTimeout(() => {
+            console.log('🏠 Redirecting to admin-home...');
+            router.push('/admin-home');
+          }, 200);
         }}
       />
     </header>
