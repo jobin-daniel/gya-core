@@ -266,8 +266,8 @@ export async function createEmployee(employeeData, roles, photoFile = null) {
 
     // Insert into users table
     const userSql = `
-      INSERT INTO users (FirstName, LastName, Email, PhoneNumber, PasswordHash, CreatedAt, UpdatedAt)
-      VALUES (?, ?, ?, ?, ?, NOW(), NOW())
+      INSERT INTO users (FirstName, LastName, Email, PhoneNumber, PasswordHash, PasswordSalt, CreatedAt, UpdatedAt)
+      VALUES (?, ?, ?, ?, ?, '', NOW(), NOW())
     `;
     const userValues = [employeeData.firstName, employeeData.lastName, employeeData.email, employeeData.phoneNumber, hashedPassword];
 
