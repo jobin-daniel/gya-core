@@ -1,0 +1,133 @@
+
+3. home page - reloading page,  input text parsing
+
+student signup
+--------------
+button
+otp issue failedd
+captcha
+remove verify otp
+
+institute signup
+----------------
+otp      -  
+captcha  - 
+ui issue -
+strapi  - approval - institute
+
+login - 75%
+-----
+captcha design -
+ui issue - 
+password hash\salt - 4
+
+Logout
+-------
+
+course
+------
+1. input text parsing
+2. auto suggestion while typing in search box
+
+
+estimation
+-----------
+institute details - 
+
+course data entry - 16 hours
+
+apply now - 
+
+contact us - 
+
+course search
+--------------
+
+review
+------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sprint 16 
+----------
+course search
+----------------
+clear filter button - 2 
+
+course details(16)
+--------------
+pagination        - 8 hours
+
+card size         - 4 hours
+premium           - 4 hours
+page loading msg.
+(no courses found) - 2 hours
+range based filter - 2 hours
+logo , contact info - 2 hours
+ui design issue     - 2 hours
+
+applynow(26-Aug)
+---------
+uplload file		- 2 hours
+student landing     - 4 hours
+
+select course       - apply multiple courses?
+insert              - 3 hours
+upload              - 1 hours
+
+Login
+-----
+change password     - 4 hours
+
+Params
+------
+institute data entry => request review (24-Aug), clarification(assumption fields) updates ...
+
+logout - (24-Aug)
+
+institute details - 90% (additional fields \ changes)
+
+institute search - 75% (enter key, pending field mapping .,)
+
+Sprint 16/ 17
+-------------
+Course data entry - edit course(show stopper issue) sprint 16 / sprint 17
+-------------------------------------------------------------------------
+					- 12 hours
+					-  3 hours
+
+student mail sync	- 20 hours
+
+institutue landing  - search mail, attachments, pagination etc., mail sync (external mail box ex., gmail.,) RMemail@gyaadmission.com (admin privileges smtp service)
+
+
+
+REVIEW, APPLY NOW, INSTITUTE DETAILS
+
+
+
+

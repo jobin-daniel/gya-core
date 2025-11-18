@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gya - Course Search</title>
+    <title>Gya - Get Your Admission</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -14,39 +14,16 @@
     <link rel="stylesheet" href="css/college-styles.css">
 </head>
 <body class="pg-inner">
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Get 'userRole' from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const userRole = urlParams.get("userRole");
-
-    if (userRole) {
-      // Select all anchor tags on the page
-      const links = document.querySelectorAll("a[href]");
-
-      links.forEach(link => {
-        let href = link.getAttribute("href");
-
-        // Ensure the href is not empty, not already containing userRole, and is not an external link
-        if (href && !href.includes("userRole=") && !href.startsWith("http") && !href.startsWith("#")) {
-          // Check if the URL already has query parameters
-          const separator = href.includes("?") ? "&" : "?";
-          link.setAttribute("href", href + separator + "userRole=" + encodeURIComponent(userRole));
-        }
-      });
-    }
-  });
-</script>
     <header class="header">
         <div class="headercontainer-wrapper">
             <div class="container">
                 <div class="inner">
                     <div class="lftbox">
-                        <a href="index.html" title="Gyatech - Get Your Admission" class="logo">
+                        <a href="index.html" title="Gyatech - Get Your Admission" class="logo" target="_blank">
                             <img src="images/logo.svg" alt="Gyatech - Get Your Admission">
                         </a>
                         <div class="coursescolleges-wrapper">
-                            <a href="courses.html" class="item active" title="Courses">
+                            <a href="Admin-CoursesSearch.html" class="item active" title="Courses">
                                 <span class="wrap">
                                     <span class="icon">
                                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,7 +37,7 @@
                                     </span>
                                 </span>
                             </a>
-                            <a href="institutes.html" class="item" title="Institutes">
+                            <a href="Admin-InstitutesSearch.html" class="item" title="Institutes">
                                 <span class="wrap">
                                     <span class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
@@ -96,34 +73,24 @@
                                     </span>
                                 </span>
                             </a>
-<a href="#" class="item" title="My Home" id="HomeLink">
-    <span class="wrap">
-        <span class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                <path id="adminIcon" d="M15 3L3 12H6V25H12V18H18V25H24V12H27L15 3Z" fill="#A0A0A0"/>
-            </svg>
-        </span>
-        <span class="title" id="adminTitle">My Home</span>
-    </span>
-</a>
-
+			    <a href="Admin-HomePage.html" class="item" title="Admin Home">
+    				<span class="wrap">
+        				<span class="icon">
+            				<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+               	 			<path d="M15 3L3 12H6V25H12V18H18V25H24V12H27L15 3Z" fill="#A0A0A0"/>
+            				</svg>
+        				</span>
+        				<span class="title">
+            				Admin
+        				</span>
+    				</span>
+			    </a>
                         </div>
                     </div>
-    
 
-   
                     <div class="rgtbox">
                         <div class="wrap">
-                            <a href="contact-us.html" title="Help" class="item">
-                                <span class="icon">
-                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20.0015 9.5306C19.9489 9.07127 19.7399 8.66945 19.4392 8.40222C19.3725 3.75775 15.6129 0 11 0C6.38719 0 2.62737 3.75775 2.56074 8.40222C2.26025 8.66933 2.05128 9.07077 1.99852 9.52979C1.15156 9.73507 0.520584 10.4994 0.520584 11.4087V13.4004C0.520584 14.3096 1.15156 15.074 1.99852 15.2793C2.09372 16.1087 2.69995 16.7504 3.43163 16.7504H4.17132C4.96896 16.7504 5.61775 15.9881 5.61775 15.0511V9.75795C5.61775 9.23423 5.41497 8.76522 5.09691 8.45329C5.13636 5.19362 7.76911 2.55399 11 2.55399C14.2309 2.55399 16.8636 5.19356 16.9032 8.45317C16.5849 8.76509 16.382 9.23417 16.382 9.75795V15.0511C16.382 15.9489 16.978 16.6859 17.7297 16.7459V18.2352C17.7297 19.2518 16.9026 20.0789 15.886 20.0789H14.3688C14.1734 19.5075 13.6314 19.0953 12.9947 19.0953H11.9834C11.1826 19.0953 10.5312 19.7469 10.5312 20.5477C10.5312 21.3485 11.1827 22 11.9834 22H12.9947C13.6315 22 14.1734 21.5879 14.3688 21.0165H15.886C17.4195 21.0165 18.6673 19.7688 18.6673 18.2352V16.7459C19.3542 16.6911 19.911 16.0705 20.0015 15.2785C20.8484 15.0732 21.4795 14.3095 21.4795 13.4004V11.4086C21.4794 10.4995 20.8484 9.73588 20.0015 9.5306ZM1.98508 14.2766C1.67215 14.1088 1.45824 13.7798 1.45824 13.4004V11.4087C1.45824 11.0293 1.67215 10.7002 1.98508 10.5324V14.2766ZM12.9947 21.0623H11.9834C11.6997 21.0623 11.4689 20.8315 11.4689 20.5477C11.4689 20.2639 11.6997 20.033 11.9834 20.033H12.9947C13.2785 20.033 13.5093 20.2639 13.5093 20.5477C13.5093 20.8315 13.2785 21.0623 12.9947 21.0623ZM4.68009 15.0511C4.68009 15.4568 4.44237 15.8127 4.17132 15.8127H3.43157C3.16053 15.8127 2.92267 15.4568 2.92267 15.0511V9.75795C2.92267 9.35225 3.16053 8.99632 3.43157 8.99632H4.17132C4.44237 8.99632 4.68009 9.35219 4.68009 9.75795V15.0511ZM11 1.61633C7.38355 1.61633 4.41417 4.46581 4.17476 8.05885C4.17351 8.05885 4.17245 8.05873 4.17132 8.05873H3.51171C3.75194 4.09119 7.01836 0.937657 11 0.937657C14.9815 0.937657 18.2479 4.09125 18.4882 8.05873H17.8287C17.8277 8.05873 17.8267 8.05885 17.8257 8.05885C17.5863 4.46581 14.6166 1.61633 11 1.61633ZM19.0772 15.0511C19.0772 15.4568 18.8395 15.8127 18.5683 15.8127H17.8287C17.5575 15.8127 17.3196 15.4568 17.3196 15.0511V9.75795C17.3196 9.35225 17.5575 8.99632 17.8287 8.99632H18.5683C18.8395 8.99632 19.0772 9.35219 19.0772 9.75795V15.0511ZM20.5418 13.4004C20.5418 13.7798 20.3278 14.109 20.0148 14.2767V10.5326C20.3278 10.7004 20.5418 11.0293 20.5418 11.4087V13.4004Z" fill="#4A4A4A"/>
-                                    </svg>
-                                </span>
-                                <span class="txt">
-                                    Help
-                                </span>
-                            </a>
+                            
                             <span class="item account-dropdown">
                                 <span class="title-account">
                                     <span class="icon">
@@ -132,7 +99,7 @@
                                         </svg>
                                     </span>
                                     <span class="txt">
-                                        Account
+                                        Employee Name
                                     </span>
                                     <span class="arrow">
                                         <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -141,9 +108,8 @@
                                     </span>
                                 </span>
                                 <span class="account-submenu">
-                                    <a href="javascript:;" title="Login" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
-                                    <a href="student-signup.html" title="Student Sign Up">Student Sign Up</a>
-                                    <a href="institute-signup.html" title="Institute Sign Up">Institute Sign Up</a>
+                                    <a href="javascript:;" title="Login" data-bs-toggle="modal" data-bs-target="#changepasswordModal">Change Password</a>
+                                    <a href="javascript:;" title="Logout">Log out</a>
                                 </span>
                             </span>
                         </div>
@@ -155,13 +121,13 @@
     <section class="breadcrumb">
         <div class="container">
             <div class="inner">
-                <a href="index.html" title="Home">Home</a>
+                <a href="Admin-HomePage.html" title="AdminHome">Admin Home</a>
                 <span class="sep">
                     <svg width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.86498 4.81951L2.38886 0.759075C2.04343 0.413642 1.4839 0.413642 1.13847 0.759075C0.793036 1.10451 0.793036 1.66402 1.13847 2.00946L4.98607 5.50001L1.13847 8.99052C0.793036 9.33594 0.793036 9.89547 1.13847 10.2409C1.4839 10.5863 2.04343 10.5863 2.38886 10.2409L6.86498 6.18047C7.05163 5.99383 7.13393 5.74441 7.11855 5.49999C7.13353 5.25556 7.05163 5.00616 6.86498 4.81951Z" fill="#4A4A4A"/>
                     </svg>
                 </span>
-                <span class="pg-title">Courses</span>
+                <span class="pg-title">Admin Course Search</span>
             </div>
         </div>
     </section>
@@ -238,40 +204,19 @@
                                 </div>
                             </div>
                             <div class="fltr-box">
-                                <h4 class="title">Specialization</h4>
+                                <h4 class="title">Search By Institute</h4>
                                 <div class="search-field">
                                     <div class="icon">
                                         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M14.8066 13.9198L11.0912 10.2013C11.9703 9.12313 12.5002 7.7509 12.5002 6.25309C12.5002 2.80719 9.69752 0.00146484 6.24856 0.00146484C2.7996 0.00146484 0 2.80719 0 6.25309C0 9.69898 2.80266 12.5016 6.25162 12.5016C7.74637 12.5016 9.12167 11.9717 10.1999 11.0927L13.9153 14.8081C14.1695 15.0623 14.5555 15.0623 14.8097 14.8081C15.0639 14.5539 15.0639 14.1741 14.8066 13.9198ZM1.24665 6.25309C1.24665 3.49331 3.48878 1.25118 6.24856 1.25118C9.00834 1.25118 11.2535 3.49637 11.2535 6.25615C11.2535 9.01593 9.00834 11.2611 6.24856 11.2611C3.48878 11.2611 1.24665 9.01287 1.24665 6.25309Z" fill="#4A4A4A"/>
                                         </svg>
                                     </div>
-                                    <input type="text" placeholder="Specialization">
+                                    <input type="text" placeholder="Institute Name">
                                 </div>
-                                <div class="chckbox-list mrg20-T">
-                                    <ul>
-                                        <li>
-                                            <div class="checkbox-item">
-                                                <input type="checkbox" id="engineering" data-checkbox-text="Engineering">
-                                                <label for="engineering">Engineering</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="checkbox-item">
-                                                <input type="checkbox" id="medical" data-checkbox-text="Medical">
-                                                <label for="medical">Medical</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="checkbox-item">
-                                                <input type="checkbox" id="design" data-checkbox-text="Design">
-                                                <label for="design">Design</label>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+
                             </div>
                             <div class="fltr-box">
-                                <h4 class="title">Location</h4>
+                                <h4 class="title">Search By Location</h4>
                                 <div class="search-field">
                                     <div class="icon">
                                         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -280,36 +225,48 @@
                                     </div>
                                     <input type="text" placeholder="Location">
                                 </div>
+
+                            </div>
+                            <div class="fltr-box">
+                                <h4 class="title">Status</h4>
+                                <div class="search-field">
+                                    <div class="icon">
+                                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.8066 13.9198L11.0912 10.2013C11.9703 9.12313 12.5002 7.7509 12.5002 6.25309C12.5002 2.80719 9.69752 0.00146484 6.24856 0.00146484C2.7996 0.00146484 0 2.80719 0 6.25309C0 9.69898 2.80266 12.5016 6.25162 12.5016C7.74637 12.5016 9.12167 11.9717 10.1999 11.0927L13.9153 14.8081C14.1695 15.0623 14.5555 15.0623 14.8097 14.8081C15.0639 14.5539 15.0639 14.1741 14.8066 13.9198ZM1.24665 6.25309C1.24665 3.49331 3.48878 1.25118 6.24856 1.25118C9.00834 1.25118 11.2535 3.49637 11.2535 6.25615C11.2535 9.01593 9.00834 11.2611 6.24856 11.2611C3.48878 11.2611 1.24665 9.01287 1.24665 6.25309Z" fill="#4A4A4A"/>
+                                        </svg>
+                                    </div>
+                                    <input type="text" placeholder="Status">
+                                </div>
                                 <div class="chckbox-list mrg20-T">
                                     <ul>
                                         <li>
                                             <div class="checkbox-item">
-                                                <input type="checkbox" id="pune" data-checkbox-text="Pune">
-                                                <label for="pune">Pune</label>
+                                                <input type="checkbox" id="New" data-checkbox-text="New">
+                                                <label for="New">New</label>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="checkbox-item">
-                                                <input type="checkbox" id="dehradun" data-checkbox-text="Dehradun">
-                                                <label for="dehradun">Dehradun</label>
+                                                <input type="checkbox" id="Onhold" data-checkbox-text="Onhold">
+                                                <label for="Onhold">On hold</label>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="checkbox-item">
-                                                <input type="checkbox" id="coimbatore" data-checkbox-text="Coimbatore">
-                                                <label for="coimbatore">Coimbatore</label>
+                                                <input type="checkbox" id="Approved" data-checkbox-text="Approved">
+                                                <label for="Approved">Approved</label>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="checkbox-item">
-                                                <input type="checkbox" id="Bengaluru" data-checkbox-text="Bengaluru">
-                                                <label for="Bengaluru">Bengaluru</label>
+                                                <input type="checkbox" id="Withdrawn" data-checkbox-text="Withdrawn">
+                                                <label for="Withdrawn">Withdrawn</label>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="checkbox-item">
-                                                <input type="checkbox" id="chennai" data-checkbox-text="Chennai">
-                                                <label for="chennai">Chennai</label>
+                                                <input type="checkbox" id="Rejected" data-checkbox-text="Rejected">
+                                                <label for="Rejected">Rejected</label>
                                             </div>
                                         </li>
                                     </ul>
@@ -383,15 +340,8 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 cols">
                                     <div class="item premium-box" title="Computer Science Engineering">
-                                        <span class="save-icon" onclick="addSave(this)">
-                                            <svg class="unsaved" width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M10.5113 0.5H1.47303C0.676493 0.5 0 1.14243 0 1.97303V15.3376C0.00234394 16.3918 1.29001 16.8865 2.02207 16.1464L5.4672 12.7023C5.74328 12.4143 6.24101 12.4143 6.5171 12.7023L9.96222 16.1464C10.6946 16.8867 11.9821 16.3913 11.9843 15.3376V1.97303C11.9843 1.14243 11.3078 0.5 10.5113 0.5ZM11.0467 15.3376C11.0456 15.5608 10.7681 15.6345 10.6246 15.4829C9.93585 14.7931 7.97178 12.8296 7.18068 12.04C6.55835 11.3891 5.42688 11.3889 4.80483 12.0387C4.25835 12.5842 3.18864 13.6536 2.34538 14.4966L1.36436 15.4772C1.22301 15.6271 0.942077 15.5771 0.937546 15.3461V1.97303C0.937546 1.67357 1.18028 1.43758 1.47303 1.43758H10.5112C10.8035 1.43758 11.0467 1.67319 11.0467 1.97303V15.3376Z" fill="#4A4A4A"/>
-                                            </svg>
-                                            <svg class="saved" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="12" height="17" viewBox="0 0 12 17" fill="none">
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 0.5H10.5113C10.6637 0.5 10.8117 0.523525 10.9515 0.567393C11.4422 0.709535 12 1.10374 12 2V15C12 15.077 11.9953 15.1659 11.9843 15.2612V15.3376C11.9837 15.6252 11.8873 15.8713 11.7326 16.062C11.5786 16.3138 11.3452 16.5 11 16.5C10.9763 16.5 10.9515 16.4978 10.9257 16.4934C10.5913 16.5284 10.2375 16.4247 9.96222 16.1464L6.5171 12.7023C6.24101 12.4143 5.74328 12.4143 5.4672 12.7023L2.02207 16.1464C1.29001 16.8865 0.00234394 16.3918 0 15.3376V15V2V1.97303C0 1.16164 0.645559 0.52982 1.41795 0.501026" fill="#4A4A4A"/>
-                                            </svg>                                                        
-                                        </span>
-                                        <a href="course-detail.html">
+                                        
+                                        <a href="Admin-CourseDetail.html">
                                             <div class="badge">
                                                 <span class="icon">
                                                     <svg width="25" height="27" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -441,98 +391,8 @@
                                                             <div class="txt">
                                                                 Pune
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="bootmbx">
-                                                <div class="inner">
-                                                    <div class="lftbx">
-                                                        <div class="hd">
-                                                            Total Fees Range
-                                                        </div>
-                                                        <div class="range">
-                                                            ₹ 7.84 L - 8.48 L
-                                                        </div>
-                                                    </div>
-                                                    <div class="rgtbx">
-                                                        <div class="rate">
-                                                            4.5
-                                                        </div>
-                                                        <div class="sep">&nbsp;</div>
-                                                        <div class="rview-n-rate">
-                                                            <div class="review">
-                                                                120 Reviews
-                                                            </div>
-                                                            <div class="starrate-outer">
-                                                                <div class="rate-mob">
-                                                                    4.5
-                                                                </div>
-                                                                <div class="star-rate">
-                                                                    <span class="star"><img src="images/star.svg" alt="Star"></span>
-                                                                    <span class="star"><img src="images/star.svg" alt="Star"></span>
-                                                                    <span class="star"><img src="images/star.svg" alt="Star"></span>
-                                                                    <span class="star"><img src="images/star.svg" alt="Star"></span>
-                                                                    <span class="star"><img src="images/star-half.svg" alt="Star"></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 cols">
-                                    <div class="item" title="Computer Science Engineering">
-                                        <span class="save-icon" onclick="addSave(this)">
-                                            <svg class="unsaved" width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M10.5113 0.5H1.47303C0.676493 0.5 0 1.14243 0 1.97303V15.3376C0.00234394 16.3918 1.29001 16.8865 2.02207 16.1464L5.4672 12.7023C5.74328 12.4143 6.24101 12.4143 6.5171 12.7023L9.96222 16.1464C10.6946 16.8867 11.9821 16.3913 11.9843 15.3376V1.97303C11.9843 1.14243 11.3078 0.5 10.5113 0.5ZM11.0467 15.3376C11.0456 15.5608 10.7681 15.6345 10.6246 15.4829C9.93585 14.7931 7.97178 12.8296 7.18068 12.04C6.55835 11.3891 5.42688 11.3889 4.80483 12.0387C4.25835 12.5842 3.18864 13.6536 2.34538 14.4966L1.36436 15.4772C1.22301 15.6271 0.942077 15.5771 0.937546 15.3461V1.97303C0.937546 1.67357 1.18028 1.43758 1.47303 1.43758H10.5112C10.8035 1.43758 11.0467 1.67319 11.0467 1.97303V15.3376Z" fill="#4A4A4A"/>
-                                            </svg>
-                                            <svg class="saved" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="12" height="17" viewBox="0 0 12 17" fill="none">
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 0.5H10.5113C10.6637 0.5 10.8117 0.523525 10.9515 0.567393C11.4422 0.709535 12 1.10374 12 2V15C12 15.077 11.9953 15.1659 11.9843 15.2612V15.3376C11.9837 15.6252 11.8873 15.8713 11.7326 16.062C11.5786 16.3138 11.3452 16.5 11 16.5C10.9763 16.5 10.9515 16.4978 10.9257 16.4934C10.5913 16.5284 10.2375 16.4247 9.96222 16.1464L6.5171 12.7023C6.24101 12.4143 5.74328 12.4143 5.4672 12.7023L2.02207 16.1464C1.29001 16.8865 0.00234394 16.3918 0 15.3376V15V2V1.97303C0 1.16164 0.645559 0.52982 1.41795 0.501026" fill="#4A4A4A"/>
-                                            </svg>                                                        
-                                        </span>
-                                        <a href="course-detail.html">
-                                            <div class="topbx">
-                                                <h2 class="hd">Diploma in Event Management</h2>
-                                                <div class="nameandicon">
-                                                    <div class="icon">
-                                                        <img src="images/nit-delhi-icon.svg" alt="NIT Trichy - National Institute of Technology">
-                                                    </div>
-                                                    <div class="name">
-                                                        NIT Trichy - National Institute of Technology
-                                                    </div>
-                                                </div>
-                                                <div class="locate-box">
-                                                    <div class="lft-bx">
-                                                        <div class="year">
-                                                            <div class="icon">
-                                                                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M5.46456 8.27543C5.46456 8.08753 5.31215 7.9353 5.12409 7.9353H3.93599C3.74815 7.9353 3.5957 8.08753 3.5957 8.27543V9.46338C3.5957 9.65153 3.74815 9.80382 3.93599 9.80382H5.12409C5.31215 9.80382 5.46456 9.65153 5.46456 9.46338V8.27543Z" fill="#4A4A4A"/>
-                                                                    <path d="M8.4341 8.27543C8.4341 8.08753 8.28166 7.9353 8.09397 7.9353H6.90571C6.71787 7.9353 6.56543 8.08753 6.56543 8.27543V9.46338C6.56543 9.65153 6.71787 9.80382 6.90571 9.80382H8.09397C8.28166 9.80382 8.4341 9.65153 8.4341 9.46338V8.27543Z" fill="#4A4A4A"/>
-                                                                    <path d="M11.403 8.27543C11.403 8.08753 11.2506 7.9353 11.0628 7.9353H9.87465C9.68659 7.9353 9.53418 8.08753 9.53418 8.27543V9.46338C9.53418 9.65153 9.68659 9.80382 9.87465 9.80382H11.0628C11.2506 9.80382 11.403 9.65153 11.403 9.46338V8.27543Z" fill="#4A4A4A"/>
-                                                                    <path d="M5.46456 11.2451C5.46456 11.0569 5.31215 10.9048 5.12409 10.9048H3.93599C3.74815 10.9048 3.5957 11.0569 3.5957 11.2451V12.4328C3.5957 12.6209 3.74815 12.7731 3.93599 12.7731H5.12409C5.31215 12.7731 5.46456 12.6208 5.46456 12.4328V11.2451Z" fill="#4A4A4A"/>
-                                                                    <path d="M8.4341 11.2449C8.4341 11.0566 8.28166 10.9045 8.09397 10.9045H6.90571C6.71787 10.9045 6.56543 11.0566 6.56543 11.2449V12.4326C6.56543 12.6206 6.71787 12.7729 6.90571 12.7729H8.09397C8.28166 12.7729 8.4341 12.6206 8.4341 12.4326V11.2449Z" fill="#4A4A4A"/>
-                                                                    <path d="M11.403 11.2451C11.403 11.0569 11.2506 10.9048 11.0629 10.9048H9.87465C9.68659 10.9048 9.53418 11.0569 9.53418 11.2451V12.4328C9.53418 12.6209 9.68659 12.7731 9.87465 12.7731H11.0629C11.2506 12.7731 11.403 12.6208 11.403 12.4328V11.2451Z" fill="#4A4A4A"/>
-                                                                    <path d="M13.5279 1.67009V3.48458C13.5279 4.30472 12.8626 4.96562 12.0426 4.96562H11.1056C10.2855 4.96562 9.61138 4.30472 9.61138 3.48458V1.66357H5.38811V3.48458C5.38811 4.30472 4.71399 4.96562 3.89404 4.96562H2.95687C2.13689 4.96562 1.47159 4.30472 1.47159 3.48458V1.67009C0.75492 1.69169 0.166016 2.28471 0.166016 3.01361V13.6474C0.166016 14.39 0.767918 14.9999 1.51053 14.9999H13.489C14.2305 14.9999 14.8335 14.3888 14.8335 13.6474V3.01361C14.8335 2.28471 14.2446 1.69169 13.5279 1.67009ZM13.0927 12.9852C13.0927 13.3062 12.8325 13.5665 12.5115 13.5665H2.46242C2.14137 13.5665 1.88117 13.3062 1.88117 12.9852V7.49249C1.88117 7.17144 2.14134 6.91108 2.46242 6.91108H12.5114C12.8325 6.91108 13.0927 7.17144 13.0927 7.49249L13.0927 12.9852Z" fill="#4A4A4A"/>
-                                                                    <path d="M2.95362 3.99297H3.88045C4.16176 3.99297 4.38986 3.76521 4.38986 3.48389V0.509257C4.38986 0.227911 4.16176 0 3.88045 0H2.95362C2.67228 0 2.44421 0.227911 2.44421 0.509257V3.48389C2.44421 3.76521 2.67228 3.99297 2.95362 3.99297Z" fill="#4A4A4A"/>
-                                                                    <path d="M11.0934 3.99297H12.0202C12.3013 3.99297 12.5294 3.76521 12.5294 3.48389V0.509257C12.5294 0.227911 12.3013 0 12.0202 0H11.0934C10.8121 0 10.584 0.227911 10.584 0.509257V3.48389C10.584 3.76521 10.8121 3.99297 11.0934 3.99297Z" fill="#4A4A4A"/>
-                                                                </svg>
-                                                            </div>
                                                             <div class="txt">
-                                                                4 Years
-                                                            </div>
-                                                        </div>
-                                                        <div class="location">
-                                                            <div class="icon">
-                                                                <svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M5.76923 0C4.23914 0 2.77171 0.579381 1.68977 1.61069C0.607828 2.64199 0 4.04074 0 5.49923C0 8.40382 5.13986 14.548 5.36014 14.8129C5.40928 14.8713 5.47156 14.9184 5.54236 14.9508C5.61317 14.9832 5.6907 15 5.76923 15C5.84776 15 5.92529 14.9832 5.9961 14.9508C6.0669 14.9184 6.12918 14.8713 6.17832 14.8129C6.3986 14.548 11.5385 8.40382 11.5385 5.49923C11.5385 4.04074 10.9306 2.64199 9.84869 1.61069C8.76675 0.579381 7.29933 0 5.76923 0ZM5.76923 2.99958C6.28789 2.99958 6.7949 3.14618 7.22615 3.42084C7.65739 3.69551 7.99351 4.0859 8.19199 4.54265C8.39047 4.9994 8.4424 5.502 8.34122 5.98688C8.24003 6.47177 7.99028 6.91716 7.62353 7.26674C7.25679 7.61633 6.78952 7.8544 6.28083 7.95084C5.77214 8.04729 5.24487 7.99779 4.76569 7.8086C4.28651 7.61941 3.87695 7.29902 3.5888 6.88796C3.30065 6.47689 3.14685 5.99361 3.14685 5.49923C3.14685 4.83628 3.42314 4.20048 3.91493 3.73171C4.40672 3.26293 5.07373 2.99958 5.76923 2.99958Z" fill="white"/>
-                                                                    <path d="M5.76923 0C4.23914 0 2.77171 0.579381 1.68977 1.61069C0.607828 2.64199 0 4.04074 0 5.49923C0 8.40382 5.13986 14.548 5.36014 14.8129C5.40928 14.8713 5.47156 14.9184 5.54236 14.9508C5.61317 14.9832 5.6907 15 5.76923 15C5.84776 15 5.92529 14.9832 5.9961 14.9508C6.0669 14.9184 6.12918 14.8713 6.17832 14.8129C6.3986 14.548 11.5385 8.40382 11.5385 5.49923C11.5385 4.04074 10.9306 2.64199 9.84869 1.61069C8.76675 0.579381 7.29933 0 5.76923 0ZM5.76923 2.99958C6.28789 2.99958 6.7949 3.14618 7.22615 3.42084C7.65739 3.69551 7.99351 4.0859 8.19199 4.54265C8.39047 4.9994 8.4424 5.502 8.34122 5.98688C8.24003 6.47177 7.99028 6.91716 7.62353 7.26674C7.25679 7.61633 6.78952 7.8544 6.28083 7.95084C5.77214 8.04729 5.24487 7.99779 4.76569 7.8086C4.28651 7.61941 3.87695 7.29902 3.5888 6.88796C3.30065 6.47689 3.14685 5.99361 3.14685 5.49923C3.14685 4.83628 3.42314 4.20048 3.91493 3.73171C4.40672 3.26293 5.07373 2.99958 5.76923 2.99958Z" fill="#4A4A4A"/>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="txt">
-                                                                Pune
+                                                                &nbsp;&nbsp;Status: New
                                                             </div>
                                                         </div>
                                                     </div>
@@ -578,15 +438,8 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 cols">
                                     <div class="item" title="Computer Science Engineering">
-                                        <span class="save-icon" onclick="addSave(this)">
-                                            <svg class="unsaved" width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M10.5113 0.5H1.47303C0.676493 0.5 0 1.14243 0 1.97303V15.3376C0.00234394 16.3918 1.29001 16.8865 2.02207 16.1464L5.4672 12.7023C5.74328 12.4143 6.24101 12.4143 6.5171 12.7023L9.96222 16.1464C10.6946 16.8867 11.9821 16.3913 11.9843 15.3376V1.97303C11.9843 1.14243 11.3078 0.5 10.5113 0.5ZM11.0467 15.3376C11.0456 15.5608 10.7681 15.6345 10.6246 15.4829C9.93585 14.7931 7.97178 12.8296 7.18068 12.04C6.55835 11.3891 5.42688 11.3889 4.80483 12.0387C4.25835 12.5842 3.18864 13.6536 2.34538 14.4966L1.36436 15.4772C1.22301 15.6271 0.942077 15.5771 0.937546 15.3461V1.97303C0.937546 1.67357 1.18028 1.43758 1.47303 1.43758H10.5112C10.8035 1.43758 11.0467 1.67319 11.0467 1.97303V15.3376Z" fill="#4A4A4A"/>
-                                            </svg>
-                                            <svg class="saved" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="12" height="17" viewBox="0 0 12 17" fill="none">
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 0.5H10.5113C10.6637 0.5 10.8117 0.523525 10.9515 0.567393C11.4422 0.709535 12 1.10374 12 2V15C12 15.077 11.9953 15.1659 11.9843 15.2612V15.3376C11.9837 15.6252 11.8873 15.8713 11.7326 16.062C11.5786 16.3138 11.3452 16.5 11 16.5C10.9763 16.5 10.9515 16.4978 10.9257 16.4934C10.5913 16.5284 10.2375 16.4247 9.96222 16.1464L6.5171 12.7023C6.24101 12.4143 5.74328 12.4143 5.4672 12.7023L2.02207 16.1464C1.29001 16.8865 0.00234394 16.3918 0 15.3376V15V2V1.97303C0 1.16164 0.645559 0.52982 1.41795 0.501026" fill="#4A4A4A"/>
-                                            </svg>                                                        
-                                        </span>
-                                        <a href="course-detail.html">
+                                        
+                                        <a href="Admin-CourseDetail.html">
                                             <div class="topbx">
                                                 <h2 class="hd">Diploma in Event Management</h2>
                                                 <div class="nameandicon">
@@ -626,6 +479,9 @@
                                                             </div>
                                                             <div class="txt">
                                                                 Pune
+                                                            </div>
+                                                            <div class="txt">
+                                                                &nbsp;&nbsp;Status: On hold
                                                             </div>
                                                         </div>
                                                     </div>
@@ -671,15 +527,8 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 cols">
                                     <div class="item" title="Computer Science Engineering">
-                                        <span class="save-icon" onclick="addSave(this)">
-                                            <svg class="unsaved" width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M10.5113 0.5H1.47303C0.676493 0.5 0 1.14243 0 1.97303V15.3376C0.00234394 16.3918 1.29001 16.8865 2.02207 16.1464L5.4672 12.7023C5.74328 12.4143 6.24101 12.4143 6.5171 12.7023L9.96222 16.1464C10.6946 16.8867 11.9821 16.3913 11.9843 15.3376V1.97303C11.9843 1.14243 11.3078 0.5 10.5113 0.5ZM11.0467 15.3376C11.0456 15.5608 10.7681 15.6345 10.6246 15.4829C9.93585 14.7931 7.97178 12.8296 7.18068 12.04C6.55835 11.3891 5.42688 11.3889 4.80483 12.0387C4.25835 12.5842 3.18864 13.6536 2.34538 14.4966L1.36436 15.4772C1.22301 15.6271 0.942077 15.5771 0.937546 15.3461V1.97303C0.937546 1.67357 1.18028 1.43758 1.47303 1.43758H10.5112C10.8035 1.43758 11.0467 1.67319 11.0467 1.97303V15.3376Z" fill="#4A4A4A"/>
-                                            </svg>
-                                            <svg class="saved" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="12" height="17" viewBox="0 0 12 17" fill="none">
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 0.5H10.5113C10.6637 0.5 10.8117 0.523525 10.9515 0.567393C11.4422 0.709535 12 1.10374 12 2V15C12 15.077 11.9953 15.1659 11.9843 15.2612V15.3376C11.9837 15.6252 11.8873 15.8713 11.7326 16.062C11.5786 16.3138 11.3452 16.5 11 16.5C10.9763 16.5 10.9515 16.4978 10.9257 16.4934C10.5913 16.5284 10.2375 16.4247 9.96222 16.1464L6.5171 12.7023C6.24101 12.4143 5.74328 12.4143 5.4672 12.7023L2.02207 16.1464C1.29001 16.8865 0.00234394 16.3918 0 15.3376V15V2V1.97303C0 1.16164 0.645559 0.52982 1.41795 0.501026" fill="#4A4A4A"/>
-                                            </svg>                                                        
-                                        </span>
-                                        <a href="course-detail.html">
+                                        
+                                        <a href="Admin-CourseDetail.html">
                                             <div class="topbx">
                                                 <h2 class="hd">Diploma in Event Management</h2>
                                                 <div class="nameandicon">
@@ -719,6 +568,9 @@
                                                             </div>
                                                             <div class="txt">
                                                                 Pune
+                                                            </div>
+                                                            <div class="txt">
+                                                                &nbsp;&nbsp;Status: Rejected
                                                             </div>
                                                         </div>
                                                     </div>
@@ -764,15 +616,8 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 cols">
                                     <div class="item" title="Computer Science Engineering">
-                                        <span class="save-icon" onclick="addSave(this)">
-                                            <svg class="unsaved" width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M10.5113 0.5H1.47303C0.676493 0.5 0 1.14243 0 1.97303V15.3376C0.00234394 16.3918 1.29001 16.8865 2.02207 16.1464L5.4672 12.7023C5.74328 12.4143 6.24101 12.4143 6.5171 12.7023L9.96222 16.1464C10.6946 16.8867 11.9821 16.3913 11.9843 15.3376V1.97303C11.9843 1.14243 11.3078 0.5 10.5113 0.5ZM11.0467 15.3376C11.0456 15.5608 10.7681 15.6345 10.6246 15.4829C9.93585 14.7931 7.97178 12.8296 7.18068 12.04C6.55835 11.3891 5.42688 11.3889 4.80483 12.0387C4.25835 12.5842 3.18864 13.6536 2.34538 14.4966L1.36436 15.4772C1.22301 15.6271 0.942077 15.5771 0.937546 15.3461V1.97303C0.937546 1.67357 1.18028 1.43758 1.47303 1.43758H10.5112C10.8035 1.43758 11.0467 1.67319 11.0467 1.97303V15.3376Z" fill="#4A4A4A"/>
-                                            </svg>
-                                            <svg class="saved" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="12" height="17" viewBox="0 0 12 17" fill="none">
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 0.5H10.5113C10.6637 0.5 10.8117 0.523525 10.9515 0.567393C11.4422 0.709535 12 1.10374 12 2V15C12 15.077 11.9953 15.1659 11.9843 15.2612V15.3376C11.9837 15.6252 11.8873 15.8713 11.7326 16.062C11.5786 16.3138 11.3452 16.5 11 16.5C10.9763 16.5 10.9515 16.4978 10.9257 16.4934C10.5913 16.5284 10.2375 16.4247 9.96222 16.1464L6.5171 12.7023C6.24101 12.4143 5.74328 12.4143 5.4672 12.7023L2.02207 16.1464C1.29001 16.8865 0.00234394 16.3918 0 15.3376V15V2V1.97303C0 1.16164 0.645559 0.52982 1.41795 0.501026" fill="#4A4A4A"/>
-                                            </svg>                                                        
-                                        </span>
-                                        <a href="course-detail.html">
+                                        
+                                        <a href="Admin-CourseDetail.html">
                                             <div class="topbx">
                                                 <h2 class="hd">Diploma in Event Management</h2>
                                                 <div class="nameandicon">
@@ -812,6 +657,9 @@
                                                             </div>
                                                             <div class="txt">
                                                                 Pune
+                                                            </div>
+                                                            <div class="txt">
+                                                                &nbsp;&nbsp;Status: Withdrawn
                                                             </div>
                                                         </div>
                                                     </div>
@@ -857,15 +705,8 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 cols">
                                     <div class="item" title="Computer Science Engineering">
-                                        <span class="save-icon" onclick="addSave(this)">
-                                            <svg class="unsaved" width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M10.5113 0.5H1.47303C0.676493 0.5 0 1.14243 0 1.97303V15.3376C0.00234394 16.3918 1.29001 16.8865 2.02207 16.1464L5.4672 12.7023C5.74328 12.4143 6.24101 12.4143 6.5171 12.7023L9.96222 16.1464C10.6946 16.8867 11.9821 16.3913 11.9843 15.3376V1.97303C11.9843 1.14243 11.3078 0.5 10.5113 0.5ZM11.0467 15.3376C11.0456 15.5608 10.7681 15.6345 10.6246 15.4829C9.93585 14.7931 7.97178 12.8296 7.18068 12.04C6.55835 11.3891 5.42688 11.3889 4.80483 12.0387C4.25835 12.5842 3.18864 13.6536 2.34538 14.4966L1.36436 15.4772C1.22301 15.6271 0.942077 15.5771 0.937546 15.3461V1.97303C0.937546 1.67357 1.18028 1.43758 1.47303 1.43758H10.5112C10.8035 1.43758 11.0467 1.67319 11.0467 1.97303V15.3376Z" fill="#4A4A4A"/>
-                                            </svg>
-                                            <svg class="saved" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="12" height="17" viewBox="0 0 12 17" fill="none">
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 0.5H10.5113C10.6637 0.5 10.8117 0.523525 10.9515 0.567393C11.4422 0.709535 12 1.10374 12 2V15C12 15.077 11.9953 15.1659 11.9843 15.2612V15.3376C11.9837 15.6252 11.8873 15.8713 11.7326 16.062C11.5786 16.3138 11.3452 16.5 11 16.5C10.9763 16.5 10.9515 16.4978 10.9257 16.4934C10.5913 16.5284 10.2375 16.4247 9.96222 16.1464L6.5171 12.7023C6.24101 12.4143 5.74328 12.4143 5.4672 12.7023L2.02207 16.1464C1.29001 16.8865 0.00234394 16.3918 0 15.3376V15V2V1.97303C0 1.16164 0.645559 0.52982 1.41795 0.501026" fill="#4A4A4A"/>
-                                            </svg>                                                        
-                                        </span>
-                                        <a href="course-detail.html">
+                                        
+                                        <a href="Admin-CourseDetail.html">
                                             <div class="topbx">
                                                 <h2 class="hd">Diploma in Event Management</h2>
                                                 <div class="nameandicon">
@@ -905,6 +746,9 @@
                                                             </div>
                                                             <div class="txt">
                                                                 Pune
+                                                            </div>
+                                                            <div class="txt">
+                                                                &nbsp;&nbsp;Status: Approved
                                                             </div>
                                                         </div>
                                                     </div>
@@ -950,15 +794,8 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 cols">
                                     <div class="item" title="Computer Science Engineering">
-                                        <span class="save-icon" onclick="addSave(this)">
-                                            <svg class="unsaved" width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M10.5113 0.5H1.47303C0.676493 0.5 0 1.14243 0 1.97303V15.3376C0.00234394 16.3918 1.29001 16.8865 2.02207 16.1464L5.4672 12.7023C5.74328 12.4143 6.24101 12.4143 6.5171 12.7023L9.96222 16.1464C10.6946 16.8867 11.9821 16.3913 11.9843 15.3376V1.97303C11.9843 1.14243 11.3078 0.5 10.5113 0.5ZM11.0467 15.3376C11.0456 15.5608 10.7681 15.6345 10.6246 15.4829C9.93585 14.7931 7.97178 12.8296 7.18068 12.04C6.55835 11.3891 5.42688 11.3889 4.80483 12.0387C4.25835 12.5842 3.18864 13.6536 2.34538 14.4966L1.36436 15.4772C1.22301 15.6271 0.942077 15.5771 0.937546 15.3461V1.97303C0.937546 1.67357 1.18028 1.43758 1.47303 1.43758H10.5112C10.8035 1.43758 11.0467 1.67319 11.0467 1.97303V15.3376Z" fill="#4A4A4A"/>
-                                            </svg>
-                                            <svg class="saved" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="12" height="17" viewBox="0 0 12 17" fill="none">
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 0.5H10.5113C10.6637 0.5 10.8117 0.523525 10.9515 0.567393C11.4422 0.709535 12 1.10374 12 2V15C12 15.077 11.9953 15.1659 11.9843 15.2612V15.3376C11.9837 15.6252 11.8873 15.8713 11.7326 16.062C11.5786 16.3138 11.3452 16.5 11 16.5C10.9763 16.5 10.9515 16.4978 10.9257 16.4934C10.5913 16.5284 10.2375 16.4247 9.96222 16.1464L6.5171 12.7023C6.24101 12.4143 5.74328 12.4143 5.4672 12.7023L2.02207 16.1464C1.29001 16.8865 0.00234394 16.3918 0 15.3376V15V2V1.97303C0 1.16164 0.645559 0.52982 1.41795 0.501026" fill="#4A4A4A"/>
-                                            </svg>                                                        
-                                        </span>
-                                        <a href="course-detail.html">
+                                        
+                                        <a href="Admin-CourseDetail.html">
                                             <div class="topbx">
                                                 <h2 class="hd">Diploma in Event Management</h2>
                                                 <div class="nameandicon">
@@ -998,6 +835,9 @@
                                                             </div>
                                                             <div class="txt">
                                                                 Pune
+                                                            </div>
+                                                            <div class="txt">
+                                                                &nbsp;&nbsp;Status: Approved
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1043,15 +883,8 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 cols">
                                     <div class="item" title="Computer Science Engineering">
-                                        <span class="save-icon" onclick="addSave(this)">
-                                            <svg class="unsaved" width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M10.5113 0.5H1.47303C0.676493 0.5 0 1.14243 0 1.97303V15.3376C0.00234394 16.3918 1.29001 16.8865 2.02207 16.1464L5.4672 12.7023C5.74328 12.4143 6.24101 12.4143 6.5171 12.7023L9.96222 16.1464C10.6946 16.8867 11.9821 16.3913 11.9843 15.3376V1.97303C11.9843 1.14243 11.3078 0.5 10.5113 0.5ZM11.0467 15.3376C11.0456 15.5608 10.7681 15.6345 10.6246 15.4829C9.93585 14.7931 7.97178 12.8296 7.18068 12.04C6.55835 11.3891 5.42688 11.3889 4.80483 12.0387C4.25835 12.5842 3.18864 13.6536 2.34538 14.4966L1.36436 15.4772C1.22301 15.6271 0.942077 15.5771 0.937546 15.3461V1.97303C0.937546 1.67357 1.18028 1.43758 1.47303 1.43758H10.5112C10.8035 1.43758 11.0467 1.67319 11.0467 1.97303V15.3376Z" fill="#4A4A4A"/>
-                                            </svg>
-                                            <svg class="saved" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="12" height="17" viewBox="0 0 12 17" fill="none">
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 0.5H10.5113C10.6637 0.5 10.8117 0.523525 10.9515 0.567393C11.4422 0.709535 12 1.10374 12 2V15C12 15.077 11.9953 15.1659 11.9843 15.2612V15.3376C11.9837 15.6252 11.8873 15.8713 11.7326 16.062C11.5786 16.3138 11.3452 16.5 11 16.5C10.9763 16.5 10.9515 16.4978 10.9257 16.4934C10.5913 16.5284 10.2375 16.4247 9.96222 16.1464L6.5171 12.7023C6.24101 12.4143 5.74328 12.4143 5.4672 12.7023L2.02207 16.1464C1.29001 16.8865 0.00234394 16.3918 0 15.3376V15V2V1.97303C0 1.16164 0.645559 0.52982 1.41795 0.501026" fill="#4A4A4A"/>
-                                            </svg>                                                        
-                                        </span>
-                                        <a href="course-detail.html">
+                                        
+                                        <a href="Admin-CourseDetail.html">
                                             <div class="topbx">
                                                 <h2 class="hd">Diploma in Event Management</h2>
                                                 <div class="nameandicon">
@@ -1091,6 +924,9 @@
                                                             </div>
                                                             <div class="txt">
                                                                 Pune
+                                                            </div>
+                                                            <div class="txt">
+                                                                &nbsp;&nbsp;Status: Approved
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1136,15 +972,8 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 cols">
                                     <div class="item" title="Computer Science Engineering">
-                                        <span class="save-icon" onclick="addSave(this)">
-                                            <svg class="unsaved" width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M10.5113 0.5H1.47303C0.676493 0.5 0 1.14243 0 1.97303V15.3376C0.00234394 16.3918 1.29001 16.8865 2.02207 16.1464L5.4672 12.7023C5.74328 12.4143 6.24101 12.4143 6.5171 12.7023L9.96222 16.1464C10.6946 16.8867 11.9821 16.3913 11.9843 15.3376V1.97303C11.9843 1.14243 11.3078 0.5 10.5113 0.5ZM11.0467 15.3376C11.0456 15.5608 10.7681 15.6345 10.6246 15.4829C9.93585 14.7931 7.97178 12.8296 7.18068 12.04C6.55835 11.3891 5.42688 11.3889 4.80483 12.0387C4.25835 12.5842 3.18864 13.6536 2.34538 14.4966L1.36436 15.4772C1.22301 15.6271 0.942077 15.5771 0.937546 15.3461V1.97303C0.937546 1.67357 1.18028 1.43758 1.47303 1.43758H10.5112C10.8035 1.43758 11.0467 1.67319 11.0467 1.97303V15.3376Z" fill="#4A4A4A"/>
-                                            </svg>
-                                            <svg class="saved" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="12" height="17" viewBox="0 0 12 17" fill="none">
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 0.5H10.5113C10.6637 0.5 10.8117 0.523525 10.9515 0.567393C11.4422 0.709535 12 1.10374 12 2V15C12 15.077 11.9953 15.1659 11.9843 15.2612V15.3376C11.9837 15.6252 11.8873 15.8713 11.7326 16.062C11.5786 16.3138 11.3452 16.5 11 16.5C10.9763 16.5 10.9515 16.4978 10.9257 16.4934C10.5913 16.5284 10.2375 16.4247 9.96222 16.1464L6.5171 12.7023C6.24101 12.4143 5.74328 12.4143 5.4672 12.7023L2.02207 16.1464C1.29001 16.8865 0.00234394 16.3918 0 15.3376V15V2V1.97303C0 1.16164 0.645559 0.52982 1.41795 0.501026" fill="#4A4A4A"/>
-                                            </svg>                                                        
-                                        </span>
-                                        <a href="course-detail.html">
+                                       
+                                        <a href="Admin-CourseDetail.html">
                                             <div class="topbx">
                                                 <h2 class="hd">Diploma in Event Management</h2>
                                                 <div class="nameandicon">
@@ -1184,6 +1013,98 @@
                                                             </div>
                                                             <div class="txt">
                                                                 Pune
+                                                            </div>
+                                                            <div class="txt">
+                                                                &nbsp;&nbsp;Status: Approved
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bootmbx">
+                                                <div class="inner">
+                                                    <div class="lftbx">
+                                                        <div class="hd">
+                                                            Total Fees Range
+                                                        </div>
+                                                        <div class="range">
+                                                            ₹ 7.84 L - 8.48 L
+                                                        </div>
+                                                    </div>
+                                                    <div class="rgtbx">
+                                                        <div class="rate">
+                                                            4.5
+                                                        </div>
+                                                        <div class="sep">&nbsp;</div>
+                                                        <div class="rview-n-rate">
+                                                            <div class="review">
+                                                                120 Reviews
+                                                            </div>
+                                                            <div class="starrate-outer">
+                                                                <div class="rate-mob">
+                                                                    4.5
+                                                                </div>
+                                                                <div class="star-rate">
+                                                                    <span class="star"><img src="images/star.svg" alt="Star"></span>
+                                                                    <span class="star"><img src="images/star.svg" alt="Star"></span>
+                                                                    <span class="star"><img src="images/star.svg" alt="Star"></span>
+                                                                    <span class="star"><img src="images/star.svg" alt="Star"></span>
+                                                                    <span class="star"><img src="images/star-half.svg" alt="Star"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 cols">
+                                    <div class="item" title="Computer Science Engineering">
+                                        
+                                        <a href="Admin-CourseDetail.html">
+                                            <div class="topbx">
+                                                <h2 class="hd">Diploma in Event Management</h2>
+                                                <div class="nameandicon">
+                                                    <div class="icon">
+                                                        <img src="images/nit-delhi-icon.svg" alt="NIT Trichy - National Institute of Technology">
+                                                    </div>
+                                                    <div class="name">
+                                                        NIT Trichy - National Institute of Technology
+                                                    </div>
+                                                </div>
+                                                <div class="locate-box">
+                                                    <div class="lft-bx">
+                                                        <div class="year">
+                                                            <div class="icon">
+                                                                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M5.46456 8.27543C5.46456 8.08753 5.31215 7.9353 5.12409 7.9353H3.93599C3.74815 7.9353 3.5957 8.08753 3.5957 8.27543V9.46338C3.5957 9.65153 3.74815 9.80382 3.93599 9.80382H5.12409C5.31215 9.80382 5.46456 9.65153 5.46456 9.46338V8.27543Z" fill="#4A4A4A"/>
+                                                                    <path d="M8.4341 8.27543C8.4341 8.08753 8.28166 7.9353 8.09397 7.9353H6.90571C6.71787 7.9353 6.56543 8.08753 6.56543 8.27543V9.46338C6.56543 9.65153 6.71787 9.80382 6.90571 9.80382H8.09397C8.28166 9.80382 8.4341 9.65153 8.4341 9.46338V8.27543Z" fill="#4A4A4A"/>
+                                                                    <path d="M11.403 8.27543C11.403 8.08753 11.2506 7.9353 11.0628 7.9353H9.87465C9.68659 7.9353 9.53418 8.08753 9.53418 8.27543V9.46338C9.53418 9.65153 9.68659 9.80382 9.87465 9.80382H11.0628C11.2506 9.80382 11.403 9.65153 11.403 9.46338V8.27543Z" fill="#4A4A4A"/>
+                                                                    <path d="M5.46456 11.2451C5.46456 11.0569 5.31215 10.9048 5.12409 10.9048H3.93599C3.74815 10.9048 3.5957 11.0569 3.5957 11.2451V12.4328C3.5957 12.6209 3.74815 12.7731 3.93599 12.7731H5.12409C5.31215 12.7731 5.46456 12.6208 5.46456 12.4328V11.2451Z" fill="#4A4A4A"/>
+                                                                    <path d="M8.4341 11.2449C8.4341 11.0566 8.28166 10.9045 8.09397 10.9045H6.90571C6.71787 10.9045 6.56543 11.0566 6.56543 11.2449V12.4326C6.56543 12.6206 6.71787 12.7729 6.90571 12.7729H8.09397C8.28166 12.7729 8.4341 12.6206 8.4341 12.4326V11.2449Z" fill="#4A4A4A"/>
+                                                                    <path d="M11.403 11.2451C11.403 11.0569 11.2506 10.9048 11.0629 10.9048H9.87465C9.68659 10.9048 9.53418 11.0569 9.53418 11.2451V12.4328C9.53418 12.6209 9.68659 12.7731 9.87465 12.7731H11.0629C11.2506 12.7731 11.403 12.6208 11.403 12.4328V11.2451Z" fill="#4A4A4A"/>
+                                                                    <path d="M13.5279 1.67009V3.48458C13.5279 4.30472 12.8626 4.96562 12.0426 4.96562H11.1056C10.2855 4.96562 9.61138 4.30472 9.61138 3.48458V1.66357H5.38811V3.48458C5.38811 4.30472 4.71399 4.96562 3.89404 4.96562H2.95687C2.13689 4.96562 1.47159 4.30472 1.47159 3.48458V1.67009C0.75492 1.69169 0.166016 2.28471 0.166016 3.01361V13.6474C0.166016 14.39 0.767918 14.9999 1.51053 14.9999H13.489C14.2305 14.9999 14.8335 14.3888 14.8335 13.6474V3.01361C14.8335 2.28471 14.2446 1.69169 13.5279 1.67009ZM13.0927 12.9852C13.0927 13.3062 12.8325 13.5665 12.5115 13.5665H2.46242C2.14137 13.5665 1.88117 13.3062 1.88117 12.9852V7.49249C1.88117 7.17144 2.14134 6.91108 2.46242 6.91108H12.5114C12.8325 6.91108 13.0927 7.17144 13.0927 7.49249L13.0927 12.9852Z" fill="#4A4A4A"/>
+                                                                    <path d="M2.95362 3.99297H3.88045C4.16176 3.99297 4.38986 3.76521 4.38986 3.48389V0.509257C4.38986 0.227911 4.16176 0 3.88045 0H2.95362C2.67228 0 2.44421 0.227911 2.44421 0.509257V3.48389C2.44421 3.76521 2.67228 3.99297 2.95362 3.99297Z" fill="#4A4A4A"/>
+                                                                    <path d="M11.0934 3.99297H12.0202C12.3013 3.99297 12.5294 3.76521 12.5294 3.48389V0.509257C12.5294 0.227911 12.3013 0 12.0202 0H11.0934C10.8121 0 10.584 0.227911 10.584 0.509257V3.48389C10.584 3.76521 10.8121 3.99297 11.0934 3.99297Z" fill="#4A4A4A"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="txt">
+                                                                4 Years
+                                                            </div>
+                                                        </div>
+                                                        <div class="location">
+                                                            <div class="icon">
+                                                                <svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M5.76923 0C4.23914 0 2.77171 0.579381 1.68977 1.61069C0.607828 2.64199 0 4.04074 0 5.49923C0 8.40382 5.13986 14.548 5.36014 14.8129C5.40928 14.8713 5.47156 14.9184 5.54236 14.9508C5.61317 14.9832 5.6907 15 5.76923 15C5.84776 15 5.92529 14.9832 5.9961 14.9508C6.0669 14.9184 6.12918 14.8713 6.17832 14.8129C6.3986 14.548 11.5385 8.40382 11.5385 5.49923C11.5385 4.04074 10.9306 2.64199 9.84869 1.61069C8.76675 0.579381 7.29933 0 5.76923 0ZM5.76923 2.99958C6.28789 2.99958 6.7949 3.14618 7.22615 3.42084C7.65739 3.69551 7.99351 4.0859 8.19199 4.54265C8.39047 4.9994 8.4424 5.502 8.34122 5.98688C8.24003 6.47177 7.99028 6.91716 7.62353 7.26674C7.25679 7.61633 6.78952 7.8544 6.28083 7.95084C5.77214 8.04729 5.24487 7.99779 4.76569 7.8086C4.28651 7.61941 3.87695 7.29902 3.5888 6.88796C3.30065 6.47689 3.14685 5.99361 3.14685 5.49923C3.14685 4.83628 3.42314 4.20048 3.91493 3.73171C4.40672 3.26293 5.07373 2.99958 5.76923 2.99958Z" fill="white"/>
+                                                                    <path d="M5.76923 0C4.23914 0 2.77171 0.579381 1.68977 1.61069C0.607828 2.64199 0 4.04074 0 5.49923C0 8.40382 5.13986 14.548 5.36014 14.8129C5.40928 14.8713 5.47156 14.9184 5.54236 14.9508C5.61317 14.9832 5.6907 15 5.76923 15C5.84776 15 5.92529 14.9832 5.9961 14.9508C6.0669 14.9184 6.12918 14.8713 6.17832 14.8129C6.3986 14.548 11.5385 8.40382 11.5385 5.49923C11.5385 4.04074 10.9306 2.64199 9.84869 1.61069C8.76675 0.579381 7.29933 0 5.76923 0ZM5.76923 2.99958C6.28789 2.99958 6.7949 3.14618 7.22615 3.42084C7.65739 3.69551 7.99351 4.0859 8.19199 4.54265C8.39047 4.9994 8.4424 5.502 8.34122 5.98688C8.24003 6.47177 7.99028 6.91716 7.62353 7.26674C7.25679 7.61633 6.78952 7.8544 6.28083 7.95084C5.77214 8.04729 5.24487 7.99779 4.76569 7.8086C4.28651 7.61941 3.87695 7.29902 3.5888 6.88796C3.30065 6.47689 3.14685 5.99361 3.14685 5.49923C3.14685 4.83628 3.42314 4.20048 3.91493 3.73171C4.40672 3.26293 5.07373 2.99958 5.76923 2.99958Z" fill="#4A4A4A"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="txt">
+                                                                Pune
+                                                            </div>
+                                                            <div class="txt">
+                                                                &nbsp;&nbsp;Status: Approved
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1265,27 +1186,25 @@
         <div class="container">
             <div class="wrapper">
                 <div class="ft-logo">
-                    <a href="index.html" title="Gyatech - Get Your Admission">
+                    <a href="index.html" title="Gyatech - Get Your Admission" target="_blank">
                         <img src="images/logo-footer.svg" alt="Gyatech - Get Your Admission">
                     </a>   
                 </div>
                 <div class="quick-links">
                     <ul>
                         <li>
-                            <a href="index.html" title="Home">Home</a>
+                            <a href="index.html" title="Home" target="_blank">Home</a>
                         </li>
                         <!-- <li>
-                            <a href="javascript:;" title="About Us">About Us</a>
+                            <a href="javascript:;" title="About Us" target="_blank">About Us</a>
                         </li> -->
                         <li>
-                            <a href="courses.html" title="Courses">Courses</a>
+                            <a href="courses.html" title="Courses" target="_blank">Courses</a>
                         </li>
                         <li>
-                            <a href="institutes.html" title="Institutes">Institutes</a>
+                            <a href="institutes.html" title="Institutes" target="_blank">Institutes</a>
                         </li>
-                        <li>
-                            <a href="contact-us.html" title="Contact Us">Contact Us</a>
-                        </li>
+
                     </ul>
                 </div>
                 <div class="ft-bottom">
@@ -1438,14 +1357,36 @@
             </div>
         </div>
     </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get 'userRole' from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userRole = urlParams.get("userRole");
 
+    if (userRole) {
+      // Select all anchor tags on the page
+      const links = document.querySelectorAll("a[href]");
+
+      links.forEach(link => {
+        let href = link.getAttribute("href");
+
+        // Ensure the href is not empty, not already containing userRole, and is not an external link
+        if (href && !href.includes("userRole=") && !href.startsWith("http") && !href.startsWith("#")) {
+          // Check if the URL already has query parameters
+          const separator = href.includes("?") ? "&" : "?";
+          link.setAttribute("href", href + separator + "userRole=" + encodeURIComponent(userRole));
+        }
+      });
+    }
+  });
+</script>
 
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/slick.min.js"></script>
     <!-- <script src="js/aos.js"></script> -->
     <script src="js/custom.js"></script>
-
+    <script>
         $('.fltrmob-menu').click(function(){
             $("html").toggleClass("fltr-open");
         });
@@ -1590,18 +1531,5 @@
             item.addEventListener('change', updateCheckedItems);
         });
     </script>
-<script>
-    // Check the URL for the userRole query parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const userRole = urlParams.get('userRole');
-    const homeLink = document.getElementById('HomeLink');
-    
-    // Redirect based on userRole
-    if (userRole === 'Student') {
-        homeLink.setAttribute('href', 'student-landing-page.html');
-    } else if (userRole === 'Institute') {
-        homeLink.setAttribute('href', 'institute-landing-page.html');
-    }
-</script>
 </body>
 </html>

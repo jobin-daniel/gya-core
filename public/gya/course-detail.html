@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gyatech &ndash; Get Your Admission</title>
+    <title>Gya - Course Details</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -14,6 +14,30 @@
     <link rel="stylesheet" href="css/custom-style.css">
 </head>
 <body class="pg-inner">
+<script defer>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get 'userRole' from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userRole = urlParams.get("userRole");
+
+    if (userRole) {
+      // Select all anchor tags on the page
+      const links = document.querySelectorAll("a[href]");
+
+      links.forEach(link => {
+        let href = link.getAttribute("href");
+
+        // Ensure the href is not empty, not already containing userRole, and is not an external link or anchor
+        if (href && !href.includes("userRole=") && !href.startsWith("http") && !href.startsWith("#")) {
+          // Check if the URL already has query parameters
+          const separator = href.includes("?") ? "&" : "?";
+          // Append both userRole and fromPage
+          link.setAttribute("href",href + separator + "userRole=" + encodeURIComponent(userRole) + "&fromPage=CourseDetail");
+        }
+      });
+    }
+  });
+</script>
     <header class="header">
         <div class="headercontainer-wrapper">
             <div class="container">
@@ -73,6 +97,16 @@
                                     </span>
                                 </span>
                             </a>
+<a href="#" class="item" title="My Home" id="HomeLink">
+    <span class="wrap">
+        <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <path id="adminIcon" d="M15 3L3 12H6V25H12V18H18V25H24V12H27L15 3Z" fill="#A0A0A0"/>
+            </svg>
+        </span>
+        <span class="title" id="adminTitle">My Home</span>
+    </span>
+</a>
                         </div>
                     </div>
                     <div class="rgtbox">
@@ -177,9 +211,10 @@
                                 </span>
                             </div>
                             <div class="rgt-bx">
-                                <a href="apply-now.html" title="Apply Now" class="btn-typ4 applynow-btn">
-                                    <span class="txt">Apply Now</span>
-                                </a>
+<!-- Apply Now Button -->
+<button type="button" class="btn-typ4 applynow-btn" id="applyNowBtn" style="border: none;">
+    <span class="txt">Apply Now</span>
+</button>
                             </div>
                         </div>
                         <div class="bottom-bx">
@@ -1241,5 +1276,126 @@
             },3000);
         });
     </script>
+<!-- Apply Now Popup (only for Admin-SRM) -->
+<div class="modal fade requestreview-popup" id="applyNowModal" tabindex="-1" aria-labelledby="applyNowModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="close-btn" onclick="closePopup()" aria-label="Close">
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.212402 1.25149C-0.0688477 0.970238 -0.0688477 0.502144 0.212402 0.21106C0.503486 -0.0701904 0.961747 -0.0701904 1.25283 0.21106L7.49606 6.46477L13.7498 0.21106C14.031 -0.0701904 14.4991 -0.0701904 14.7797 0.21106C15.0708 0.502144 15.0708 0.970894 14.7797 1.25149L8.53649 7.49537L14.7797 13.7491C15.0708 14.0303 15.0708 14.4984 14.7797 14.7895C14.4985 15.0708 14.0304 15.0708 13.7498 14.7895L7.49606 8.5358L1.25283 14.7895C0.961747 15.0708 0.503486 15.0708 0.212402 14.7895C-0.0688477 14.4984 -0.0688477 14.0297 0.212402 13.7491L6.45563 7.49537L0.212402 1.25149Z" fill="#4A4A4A"/>
+                </svg>                        
+            </button>
+            <div class="modal-body">
+                <div class="requestreview-inner">
+                    <div class="bx-content">
+                        <h2 class="hd">Apply Now</h2>
+                        <div class="txt">
+                            Please enter Student Name or ID to apply for this course.
+                        </div>
+                    </div>
+                    <div class="frmbox-requestreview">
+                        <ul>
+                            <li class="full-width">
+                                <div class="frm-field">
+                                    <input type="text" id="studentName" placeholder="Enter Student Name">
+                                </div>
+                            </li>
+                            <li class="full-width">
+                                <div class="frm-field">
+                                    <input type="text" id="studentId" placeholder="Enter Student ID">
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="btn-bar">
+                            <input type="button" value="Submit" class="input-btn" onclick="submitApplication()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Overlay Background -->
+<div id="modalOverlay" class="modal-overlay" style="display: none;"></div>
+
+<style>
+    /* Overlay style */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+    }
+
+    /* Show modal */
+    .modal.show {
+        display: block !important;
+        z-index: 999;
+    }
+</style>
+
+<script>
+    // Function to get URL parameters
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Get userRole from URL
+    const userRole = getQueryParam("userRole");
+    const applyBtn = document.getElementById("applyNowBtn");
+    const modal = document.getElementById("applyNowModal");
+    const overlay = document.getElementById("modalOverlay");
+
+    // Click event for the button
+    applyBtn.addEventListener("click", function () {
+        if (userRole === "Admin-SRM") {
+            // Show modal only for Admin-SRM
+            modal.classList.add("show");
+            overlay.style.display = "block";
+        } 
+    });
+
+    // Close popup
+    function closePopup() {
+        modal.classList.remove("show");
+        overlay.style.display = "none";
+    }
+
+    // Submit function
+    function submitApplication() {
+        let studentName = document.getElementById("studentName").value.trim();
+        let studentId = document.getElementById("studentId").value.trim();
+
+        if (studentName === "" || studentId === "") {
+            alert("Please enter both your Name and Student ID.");
+            return;
+        }
+
+        alert("Application submitted for: " + studentName + " (ID: " + studentId + ")");
+        closePopup();
+    }
+
+    // Close when clicking overlay
+    overlay.addEventListener("click", closePopup);
+</script>
+
+<script>
+    // Check the URL for the userRole query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const userRole = urlParams.get('userRole');
+    const homeLink = document.getElementById('HomeLink');
+    
+    // Redirect based on userRole
+    if (userRole === 'Student') {
+        homeLink.setAttribute('href', 'student-landing-page.html');
+    } else if (userRole === 'Institute') {
+        homeLink.setAttribute('href', 'institute-landing-page.html');
+    }
+</script>
 </body>
 </html>

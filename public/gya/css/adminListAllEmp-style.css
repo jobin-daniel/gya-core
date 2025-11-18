@@ -1,0 +1,154 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F3F8FE;
+    margin: 0;
+    padding: 0;
+}
+
+
+.nav-links {
+    position: absolute;
+    right: 20px;
+}
+
+    .nav-links a {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+        margin-left: 20px;
+    }
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    background-color: #1e3d73;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.info-table, .actions-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+    .info-table th, .info-table td, .actions-table th, .actions-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .actions-table th, .actions-table td {
+        border: none;
+    }
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.profile-pic {
+    max-width: 100px;
+    border-radius: 50%;
+    margin: 20px auto;
+}
+
+.employee-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+    .employee-pic img {
+        border-radius: 10px;
+        max-width: 150px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+.Save-btn {
+    background-color: #007bff; /* Blue color */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Adjust padding */
+    font-size: 16px; /* Adjust font size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease-in-out;
+}
+
+.nav-links {
+    position: absolute;
+    right: 20px;
+}
+
+    .nav-links a {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+        margin-left: 20px;
+    }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    background-color: #1e3d73;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.employee-table {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+    .employee-table th, .employee-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    .employee-table th {
+        background-color: #f2f2f2;
+    }
+
+.employee-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+    .employee-link:hover {
+        text-decoration: underline;
+    }
+
+
+
+/* Change color on hover */
+.Save-btn:hover {
+    background-color: #007bff; /* Blue green */
+}
+.containerAllEmployees {
+    background-color: white;
+    border-radius: 25px;
+    min-height: 350px; /* Ensure the min-height is properly applied */
+    padding: 20px;
+}

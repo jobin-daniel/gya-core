@@ -66,7 +66,7 @@ export default function AdminHome() {
 
     const fetchEmployeeData = async (userId: number) => {
       setEmployeeLoading(true);
-      console.log("userid from page :"  ,userId);
+      
       try {
         const response = await fetch(`/api/employee/${userId}`, {
           method: "GET",
@@ -200,7 +200,7 @@ export default function AdminHome() {
                           <td className="px-4 py-3 text-sm text-gray-900">
                             {employee.JoiningDate
                               ? new Date(employee.JoiningDate).toLocaleDateString("en-US", {
-                                  month: "2-digit",
+                                  month: "short",
                                   day: "2-digit",
                                   year: "numeric",
                                 })
@@ -213,46 +213,27 @@ export default function AdminHome() {
 
                   {/* My Links Section */}
                   <h3 className="text-xl font-bold text-gray-900 mb-4 mt-6">My Links</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <button
-                      onClick={() => router.push("/courses")}
-                      className="flex items-center justify-center px-4 py-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
-                    >
-                      <Image
-                        src="/images/courses.svg"
-                        alt="Courses"
-                        width={20}
-                        height={20}
-                        className="mr-2"
-                      />
-                      <span className="font-semibold text-blue-700">Courses</span>
-                    </button>
-                    <button
-                      onClick={() => router.push("/institutes")}
-                      className="flex items-center justify-center px-4 py-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
-                    >
-                      <Image
-                        src="/images/institutes.svg"
-                        alt="Institutes"
-                        width={20}
-                        height={20}
-                        className="mr-2"
-                      />
-                      <span className="font-semibold text-green-700">Institutes</span>
-                    </button>
-                    <button
-                      onClick={() => router.push("/contact-us")}
-                      className="flex items-center justify-center px-4 py-3 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors"
-                    >
-                      <Image
-                        src="/images/help.svg"
-                        alt="Help"
-                        width={20}
-                        height={20}
-                        className="mr-2"
-                      />
-                      <span className="font-semibold text-purple-700">Help & Support</span>
-                    </button>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+
+                   
+                    {user.role === "SuperAdmin" && (
+                      <button
+                        onClick={() => router.push("/manage-employees")}
+                        className="flex items-center justify-center px-4 py-3 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
+                        >
+                           <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-4">
+                        <Image
+                          src="/images/employee.svg"
+                          alt="Manage Employees"
+                          width={24}
+                          height={24}
+                          className="mr-2"
+                          />
+                          </div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">View Employees</h3>
+              
+                      </button>
+                    )}
                   </div>
                 </>
               ) : (

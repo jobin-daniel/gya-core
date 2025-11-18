@@ -77,6 +77,29 @@ export function middleware(request) {
     return NextResponse.next();
   }
 
+  // Special route protection for manage-employees (SuperAdmin only)
+  if (pathname === "/manage-employees") {
+    if (!token) {
+      console.log("❌ No token found for manage-employees");
+      return NextResponse.redirect(new URL("/unauthorized", request.url));
+    }
+
+    const decoded = verifyToken(token);
+    if (!decoded) {
+      console.log("❌ Invalid token for manage-employees");
+      return NextResponse.redirect(new URL("/unauthorized", request.url));
+    }
+
+    // Check if user has SuperAdmin role specifically
+    if (decoded.role !== "SuperAdmin") {
+      console.log("❌ Access denied for manage-employees. User role:", decoded.role);
+      return NextResponse.redirect(new URL("/unauthorized", request.url));
+    }
+
+    console.log("✅ Access granted for manage-employees. User:", decoded.email, "Role:", decoded.role);
+    return NextResponse.next();
+  }
+
   // For all protected pages, check for token cookie
   if (!token) {
     console.log("❌ No token found in cookies for:", pathname);

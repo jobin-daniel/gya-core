@@ -1,0 +1,151 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F3F8FE;
+    margin: 0;
+    padding: 0;
+    align-items: center; /* Vertically centers the container */
+}
+
+.container {
+    text-align: center;
+}
+
+.nav-links {
+    position: absolute;
+    right: 20px;
+}
+
+    .nav-links a {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+        margin-left: 20px;
+    }
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    background-color: #1e3d73;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.info-table, .actions-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+    .info-table th, .info-table td, .actions-table th, .actions-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .actions-table th, .actions-table td {
+        border: none;
+    }
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.profile-pic {
+    max-width: 100px;
+    border-radius: 50%;
+    margin: 20px auto;
+}
+
+.employee-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+    .employee-pic img {
+        border-radius: 10px;
+        max-width: 150px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+.Save-btn {
+    background-color: #007bff; /* Blue color */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Adjust padding */
+    font-size: 16px; /* Adjust font size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease-in-out;
+}
+
+.info-table, .student-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+    .info-table th, .info-table td, .student-table th, .student-table td {
+        padding: 12px;
+        border: 1px solid #ddd;
+    }
+
+    .info-table th {
+        background-color: #f2f2f2;
+    }
+/* Styling for 'Students Assigned' and 'Employee Details' headings */
+h2 {
+    background-color: #1e3d73;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+/* Additional styles for links in the student table */
+.student-table td a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+    .student-table td a:hover {
+        text-decoration: underline;
+    }
+
+.search-container {
+    margin-bottom: 20px;
+}
+
+    .search-container input[type=text], .search-container select {
+        padding: 10px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        align-items: center; /* Center the content inside the container */
+
+        .container
+
+{
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+    text-align: center;
+    /* Change color on hover */
+    .Save-btn:hover
+
+{
+    background-color: #007bff; /* Blue green */
+}

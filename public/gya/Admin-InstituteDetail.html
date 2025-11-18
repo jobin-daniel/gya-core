@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gya - Institutes Detail</title>
+    <title>Gya - Get Your Admission</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -14,16 +14,68 @@
     <link rel="stylesheet" href="css/custom-style.css">
 </head>
 <body class="pg-inner">
-    <header class="header">
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get 'userRole' from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userRole = urlParams.get("userRole");
+
+    // Define 'fromPage' value
+    const fromPage = "AdminInstDetail";
+
+    // Select all anchor tags on the page
+    const links = document.querySelectorAll("a[href]");
+
+    links.forEach(link => {
+      let href = link.getAttribute("href");
+
+      // Ensure the href is valid, not external, and doesn't already have userRole or fromPage
+      if (href && !href.includes("userRole=") && !href.includes("fromPage=") 
+          && !href.startsWith("http") && !href.startsWith("#")) {
+        
+        // Check if the URL already has query parameters
+        const separator = href.includes("?") ? "&" : "?";
+        
+        // Append both userRole (if available) and fromPage
+        let updatedHref = href + separator + "fromPage=" + encodeURIComponent(fromPage);
+        if (userRole) {
+          updatedHref += "&userRole=" + encodeURIComponent(userRole);
+        }
+
+        link.setAttribute("href", updatedHref);
+      }
+    });
+  });
+</script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get 'userRole' from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userRole = urlParams.get("userRole");
+
+    // Allowed user roles
+    const allowedRoles = ["Admin", "Admin-IRM", "Admin-ISRM"];
+
+    // Select the link by its ID
+    const accreditationLink = document.getElementById("accreditationLink");
+
+    // If userRole is not one of the allowed roles, disable the link
+    if (userRole && !allowedRoles.includes(userRole)) {
+      accreditationLink.style.pointerEvents = "none"; // Disable clicking
+      accreditationLink.style.color = "#D3D3D3"; // Optionally change color to indicate it's disabled
+    }
+  });
+</script>
+<header class="header">
         <div class="headercontainer-wrapper">
             <div class="container">
                 <div class="inner">
                     <div class="lftbox">
-                        <a href="index.html" title="Gyatech - Get Your Admission" class="logo">
+                        <a href="index.html" title="Gyatech - Get Your Admission" class="logo" target="_blank">
                             <img src="images/logo.svg" alt="Gyatech - Get Your Admission">
                         </a>
                         <div class="coursescolleges-wrapper">
-                            <a href="courses.html" class="item" title="Courses">
+                            <a href="Admin-CoursesSearch.html" class="item" title="Courses">
                                 <span class="wrap">
                                     <span class="icon">
                                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +89,7 @@
                                     </span>
                                 </span>
                             </a>
-                            <a href="institutes.html" class="item active" title="Institutes">
+                            <a href="Admin-InstitutesSearch.html" class="item active" title="Institutes">
                                 <span class="wrap">
                                     <span class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
@@ -73,30 +125,23 @@
                                     </span>
                                 </span>
                             </a>
-<a href="#" class="item" title="My Home" id="HomeLink">
-    <span class="wrap">
-        <span class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                <path id="adminIcon" d="M15 3L3 12H6V25H12V18H18V25H24V12H27L15 3Z" fill="#A0A0A0"/>
-            </svg>
-        </span>
-        <span class="title" id="adminTitle">My Home</span>
-    </span>
-</a>
+			    <a href="Admin-HomePage.html" class="item" title="Admin Home">
+    				<span class="wrap">
+        				<span class="icon">
+            				<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+               	 			<path d="M15 3L3 12H6V25H12V18H18V25H24V12H27L15 3Z" fill="#A0A0A0"/>
+            				</svg>
+        				</span>
+        				<span class="title">
+            				Admin Home
+        				</span>
+    				</span>
+			    </a>
                         </div>
                     </div>
                     <div class="rgtbox">
                         <div class="wrap">
-                            <a href="contact-us.html" title="Help" class="item">
-                                <span class="icon">
-                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20.0015 9.5306C19.9489 9.07127 19.7399 8.66945 19.4392 8.40222C19.3725 3.75775 15.6129 0 11 0C6.38719 0 2.62737 3.75775 2.56074 8.40222C2.26025 8.66933 2.05128 9.07077 1.99852 9.52979C1.15156 9.73507 0.520584 10.4994 0.520584 11.4087V13.4004C0.520584 14.3096 1.15156 15.074 1.99852 15.2793C2.09372 16.1087 2.69995 16.7504 3.43163 16.7504H4.17132C4.96896 16.7504 5.61775 15.9881 5.61775 15.0511V9.75795C5.61775 9.23423 5.41497 8.76522 5.09691 8.45329C5.13636 5.19362 7.76911 2.55399 11 2.55399C14.2309 2.55399 16.8636 5.19356 16.9032 8.45317C16.5849 8.76509 16.382 9.23417 16.382 9.75795V15.0511C16.382 15.9489 16.978 16.6859 17.7297 16.7459V18.2352C17.7297 19.2518 16.9026 20.0789 15.886 20.0789H14.3688C14.1734 19.5075 13.6314 19.0953 12.9947 19.0953H11.9834C11.1826 19.0953 10.5312 19.7469 10.5312 20.5477C10.5312 21.3485 11.1827 22 11.9834 22H12.9947C13.6315 22 14.1734 21.5879 14.3688 21.0165H15.886C17.4195 21.0165 18.6673 19.7688 18.6673 18.2352V16.7459C19.3542 16.6911 19.911 16.0705 20.0015 15.2785C20.8484 15.0732 21.4795 14.3095 21.4795 13.4004V11.4086C21.4794 10.4995 20.8484 9.73588 20.0015 9.5306ZM1.98508 14.2766C1.67215 14.1088 1.45824 13.7798 1.45824 13.4004V11.4087C1.45824 11.0293 1.67215 10.7002 1.98508 10.5324V14.2766ZM12.9947 21.0623H11.9834C11.6997 21.0623 11.4689 20.8315 11.4689 20.5477C11.4689 20.2639 11.6997 20.033 11.9834 20.033H12.9947C13.2785 20.033 13.5093 20.2639 13.5093 20.5477C13.5093 20.8315 13.2785 21.0623 12.9947 21.0623ZM4.68009 15.0511C4.68009 15.4568 4.44237 15.8127 4.17132 15.8127H3.43157C3.16053 15.8127 2.92267 15.4568 2.92267 15.0511V9.75795C2.92267 9.35225 3.16053 8.99632 3.43157 8.99632H4.17132C4.44237 8.99632 4.68009 9.35219 4.68009 9.75795V15.0511ZM11 1.61633C7.38355 1.61633 4.41417 4.46581 4.17476 8.05885C4.17351 8.05885 4.17245 8.05873 4.17132 8.05873H3.51171C3.75194 4.09119 7.01836 0.937657 11 0.937657C14.9815 0.937657 18.2479 4.09125 18.4882 8.05873H17.8287C17.8277 8.05873 17.8267 8.05885 17.8257 8.05885C17.5863 4.46581 14.6166 1.61633 11 1.61633ZM19.0772 15.0511C19.0772 15.4568 18.8395 15.8127 18.5683 15.8127H17.8287C17.5575 15.8127 17.3196 15.4568 17.3196 15.0511V9.75795C17.3196 9.35225 17.5575 8.99632 17.8287 8.99632H18.5683C18.8395 8.99632 19.0772 9.35219 19.0772 9.75795V15.0511ZM20.5418 13.4004C20.5418 13.7798 20.3278 14.109 20.0148 14.2767V10.5326C20.3278 10.7004 20.5418 11.0293 20.5418 11.4087V13.4004Z" fill="#4A4A4A"/>
-                                    </svg>
-                                </span>
-                                <span class="txt">
-                                    Help
-                                </span>
-                            </a>
+                            
                             <span class="item account-dropdown">
                                 <span class="title-account">
                                     <span class="icon">
@@ -105,7 +150,7 @@
                                         </svg>
                                     </span>
                                     <span class="txt">
-                                        Account
+                                        Employee Name
                                     </span>
                                     <span class="arrow">
                                         <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -114,9 +159,8 @@
                                     </span>
                                 </span>
                                 <span class="account-submenu">
-                                    <a href="javascript:;" title="Login" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
-                                    <a href="student-signup.html" title="Student Sign Up">Student Sign Up</a>
-                                    <a href="institute-signup.html" title="Institute Sign Up">Institute Sign Up</a>
+                                    <a href="javascript:;" title="Login" data-bs-toggle="modal" data-bs-target="#changepasswordModal">Change Password</a>
+                                    <a href="javascript:;" title="Logout">Log out</a>
                                 </span>
                             </span>
                         </div>
@@ -128,13 +172,52 @@
     <section class="breadcrumb">
         <div class="container">
             <div class="inner">
-                <a href="index.html" title="Home">Home</a>
+                <a href="Admin-HomePage.html" title="Home">Admin Home</a>
                 <span class="sep">
                     <svg width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.86498 4.81951L2.38886 0.759075C2.04343 0.413642 1.4839 0.413642 1.13847 0.759075C0.793036 1.10451 0.793036 1.66402 1.13847 2.00946L4.98607 5.50001L1.13847 8.99052C0.793036 9.33594 0.793036 9.89547 1.13847 10.2409C1.4839 10.5863 2.04343 10.5863 2.38886 10.2409L6.86498 6.18047C7.05163 5.99383 7.13393 5.74441 7.11855 5.49999C7.13353 5.25556 7.05163 5.00616 6.86498 4.81951Z" fill="#4A4A4A"/>
                     </svg>
                 </span>
-                <a href="institutes.html" title="Institute">Institute</a>
+                <a href="Admin-InstitutesSearch.html" title="Institute">Institute</a>
+<script defer>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get 'userRole' and 'fromPage' from the current URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userRole = urlParams.get("userRole");
+    const fromPage = urlParams.get("fromPage");
+
+    // Select the specific link
+    const instituteLink = document.querySelector('a[href="Admin-InstitutesSearch.html"][title="Institute"]');
+
+    if (instituteLink) {
+      instituteLink.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent default link behavior
+
+        let redirectUrl = "Admin-InstitutesSearch.html"; // Default URL
+
+        // Check fromPage and set the redirect URL
+        if (fromPage) {
+          if (fromPage === "AdminMyInstSearch") {
+            redirectUrl = "Admin-InstitutesSearch.html";
+          } else if (fromPage === "AdminMyInst") {
+            redirectUrl = "Admin-MyInstitutes.html";
+          } else if (fromPage === "AdminMyCourse") {
+            redirectUrl = "Admin-MyCourses.html";
+          }
+        }
+
+        // Append userRole if it exists
+        if (userRole) {
+          const separator = redirectUrl.includes("?") ? "&" : "?";
+          redirectUrl += separator + "userRole=" + encodeURIComponent(userRole);
+        }
+
+        // Perform the redirection
+        window.location.href = redirectUrl;
+      });
+    }
+  });
+</script>
                 <span class="sep">
                     <svg width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.86498 4.81951L2.38886 0.759075C2.04343 0.413642 1.4839 0.413642 1.13847 0.759075C0.793036 1.10451 0.793036 1.66402 1.13847 2.00946L4.98607 5.50001L1.13847 8.99052C0.793036 9.33594 0.793036 9.89547 1.13847 10.2409C1.4839 10.5863 2.04343 10.5863 2.38886 10.2409L6.86498 6.18047C7.05163 5.99383 7.13393 5.74441 7.11855 5.49999C7.13353 5.25556 7.05163 5.00616 6.86498 4.81951Z" fill="#4A4A4A"/>
@@ -159,15 +242,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 cols">
-                        <div class="content-bx">
-                            <span class="save" onclick="addSave(this)">
-                                <svg class="unsaved" width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.5113 0.5H1.47303C0.676493 0.5 0 1.14243 0 1.97303V15.3376C0.00234394 16.3918 1.29001 16.8865 2.02207 16.1464L5.4672 12.7023C5.74328 12.4143 6.24101 12.4143 6.5171 12.7023L9.96222 16.1464C10.6946 16.8867 11.9821 16.3913 11.9843 15.3376V1.97303C11.9843 1.14243 11.3078 0.5 10.5113 0.5ZM11.0467 15.3376C11.0456 15.5608 10.7681 15.6345 10.6246 15.4829C9.93585 14.7931 7.97178 12.8296 7.18068 12.04C6.55835 11.3891 5.42688 11.3889 4.80483 12.0387C4.25835 12.5842 3.18864 13.6536 2.34538 14.4966L1.36436 15.4772C1.22301 15.6271 0.942077 15.5771 0.937546 15.3461V1.97303C0.937546 1.67357 1.18028 1.43758 1.47303 1.43758H10.5112C10.8035 1.43758 11.0467 1.67319 11.0467 1.97303V15.3376Z" fill="#4A4A4A"/>
-                                </svg>
-                                <svg class="saved" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="12" height="17" viewBox="0 0 12 17" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 0.5H10.5113C10.6637 0.5 10.8117 0.523525 10.9515 0.567393C11.4422 0.709535 12 1.10374 12 2V15C12 15.077 11.9953 15.1659 11.9843 15.2612V15.3376C11.9837 15.6252 11.8873 15.8713 11.7326 16.062C11.5786 16.3138 11.3452 16.5 11 16.5C10.9763 16.5 10.9515 16.4978 10.9257 16.4934C10.5913 16.5284 10.2375 16.4247 9.96222 16.1464L6.5171 12.7023C6.24101 12.4143 5.74328 12.4143 5.4672 12.7023L2.02207 16.1464C1.29001 16.8865 0.00234394 16.3918 0 15.3376V15V2V1.97303C0 1.16164 0.645559 0.52982 1.41795 0.501026" fill="#4A4A4A"/>
-                                </svg>                                      
-                            </span>
+                        <div class="content-bx">                            
                             <div class="wrp-box">
                                 <div class="tp-contnt">
                                     <h2 class="hd">NIT Trichy - National Institute of Technology</h2>
@@ -204,7 +279,7 @@
                                         </ul>
                                     </div>
                                     <div class="lnk-txt">
-                                        <a href="javascript:;" title="Approvals & Accreditations:">Approvals &amp; Accreditations :</a>
+                                        <a href="institute-approvals-acreditations.html" style="color: #0273F0;" id="accreditationLink" >Accreditation & Approval</a>
                                     </div>
                                 </div>
                                 <div class="bt-contnt">
@@ -226,16 +301,32 @@
                                             <span class="review">
                                                 120 Reviews
                                             </span>
+                                            <span class="sep">&nbsp;</span>
+                                            <span class="review">
+                                                Institiute Detailes Approved on: 10-Jan-2025
+                                            </span>
                                         </div>
                                         <div class="rgtbx">
-                                            <a href="javascript:;" title="Brochure" class="btn-typ1">
-                                                <span class="icon">
-                                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M12.837 16.55H3.94812C2.99846 16.55 2.10559 16.1802 1.43399 15.5086C0.762425 14.8371 0.392578 13.9442 0.392578 12.9945V12.1055C0.392578 11.6146 0.790526 11.2166 1.28147 11.2166C1.77242 11.2166 2.17037 11.6146 2.17037 12.1055V12.9945C2.17037 13.4693 2.35531 13.9158 2.69103 14.2515C3.02684 14.5873 3.47326 14.7723 3.94812 14.7723H12.837C13.3118 14.7723 13.7583 14.5873 14.094 14.2515C14.4298 13.9157 14.6148 13.4693 14.6148 12.9945V12.1055C14.6148 11.6146 15.0127 11.2166 15.5037 11.2166C15.9946 11.2166 16.3926 11.6146 16.3926 12.1055V12.9945C16.3926 13.9441 16.0227 14.837 15.3511 15.5086C14.6795 16.1802 13.7867 16.55 12.837 16.55ZM8.39256 12.9944C8.2696 12.9944 8.15254 12.9695 8.04603 12.9244C7.94667 12.8824 7.8533 12.8214 7.77161 12.7416C7.77158 12.7416 7.77158 12.7416 7.77154 12.7416C7.77095 12.741 7.77036 12.7404 7.76977 12.7398C7.76962 12.7397 7.76943 12.7395 7.76928 12.7393C7.76878 12.7389 7.76835 12.7384 7.76788 12.738C7.76757 12.7376 7.76729 12.7374 7.76698 12.7371C7.76667 12.7367 7.76627 12.7363 7.76599 12.7361C7.76537 12.7355 7.76468 12.7348 7.76406 12.7342L4.20848 9.17857C3.86137 8.83145 3.86137 8.26862 4.20848 7.92147C4.5556 7.57435 5.11846 7.57432 5.46558 7.92147L7.5037 9.95959V1.43894C7.50367 0.947997 7.90162 0.550049 8.39256 0.550049C8.88351 0.550049 9.28149 0.947997 9.28149 1.43894V9.95956L11.3196 7.92147C11.6667 7.57435 12.2296 7.57435 12.5767 7.92147C12.9238 8.26859 12.9238 8.83145 12.5767 9.17857L9.02109 12.7341C9.02047 12.7347 9.01979 12.7354 9.01917 12.736C9.01883 12.7363 9.01846 12.7367 9.01818 12.737C9.01787 12.7373 9.01759 12.7376 9.01728 12.7379C9.01684 12.7384 9.01634 12.7388 9.01591 12.7393C9.01575 12.7394 9.01554 12.7396 9.01538 12.7398C9.01482 12.7404 9.01423 12.7409 9.01364 12.7415C9.01361 12.7415 9.01361 12.7415 9.01358 12.7416C9.0038 12.7511 8.99389 12.7603 8.98377 12.7694C8.90934 12.8357 8.82644 12.8875 8.73878 12.9245C8.73847 12.9246 8.73822 12.9247 8.73791 12.9248C8.73757 12.9249 8.73729 12.9251 8.73695 12.9252C8.631 12.9698 8.51468 12.9944 8.39256 12.9944Z" fill="white"/>
-                                                    </svg>                                                    
-                                                </span>
-                                                <span class="txt">Brochure</span>
-                                            </a>
+                                            <span class="file-name" id="">Brochure*</span>
+                                            <button class="file-input">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="19" viewBox="0 0 14 19" fill="none">
+                                                    <g clip-path="url(#clip0_2677_34112)">
+                                                      <path d="M13.8706 18.5H1.31641V0.5H10.7539L13.8706 3.57662V18.5Z" fill="#EAEAEA"/>
+                                                      <path d="M4.60848 11.9954C4.43503 11.9954 4.24761 11.9308 4.0793 11.7341C3.80735 11.417 3.79633 11.0547 4.04953 10.7394C4.28031 10.4523 4.73343 10.1925 5.39601 9.96763C5.65031 9.88127 5.92924 9.80152 6.2269 9.73059C6.41065 9.39728 6.58815 9.03236 6.75388 8.64834C6.90749 8.29261 7.04053 7.94386 7.15004 7.61275C6.7175 6.88696 6.39779 6.14647 6.40587 5.6081C6.41396 5.15645 6.66311 4.86614 7.08977 4.81175C7.46828 4.76361 7.7564 4.94735 7.87914 5.31594C8.04855 5.82602 7.90082 6.68374 7.63108 7.55212C7.85013 7.90309 8.08736 8.24237 8.34181 8.56859C8.56597 8.85707 8.79455 9.12607 9.01982 9.36862C10.0855 9.3473 10.7933 9.49724 11.145 9.68613C11.5151 9.8842 11.6639 10.1962 11.5544 10.5424C11.4214 10.9617 11.1064 11.1631 10.6901 11.0936C10.1521 11.0054 9.46743 10.4663 8.83902 9.81585C8.39099 9.83346 7.94415 9.87394 7.50026 9.93712C7.15592 9.98526 6.82518 10.0452 6.51575 10.1139C6.07476 10.8889 5.56028 11.5809 5.06895 11.8584C4.92949 11.9422 4.77108 11.9894 4.60848 11.9954ZM5.90939 10.2682C5.16155 10.4832 4.60664 10.7489 4.3935 11.0142C4.27186 11.1656 4.27737 11.2865 4.41371 11.4457C4.49713 11.5427 4.60775 11.6136 4.85176 11.4754C5.15567 11.3042 5.53161 10.8676 5.90939 10.2697V10.2682ZM9.46081 9.81291C9.9753 10.2958 10.4416 10.6071 10.7614 10.6581C10.9286 10.6857 11.0553 10.6534 11.134 10.4071C11.1557 10.3388 11.1961 10.2116 10.937 10.0727C10.6452 9.91948 10.1175 9.83092 9.46081 9.81438V9.81291ZM7.45064 8.08571C7.35877 8.33854 7.25992 8.5866 7.15886 8.82069C7.04861 9.07793 6.92366 9.34289 6.78843 9.60822C6.99937 9.56816 7.21692 9.53252 7.43888 9.50128C7.80098 9.45057 8.13822 9.41468 8.45058 9.39361C8.28962 9.20986 8.13601 9.02207 7.99343 8.8387C7.81152 8.60608 7.62667 8.35104 7.45064 8.08718V8.08571ZM7.14563 5.24906C6.90272 5.27993 6.85164 5.41774 6.84686 5.61655C6.84098 5.94472 7.01701 6.44708 7.3246 7.0244C7.50834 6.32985 7.56236 5.76318 7.4602 5.45596C7.40397 5.28618 7.31578 5.22811 7.14526 5.25016L7.14563 5.24906Z" fill="#D9251C"/>
+                                                      <path d="M10.7539 3.61668H13.8706L10.7539 0.5V3.61668Z" fill="#C9C9C9"/>
+                                                      <path d="M1.25391 14.6296H13.8698V18.5H1.25391V14.6296Z" fill="#D9251C"/>
+                                                      <path d="M4.85938 15.4702H5.69541C6.12464 15.4702 6.41643 15.712 6.41643 16.0949C6.41643 16.5359 6.08385 16.7355 5.68512 16.7355H5.29595V17.4903H4.85938V15.4702ZM5.29669 16.3889H5.63C5.83249 16.3889 5.97544 16.3114 5.97544 16.1049C5.97544 15.8983 5.8244 15.8186 5.63919 15.8186H5.29595L5.29669 16.3889Z" fill="white"/>
+                                                      <path d="M6.80078 15.4702H7.60191C8.18989 15.4702 8.57539 15.8579 8.57539 16.4555C8.57539 17.0434 8.20202 17.4914 7.58317 17.4914H6.80078V15.4702ZM7.23773 17.1382H7.56553C7.95286 17.1382 8.12411 16.8501 8.12411 16.4566C8.12411 16.1258 7.96389 15.8234 7.5681 15.8234H7.23736L7.23773 17.1382Z" fill="white"/>
+                                                      <path d="M9.01953 15.4702H10.4303V15.8285H9.44619V16.3235H10.3675V16.6818H9.44619V17.4903H9.01953V15.4702Z" fill="white"/>
+                                                    </g>
+                                                    <defs>
+                                                      <clipPath id="clip0_2677_34112">
+                                                        <rect width="12.6159" height="18" fill="white" transform="translate(0.691406 0.5)"/>
+                                                      </clipPath>
+                                                    </defs>
+                                                  </svg>
+                                            </button>
+
                                         </div>
                                     </div>
                                 </div>
@@ -245,9 +336,104 @@
                 </div>
             </div>
         </div>
+<div class="button-container">
+    <button class="btn-type01" type="button">
+        <span></span>
+        Save
+    </button> 
+    <button class="btn-type01" type="button">
+        <span></span>
+        On Hold
+    </button>
+    <button class="btn-type01" type="button">
+        <span></span>
+        Reject
+    </button>
+    <button class="btn-type01" type="button">
+        <span></span>
+        Approve
+    </button>
+<button class="btn-type01" type="button" id="addCoursesButton">
+    <span></span>
+    Add Courses
+</button>
+
+<script>
+    document.getElementById('addCoursesButton').addEventListener('click', function() {
+        // Get 'userRole' from the current URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const userRole = urlParams.get("userRole");
+
+        // Base URL for the target page
+        let redirectUrl = 'course-data-entry.html';
+
+        // If 'userRole' is present, append it to the URL
+        if (userRole) {
+            const separator = redirectUrl.includes("?") ? "&" : "?";
+            redirectUrl += separator + "userRole=" + encodeURIComponent(userRole);
+        }
+
+        // Append the 'fromPage' parameter
+        const separator = redirectUrl.includes("?") ? "&" : "?";
+        redirectUrl += separator + "fromPage=AdminInstituteDetail";
+
+        // Redirect to the new URL
+        window.location.href = redirectUrl;
+    });
+</script>
+<button class="btn-type01" type="button" onclick="redirectToPageWithUserRole();">
+    <span></span>
+    Request Info
+</button>
+
+</div>
     </section>
+<style>
+    .btn-type01 {
+        width: 8%;
+        background-color: initial;
+        color: 1px solid gray;
+        border: 1px solid gray;
+        position: relative;
+        padding: 10px;
+        font-size: 14px;
+        overflow: hidden;
+        z-index: 1;
+	border-radius: 10px;
+    }
+
+    .btn-type01 span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: #0273F0;
+        transition: width 0.5s ease-out;
+        z-index: -1;
+    }
+
+    .btn-type01:hover {
+        color: white;
+    }
+
+    .btn-type01:hover span {
+        width: 100%;
+    }
+    .button-container {
+        display: flex;
+        justify-content: center;  /* Centers buttons horizontally */
+        align-items: flex-start;  /* Aligns buttons to the top of the container */
+        flex-wrap: wrap;          /* Allows buttons to wrap if they overflow */
+        gap: 20px;                /* Adds space between the buttons */
+        max-width: 100%;          /* Ensures container doesn't exceed the viewport width */
+        margin-top: 50px;         /* Adds space above the buttons */
+    }
+</style>
+
     <section class="coursesdetails-main">
-        <div class="container">
+
+  <div class="container">
             <div class="inner">
                 <div class="row">
                     <div class="col-xl-9 cols">
@@ -284,7 +470,7 @@
                                     <!--Overview-->
                                     <div class="tabinfobox grey-bg">
                                         <h4 class="hd-tabinfo show">Overview</h4>
-                                        <div class="answer-tabinfo" style="display:block;">
+                                        <div class="answer-tabinfo" style="display:block;" contenteditable="true">
                                             <div class="txt">
                                                 <p>
                                                     IIT Delhi cutoff 2024 is out for admission to the BTech/ BArch courses. The JoSAA Round 1 Seat Allotment is 
@@ -294,7 +480,7 @@
                                                 </p>
                                             </div>
                                             <ul class="list-typ1">
-                                                <li>
+                                                <li >
                                                     Round 2 seat allotment will be out on Jun 27, 2024 (at 5 PM).
                                                 </li>
                                                 <li>
@@ -313,7 +499,7 @@
                                     <div class="tabinfobox">
                                         <h4 class="hd-tabinfo show">Highlights</h4>
                                         <div class="answer-tabinfo" style="display: block;">
-                                            <div class="txt">
+                                            <div class="txt" contenteditable="true">
                                                 <p>
                                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
                                                     the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley 
@@ -337,11 +523,11 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Establishment year</td>
-                                                        <td>1958</td>
+                                                        <td contenteditable="true">1958</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Campus area</td>
-                                                        <td>550 acre</td>
+                                                        <td contenteditable="true">550 acre</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Recognition</td>
@@ -353,7 +539,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Rankings (2023)</td>
-                                                        <td>
+                                                        <td contenteditable="true">
                                                             3 by NIRF under the Engineering category<br>
                                                             2 by The India Today under the Engineering (Government)<br>
                                                             2 by The India Today under the Engineering category
@@ -361,15 +547,15 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Flagship course of study</td>
-                                                        <td>BTech, MTech, MBA</td>
+                                                        <td contenteditable="true">BTech, MTech, MBA</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Number of courses</td>
-                                                        <td>80+</td>
+                                                        <td contenteditable="true">80+</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Type of scholarships</td>
-                                                        <td>Merit-based, Need-based</td>
+                                                        <td contenteditable="true">Merit-based, Need-based</td>
                                                     </tr>
                                                     <!-- <tr>
                                                         <td>Brochure 2024</td>
@@ -406,8 +592,8 @@
                                     <div class="tabinfobox">
                                         <h4 class="hd-tabinfo show">Popular Courses</h4>
                                         <div class="answer-tabinfo" style="display: block;">
-                                            <div class="txt">
-                                                <p>
+                                            <div class="txt" contenteditable="true">
+                                                <p >
                                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
                                                     the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley 
                                                     of type and scrambled it to make a type specimen book. It has survived not only five centuries, 
@@ -417,15 +603,8 @@
                                                 </p>
                                             </div>
                                             <div class="popularcourses-list">
-                                                <a href="course-detail.html" title="View more Details" class="course-item">
-                                                    <span class="save" onclick="addSave(this)">
-                                                        <svg class="unsaved" width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M10.5113 0.5H1.47303C0.676493 0.5 0 1.14243 0 1.97303V15.3376C0.00234394 16.3918 1.29001 16.8865 2.02207 16.1464L5.4672 12.7023C5.74328 12.4143 6.24101 12.4143 6.5171 12.7023L9.96222 16.1464C10.6946 16.8867 11.9821 16.3913 11.9843 15.3376V1.97303C11.9843 1.14243 11.3078 0.5 10.5113 0.5ZM11.0467 15.3376C11.0456 15.5608 10.7681 15.6345 10.6246 15.4829C9.93585 14.7931 7.97178 12.8296 7.18068 12.04C6.55835 11.3891 5.42688 11.3889 4.80483 12.0387C4.25835 12.5842 3.18864 13.6536 2.34538 14.4966L1.36436 15.4772C1.22301 15.6271 0.942077 15.5771 0.937546 15.3461V1.97303C0.937546 1.67357 1.18028 1.43758 1.47303 1.43758H10.5112C10.8035 1.43758 11.0467 1.67319 11.0467 1.97303V15.3376Z" fill="#4A4A4A"/>
-                                                        </svg>
-                                                        <svg class="saved" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="12" height="17" viewBox="0 0 12 17" fill="none">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 0.5H10.5113C10.6637 0.5 10.8117 0.523525 10.9515 0.567393C11.4422 0.709535 12 1.10374 12 2V15C12 15.077 11.9953 15.1659 11.9843 15.2612V15.3376C11.9837 15.6252 11.8873 15.8713 11.7326 16.062C11.5786 16.3138 11.3452 16.5 11 16.5C10.9763 16.5 10.9515 16.4978 10.9257 16.4934C10.5913 16.5284 10.2375 16.4247 9.96222 16.1464L6.5171 12.7023C6.24101 12.4143 5.74328 12.4143 5.4672 12.7023L2.02207 16.1464C1.29001 16.8865 0.00234394 16.3918 0 15.3376V15V2V1.97303C0 1.16164 0.645559 0.52982 1.41795 0.501026" fill="#4A4A4A"/>
-                                                        </svg>                                      
-                                                    </span>
+                                                <a href="Admin course-detail.html" title="View more Details" class="course-item">
+                                                    
                                                     <div class="head-box">
                                                         <h4 class="title">Computer Science Engineering</h4>
                                                         <div class="course-rates">
@@ -479,15 +658,8 @@
                                                         </div>
                                                     </div>
                                                 </a>
-                                                <a href="course-detail.html" title="View more Details" class="course-item">
-                                                    <span class="save" onclick="addSave(this)">
-                                                        <svg class="unsaved" width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M10.5113 0.5H1.47303C0.676493 0.5 0 1.14243 0 1.97303V15.3376C0.00234394 16.3918 1.29001 16.8865 2.02207 16.1464L5.4672 12.7023C5.74328 12.4143 6.24101 12.4143 6.5171 12.7023L9.96222 16.1464C10.6946 16.8867 11.9821 16.3913 11.9843 15.3376V1.97303C11.9843 1.14243 11.3078 0.5 10.5113 0.5ZM11.0467 15.3376C11.0456 15.5608 10.7681 15.6345 10.6246 15.4829C9.93585 14.7931 7.97178 12.8296 7.18068 12.04C6.55835 11.3891 5.42688 11.3889 4.80483 12.0387C4.25835 12.5842 3.18864 13.6536 2.34538 14.4966L1.36436 15.4772C1.22301 15.6271 0.942077 15.5771 0.937546 15.3461V1.97303C0.937546 1.67357 1.18028 1.43758 1.47303 1.43758H10.5112C10.8035 1.43758 11.0467 1.67319 11.0467 1.97303V15.3376Z" fill="#4A4A4A"/>
-                                                        </svg>
-                                                        <svg class="saved" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="12" height="17" viewBox="0 0 12 17" fill="none">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 0.5H10.5113C10.6637 0.5 10.8117 0.523525 10.9515 0.567393C11.4422 0.709535 12 1.10374 12 2V15C12 15.077 11.9953 15.1659 11.9843 15.2612V15.3376C11.9837 15.6252 11.8873 15.8713 11.7326 16.062C11.5786 16.3138 11.3452 16.5 11 16.5C10.9763 16.5 10.9515 16.4978 10.9257 16.4934C10.5913 16.5284 10.2375 16.4247 9.96222 16.1464L6.5171 12.7023C6.24101 12.4143 5.74328 12.4143 5.4672 12.7023L2.02207 16.1464C1.29001 16.8865 0.00234394 16.3918 0 15.3376V15V2V1.97303C0 1.16164 0.645559 0.52982 1.41795 0.501026" fill="#4A4A4A"/>
-                                                        </svg>                                      
-                                                    </span>
+                                                <a href="Admin course-detail.html" title="View more Details" class="course-item">
+                                                    
                                                     <div class="head-box">
                                                         <h4 class="title">M.Sc.</h4>
                                                         <div class="course-rates">
@@ -541,15 +713,8 @@
                                                         </div>
                                                     </div>
                                                 </a>
-                                                <a href="course-detail.html" title="View more Details" class="course-item">
-                                                    <span class="save" onclick="addSave(this)">
-                                                        <svg class="unsaved" width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M10.5113 0.5H1.47303C0.676493 0.5 0 1.14243 0 1.97303V15.3376C0.00234394 16.3918 1.29001 16.8865 2.02207 16.1464L5.4672 12.7023C5.74328 12.4143 6.24101 12.4143 6.5171 12.7023L9.96222 16.1464C10.6946 16.8867 11.9821 16.3913 11.9843 15.3376V1.97303C11.9843 1.14243 11.3078 0.5 10.5113 0.5ZM11.0467 15.3376C11.0456 15.5608 10.7681 15.6345 10.6246 15.4829C9.93585 14.7931 7.97178 12.8296 7.18068 12.04C6.55835 11.3891 5.42688 11.3889 4.80483 12.0387C4.25835 12.5842 3.18864 13.6536 2.34538 14.4966L1.36436 15.4772C1.22301 15.6271 0.942077 15.5771 0.937546 15.3461V1.97303C0.937546 1.67357 1.18028 1.43758 1.47303 1.43758H10.5112C10.8035 1.43758 11.0467 1.67319 11.0467 1.97303V15.3376Z" fill="#4A4A4A"/>
-                                                        </svg>
-                                                        <svg class="saved" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="12" height="17" viewBox="0 0 12 17" fill="none">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 0.5H10.5113C10.6637 0.5 10.8117 0.523525 10.9515 0.567393C11.4422 0.709535 12 1.10374 12 2V15C12 15.077 11.9953 15.1659 11.9843 15.2612V15.3376C11.9837 15.6252 11.8873 15.8713 11.7326 16.062C11.5786 16.3138 11.3452 16.5 11 16.5C10.9763 16.5 10.9515 16.4978 10.9257 16.4934C10.5913 16.5284 10.2375 16.4247 9.96222 16.1464L6.5171 12.7023C6.24101 12.4143 5.74328 12.4143 5.4672 12.7023L2.02207 16.1464C1.29001 16.8865 0.00234394 16.3918 0 15.3376V15V2V1.97303C0 1.16164 0.645559 0.52982 1.41795 0.501026" fill="#4A4A4A"/>
-                                                        </svg>                                      
-                                                    </span>
+                                                <a href="Admin course-detail.html" title="View more Details" class="course-item">
+                                                    
                                                     <div class="head-box">
                                                         <h4 class="title">B.Des</h4>
                                                         <div class="course-rates">
@@ -616,10 +781,10 @@
                                 </div>
                                 <div class="tab-pane fade" id="course-courses" role="tabpanel" aria-labelledby="course-courses-tab">
                                     <!--Specialization 2024-->
-                                    <div class="tabinfobox">
+                                    <div class="tabinfobox" contenteditable="true" >
                                         <h4 class="hd-tabinfo show">Specialization 2024</h4>
                                         <div class="answer-tabinfo" style="display: block;">
-                                            <div class="txt">
+                                            <div class="txt" contenteditable="true">
                                                 <p>
                                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
                                                     the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley 
@@ -1128,9 +1293,9 @@
                                 <div class="tab-pane fade" id="course-placements" role="tabpanel" aria-labelledby="course-placements-tab">
                                     <!--Placement 2023-->
                                     <div class="tabinfobox grey-bg">
-                                        <h4 class="hd-tabinfo show">Placement 2023</h4>
+                                        <h4 class="hd-tabinfo show">Placement</h4>
                                         <div class="answer-tabinfo" style="display:block;">
-                                            <div class="txt">
+                                            <div class="txt" contenteditable="true">
                                                 <p>
                                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
                                                     the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley 
@@ -1152,9 +1317,9 @@
                                     </div>
                                     <!--Placements Report 2023-->
                                     <div class="tabinfobox">
-                                        <h4 class="hd-tabinfo show">Placement Report 2023</h4>
+                                        <h4 class="hd-tabinfo show">Placement Report</h4>
                                         <div class="answer-tabinfo" style="display: block;">
-                                            <div class="txt">
+                                            <div class="txt" contenteditable="true">
                                                 <p>
                                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
                                                     the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley 
@@ -1174,55 +1339,55 @@
                                                 <table cellpadding="0" cellspacing="0" width="100%">
                                                     <tr>
                                                         <th width="40%">Particulars</th>
-                                                        <th width="60%">Statistics (2023)</th>
+                                                        <th width="60%">Last year</th>
                                                     </tr>
                                                     <tr>
                                                         <td>Highest Package</td>
-                                                        <td>INR 1 Core Per Annum (22 Students Bagged Offers)</td>
+                                                        <td contenteditable="true">INR 1 Core Per Annum (22 Students Bagged Offers)</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Average Package</td>
-                                                        <td>INR 36.9 LPA (Majorly From Research Development Sector)</td>
+                                                        <td contenteditable="true">INR 36.9 LPA (Majorly From Research Development Sector)</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Offers Made</td>
-                                                        <td>1,340</td>
+                                                        <td contenteditable="true">1,340</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Students Placed</td>
-                                                        <td>1,188</td>
+                                                        <td contenteditable="true">1,188</td>
                                                     </tr>
                                                 </table>
                                             </div>
                                             <div class="recruiters-wrap">
                                                 <h5 class="hd-recruiters">Top Recruiters</h5>
                                                 <div class="recruiters-list">
-                                                    <a href="javascript:;" title="Accenture" class="btn-typ5">
+                                                    <a href="javascript:;" title="Accenture" class="btn-typ5" contenteditable="true">
                                                         <span class="inner">
                                                             <span class="txt">Accenture</span>
                                                         </span>
                                                     </a>
-                                                    <a href="javascript:;" title="CapGemini" class="btn-typ5">
+                                                    <a href="javascript:;" title="CapGemini" class="btn-typ5" contenteditable="true">
                                                         <span class="inner">
                                                             <span class="txt">CapGemini</span>
                                                         </span>
                                                     </a>
-                                                    <a href="javascript:;" title="Deloitte" class="btn-typ5">
+                                                    <a href="javascript:;" title="Deloitte" class="btn-typ5" contenteditable="true">
                                                         <span class="inner">
                                                             <span class="txt">Deloitte</span>
                                                         </span>
                                                     </a>
-                                                    <a href="javascript:;" title="JP Morgan Chase" class="btn-typ5">
+                                                    <a href="javascript:;" title="JP Morgan Chase" class="btn-typ5" contenteditable="true">
                                                         <span class="inner">
                                                             <span class="txt">JP Morgan Chase</span>
                                                         </span>
                                                     </a>
-                                                    <a href="javascript:;" title="KPMG" class="btn-typ5">
+                                                    <a href="javascript:;" title="KPMG" class="btn-typ5" contenteditable="true">
                                                         <span class="inner">
                                                             <span class="txt">KPMG</span>
                                                         </span>
                                                     </a>
-                                                    <a href="javascript:;" title="Flipkart" class="btn-typ5">
+                                                    <a href="javascript:;" title="Flipkart" class="btn-typ5" contenteditable="true">
                                                         <span class="inner">
                                                             <span class="txt">Flipkart</span>
                                                         </span>
@@ -1810,26 +1975,26 @@
                                     <ul class="notifications-list">
                                         <li>
                                             <div class="content">
-                                                <div class="txt">
+                                                <div class="txt" contenteditable="true">
                                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                                 </div>
                                             </div>
                                         </li>
-                                        <li>
+                                        <li contenteditable="true">
                                             <div class="content">
                                                 <div class="txt">
                                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                                 </div>
                                             </div>
                                         </li>
-                                        <li>
+                                        <li contenteditable="true">
                                             <div class="content">
                                                 <div class="txt">
                                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                                 </div>
                                             </div>
                                         </li>
-                                        <li>
+                                        <li contenteditable="true">
                                             <div class="content">
                                                 <div class="txt">
                                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -1845,6 +2010,32 @@
                                         </a>
                                     </div>
                                 </div>
+                            <div class="sb-box">
+                                <div class="inner">
+                                    <h3 class="sb-hd">Institute Class</h3>
+<div style="display: flex; gap: 20px;">
+    <div style="margin: 0;">
+        <input list="tierOptions" id="tier" name="tier" onchange="toggleDatalistSelection()" style="border: none; outline: none; border-bottom: 1px solid #A0A0A0; color: #A0A0A0;">
+        <datalist id="tierOptions">
+            <option value="Elite">
+            <option value="Premier">
+            <option value="Standard">
+        </datalist>
+    </div>
+</div>
+
+<script>
+    function toggleDatalistSelection() {
+        const tierInput = document.getElementById("tier");
+        const selectedValue = tierInput.value;
+
+        // Logic to disable other options if needed
+        // You can use the selectedValue here to customize actions or disable based on the selection
+        console.log("Selected Tier:", selectedValue);
+    }
+</script>
+
+                                </div>
                             </div>
                             <div class="sb-box">
                                 <div class="inner">
@@ -1856,8 +2047,8 @@
                                         Tanjore Main Road, NH67, near BHEL,<br> Tiruchirappalli, Tamil Nadu 620015
                                     </div>
                                     <div class="site-n-phone">
-                                        <a href="javascript:;" title="www.website.com" class="site">www.website.com</a>
-                                        <a href="tel:0431 250 4135" title="0431 250 4135" class="phone">0431 250 4135</a>
+                                        <a href="javascript:;" contenteditable="true" title="www.website.com" class="site">www.website.com</a>
+                                        <a href="tel:0431 250 4135" contenteditable="true" title="0431 250 4135" class="phone">0431 250 4135</a>
                                     </div>
                                 </div>
                             </div>
@@ -1878,27 +2069,25 @@
         <div class="container">
             <div class="wrapper">
                 <div class="ft-logo">
-                    <a href="index.html" title="Gyatech - Get Your Admission">
+                    <a href="index.html" title="Gyatech - Get Your Admission" target="_blank">
                         <img src="images/logo-footer.svg" alt="Gyatech - Get Your Admission">
                     </a>   
                 </div>
                 <div class="quick-links">
                     <ul>
                         <li>
-                            <a href="index.html" title="Home">Home</a>
+                            <a href="index.html" title="Home" target="_blank">Home</a>
                         </li>
                         <!-- <li>
-                            <a href="javascript:;" title="About Us">About Us</a>
+                            <a href="javascript:;" title="About Us" target="_blank">About Us</a>
                         </li> -->
                         <li>
-                            <a href="courses.html" title="Courses">Courses</a>
+                            <a href="courses.html" title="Courses" target="_blank">Courses</a>
                         </li>
                         <li>
-                            <a href="institutes.html" title="Institutes">Institutes</a>
+                            <a href="institutes.html" title="Institutes" target="_blank">Institutes</a>
                         </li>
-                        <li>
-                            <a href="contact-us.html" title="Contact Us">Contact Us</a>
-                        </li>
+
                     </ul>
                 </div>
                 <div class="ft-bottom">
@@ -2056,6 +2245,27 @@
     <script src="js/slick.min.js"></script>
     <script src="js/slick-animation.min.js"></script>
     <script src="js/custom.js"></script>
+<script>
+  function redirectToPageWithUserRole() {
+    // Get 'userRole' from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userRole = urlParams.get("userRole");
+
+    let url = 'Admin-InstituteContact.html';
+
+    // If 'userRole' is found in the URL, append it to the redirect URL
+    if (userRole) {
+      const separator = url.includes("?") ? "&" : "?";
+      url += separator + "userRole=" + encodeURIComponent(userRole);
+    }
+
+    // Append 'page=AdminInstituteDetail' to the URL
+    url += (url.includes("?") ? "&" : "?") + "page=AdminInstituteDetail";
+
+    // Redirect to the new URL with 'userRole' and 'page'
+    window.location.href = url;
+  }
+</script>
     <script>
         $(".tab-pane").each(function() {
             var $tabPane = $(this);
@@ -2067,43 +2277,5 @@
             });
         });
     </script>
-<script>
-	//adding user role with url
-  document.addEventListener("DOMContentLoaded", function () {
-    // Get 'userRole' from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const userRole = urlParams.get("userRole");
-
-    if (userRole) {
-      // Select all anchor tags on the page
-      const links = document.querySelectorAll("a[href]");
-
-      links.forEach(link => {
-        let href = link.getAttribute("href");
-
-        // Ensure the href is not empty, not already containing userRole, and is not an external link
-        if (href && !href.includes("userRole=") && !href.startsWith("http") && !href.startsWith("#")) {
-          // Check if the URL already has query parameters
-          const separator = href.includes("?") ? "&" : "?";
-          link.setAttribute("href", href + separator + "userRole=" + encodeURIComponent(userRole));
-        }
-      });
-    }
-  });
-</script>
-<script>
-	// redirecting to student or institute home page
-    // Check the URL for the userRole query parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const userRole = urlParams.get('userRole');
-    const homeLink = document.getElementById('HomeLink');
-    
-    // Redirect based on userRole
-    if (userRole === 'Student') {
-        homeLink.setAttribute('href', 'student-landing-page.html');
-    } else if (userRole === 'Institute') {
-        homeLink.setAttribute('href', 'institute-landing-page.html');
-    }
-</script>
 </body>
 </html>

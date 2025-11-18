@@ -1,0 +1,137 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F3F8FE;
+    margin: 0;
+    padding: 0;
+}
+
+
+.nav-links {
+    position: absolute;
+    right: 20px;
+}
+
+    .nav-links a {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+        margin-left: 20px;
+    }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    background-color: #1e3d73;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.info-table, .actions-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+    .info-table th, .info-table td, .actions-table th, .actions-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .actions-table th, .actions-table td {
+        border: none;
+    }
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.profile-pic {
+    max-width: 100px;
+    border-radius: 50%;
+    margin: 20px auto;
+}
+
+
+.nav-links {
+    position: absolute;
+    right: 20px;
+}
+
+    .nav-links a {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+        margin-left: 20px;
+    }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    background-color: #1e3d73;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.info-table, .institute-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+    .info-table th, .info-table td, .institute-table th, .institute-table td {
+        padding: 12px;
+        border: 1px solid #ddd;
+    }
+
+    .info-table th {
+        background-color: #f2f2f2;
+    }
+
+    .institute-table th {
+        background-color: #f2f2f2;
+    }
+
+    .institute-table a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        .institute-table a:hover {
+            text-decoration: underline;
+        }
+
+.profile-pic {
+    max-width: 100px;
+    border-radius: 50%;
+    margin: 20px auto;
+}
+
+/* Change color on hover */
+.Save-btn:hover {
+    background-color: #007bff; /* Blue green */
+}

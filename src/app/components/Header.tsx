@@ -129,6 +129,16 @@ const Header: React.FC = () => {
 
           {/* Middle: (optional) main nav */}
           <nav className="hidden md:flex items-center space-x-8">
+            <Link href="/" className="flex flex-col items-center text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors group">
+             <Image
+                src="/images/home.svg"
+                alt=""
+                width={24}
+                height={24}
+                className="mb-1 group-hover:text-blue-600"
+              />
+              <span>Admin</span>
+            </Link>
             <Link href="/courses" className="flex flex-col items-center text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors group">
               <Image
                 src="/images/courses.svg"

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gyatech &ndash; Add Institute Details</title>
+    <title>Gya - Institute Data Entry</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -125,7 +125,7 @@
     </section>
     <section class="addmyinstitute-section">
         <div class="container">
-            <div class="inner-wrap">
+            <div class="inner-wrap" style="border-radius: 25px; overflow: hidden;">
                 <div class="wrapper-addmyinstitute" style="margin-top: 0; padding-top: 0;">
                     <div class="educationalinstitute-box">
                         <div class="hd-sec">
@@ -136,18 +136,53 @@
                                         </span>
                                     </a>  
                                 </li>
-                            <a href="institute-landing-page.html" title="Back" class="back-btn" style="margin-top: 25px; ">
-                                <span class="inner">
-                                    <span class="icon">
-                                        <svg width="10" height="17" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8.75125 16.4982C8.62125 16.4982 8.49625 16.4482 8.39625 16.3532L0.89625 8.8532C0.70125 8.6582 0.70125 8.3432 0.89625 8.1482L8.39625 0.648203C8.59125 0.453203 8.90625 0.453203 9.10125 0.648203C9.29625 0.843203 9.29625 1.1582 9.10125 1.3532L1.95625 8.4982L9.10125 15.6432C9.29625 15.8382 9.29625 16.1532 9.10125 16.3482C9.00625 16.4482 8.88125 16.4982 8.75125 16.4982Z" fill="#4A4A4A"/>
-                                        </svg>                                    
-                                    </span>
-                                    <span class="txt">
-                                        Back
-                                    </span>
-                                </span>
-                            </a>
+<a href="institute-landing-page.html" title="Back" class="back-btn" style="margin-top: 25px;" id="backButton" >
+    <span class="inner">
+        <span class="icon">
+            <svg width="10" height="17" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.75125 16.4982C8.62125 16.4982 8.49625 16.4482 8.39625 16.3532L0.89625 8.8532C0.70125 8.6582 0.70125 8.3432 0.89625 8.1482L8.39625 0.648203C8.59125 0.453203 8.90625 0.453203 9.10125 0.648203C9.29625 0.843203 9.29625 1.1582 9.10125 1.3532L1.95625 8.4982L9.10125 15.6432C9.29625 15.8382 9.29625 16.1532 9.10125 16.3482C9.00625 16.4482 8.88125 16.4982 8.75125 16.4982Z" fill="#4A4A4A"/>
+            </svg>                                    
+        </span>
+        <span class="txt">
+            Back
+        </span>
+    </span>
+</a>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get 'fromPage' and 'userRole' from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const fromPage = urlParams.get("fromPage");
+    const userRole = urlParams.get("userRole");
+
+    // Select the back button by its ID
+    const backButton = document.getElementById("backButton");
+
+    // Base URL for the "Back" button
+    let newHref = '';
+
+    // Determine the new href based on 'fromPage'
+    if (fromPage === "newInstituteReview") {
+      newHref = "Admin-NewInstituteReview.html";
+    } else if (fromPage === "InstiLandPage") {
+      newHref = "institute-landing-page.html";
+    } else {
+      newHref = "default-page.html"; // Fallback
+    }
+
+    // Append the 'userRole' if it's present in the URL
+    if (userRole) {
+      const separator = newHref.includes("?") ? "&" : "?";
+      newHref += separator + "userRole=" + encodeURIComponent(userRole);
+
+    }
+
+    // Set the dynamically updated href to the back button
+    backButton.setAttribute("href", newHref);
+  });
+</script>
+
                         </div>
                         <div class="frm-wrapper">
                             <ul>
@@ -274,16 +309,12 @@
                                		</div>
                                 </li>
 			</div>
-                    </div>
-		</div>
-	</div>
 
-<!-- Courses related sections -->
 
-	<div class="container" style="margin-top: 0; padding-top: 0;">
-    		<div class="inner-wrap" style="margin-top: 0; padding-top: 0;">
-        	<div class="wrapper-addmyinstitute" style="margin-top: 0; padding-top: 0;">
-            		<div class="educationalinstitute-box" style="margin-top: 0; padding-top: 0;">
+		<!-- Courses related sections -->
+
+
+            		<div class="educationalinstitute-box" style="margin-top: 0; padding-top: 15px;">
                         <div class="frm-wrapper">
                             <ul>
 				<li style="display: block; width: 100%; padding: 0;">
@@ -321,17 +352,13 @@
 
     			  </ul>
                         </div>
-                    </div>             
-              	</div>                    
-              </div>
-          </div>
+                    </div> <div>            
+
          
 	<!-- "+" Placement section -->
 
-<div class="container" style="margin-top: 0; padding-top: 0;">
-    <div class="inner-wrap" style="margin-top: 0; padding-top: 0;">
-        <div class="wrapper-addmyinstitute" style="margin-top: 0; padding-top: 0;">
-            	<div class="educationalinstitute-box" style="margin-top: 0; padding-top: 0;">
+
+            	<div class="educationalinstitute-box" style="margin-top: 0; padding-top: 15px;">
                         <div class="frm-wrapper">
                             <ul>
 				<li style="display: block; width: 100%; padding: 0;">
@@ -425,14 +452,11 @@
                   </ul>
                 </div>
              </div>
-           </div>
-   	</div>
-</div>
+
 	<!-- Upload images -->
 	
-    		<div class="inner-wrap" style="margin-top: 0; padding-top: 0;">
-        	<div class="wrapper-addmyinstitute" style="margin-top: 0; padding-top: 0;">
-            		<div class="educationalinstitute-box" style="margin-top: 0; padding-top: 0;">
+
+            		<div class="educationalinstitute-box" style="margin-top: 0; padding-top: 15px;">
                         <div class="frm-wrapper">
                             <ul>
 							
@@ -1130,5 +1154,46 @@ function handleEnter(event, inputElement) {
 }
 
 	</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get 'userRole' and 'fromPage' from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userRole = urlParams.get("userRole");
+    const fromPage = urlParams.get("fromPage");
+
+    // Define 'rootPage' based on 'fromPage'
+    let rootPage = "";
+    if (fromPage === "newInstituteReview") {
+      rootPage = "newInstituteReview";
+    } else if (fromPage === "InstiLandPage") {
+      rootPage = "InstiLandPage";
+    }
+
+    if (userRole) {
+      // Select all anchor tags on the page
+      const links = document.querySelectorAll("a[href]");
+
+      links.forEach(link => {
+        let href = link.getAttribute("href");
+
+        // Ensure the href is not empty, not already containing userRole, fromPage, or rootPage, and is not an external link
+        if (href && !href.includes("userRole=") && !href.includes("fromPage=") && !href.includes("rootPage=") && !href.startsWith("http") && !href.startsWith("#")) {
+          // Check if the URL already has query parameters
+          const separator = href.includes("?") ? "&" : "?";
+          
+          // Append userRole, hardcoded fromPage, and rootPage
+          let updatedHref = href + separator + "fromPage=InstiDataEntry"; // Hardcoded value
+          updatedHref += "&userRole=" + encodeURIComponent(userRole);
+          if (rootPage) {
+            updatedHref += "&rootPage=" + encodeURIComponent(rootPage);
+          }
+
+          link.setAttribute("href", updatedHref);
+        }
+      });
+    }
+  });
+</script>
+
 </body>
 </html>

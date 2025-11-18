@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gyatech &ndash; Institutes</title>
+    <title>Gya - Institutes Approvals & Acreditations</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -75,6 +75,16 @@
                                     </span>
                                 </span>
                             </a>
+<a href="#" class="item" title="My Home" id="HomeLink">
+    <span class="wrap">
+        <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <path id="adminIcon" d="M15 3L3 12H6V25H12V18H18V25H24V12H27L15 3Z" fill="#A0A0A0"/>
+            </svg>
+        </span>
+        <span class="title" id="adminTitle">My Home</span>
+    </span>
+</a>
                         </div>
                     </div>
                     <div class="rgtbox">
@@ -130,18 +140,58 @@
     				
 				<!-- Back Button (on the left side) -->
     					<li style="list-style: none;">
-        				   <a href="institute-data-entry.html" title="Back" class="back-btn" style="margin-top: 20px; margin-bottom: 20px; display: inline-flex; align-items: center; justify-content: center;">
-            				      <span class="inner" style="display: flex; align-items: center; justify-content: center;">
-                				<span class="icon" style="margin-right: 14px; line-height: 0; display: inline-block;">
-                    				   <svg width="10" height="17" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        				<path d="M8.75125 16.4982C8.62125 16.4982 8.49625 16.4482 8.39625 16.3532L0.89625 8.8532C0.70125 8.6582 0.70125 8.3432 0.89625 8.1482L8.39625 0.648203C8.59125 0.453203 8.90625 0.453203 9.10125 0.648203C9.29625 0.843203 9.29625 1.1582 9.10125 1.3532L1.95625 8.4982L9.10125 15.6432C9.29625 15.8382 9.29625 16.1532 9.10125 16.3482C9.00625 16.4482 8.88125 16.4982 8.75125 16.4982Z" fill="#4A4A4A"/>
-                    				   </svg>                                    
-                				</span>
-                			        <span class="txt">
-                       				Back
-                			        </span>
-            				      </span>
-        				   </a>
+<a href="javascript:void(0);" 
+   class="back-btn" 
+   style="margin-top: 20px; margin-bottom: 20px; display: inline-flex; align-items: center; justify-content: center;"
+   onclick="redirectBasedOnFromPage()">
+    <span class="inner" style="display: flex; align-items: center; justify-content: center;">
+        <span class="icon" style="margin-right: 14px; line-height: 0; display: inline-block;">
+            <svg width="10" height="17" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.75125 16.4982C8.62125 16.4982 8.49625 16.4482 8.39625 16.3532L0.89625 8.8532C0.70125 8.6582 0.70125 8.3432 0.89625 8.1482L8.39625 0.648203C8.59125 0.453203 8.90625 0.453203 9.10125 0.648203C9.29625 0.843203 9.29625 1.1582 9.10125 1.3532L1.95625 8.4982L9.10125 15.6432C9.29625 15.8382 9.29625 16.1532 9.10125 16.3482C9.00625 16.4482 8.88125 16.4982 8.75125 16.4982Z" fill="#4A4A4A"/>
+            </svg>                                    
+        </span>
+        <span class="txt">
+            Back
+        </span>
+    </span>
+</a>
+<script>
+function redirectBasedOnFromPage() {
+    // Get 'fromPage', 'rootPage', and 'userRole' from the current page's URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const fromPage = urlParams.get("fromPage");
+    const rootPage = urlParams.get("rootPage");
+    let userRole = urlParams.get("userRole"); // Get userRole from URL
+
+    // If userRole is not present, set it to a default value (optional)
+    if (!userRole) {
+        userRole = "defaultRole"; // Set a default role if not found (you can change this value)        
+    }
+
+    // Determine where to redirect based on 'fromPage'
+    let redirectUrl = "";
+
+    if (fromPage === "AdminInstDetail") {
+        redirectUrl = "Admin-InstituteDetail.html";
+    } else if (fromPage === "InstiDataEntry") {
+        redirectUrl = "institute-data-entry.html";
+        // Append rootPage as 'fromPage' and userRole to the URL
+
+        if (rootPage) {
+            redirectUrl += `?fromPage=${encodeURIComponent(rootPage)}&userRole=${encodeURIComponent(userRole)}`;
+        } else {
+            redirectUrl += `?userRole=${encodeURIComponent(userRole)}`;
+        }
+    }
+
+    // Log the final redirect URL for debugging
+    console.log("Redirecting to:", redirectUrl);
+
+    // Redirect to the determined URL
+    window.location.href = redirectUrl;
+}
+</script>
+
     					</li>
 
     					<!-- Save Button (on the right side) -->
@@ -1575,5 +1625,49 @@
         }
 
     </script>
+<script>
+	//adding user role with url
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get 'userRole' from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userRole = urlParams.get("userRole");
+
+    if (userRole) {
+      // Select all anchor tags on the page
+      const links = document.querySelectorAll("a[href]");
+
+      links.forEach(link => {
+        let href = link.getAttribute("href");
+
+        // Ensure the href is not empty, not already containing userRole, and is not an external link
+        if (href && !href.includes("userRole=") && !href.startsWith("http") && !href.startsWith("#")) {
+          // Check if the URL already has query parameters
+          const separator = href.includes("?") ? "&" : "?";
+          link.setAttribute("href", href + separator + "userRole=" + encodeURIComponent(userRole));
+        }
+      });
+    }
+  });
+</script>
+<script>
+   //redirecting to Admin institute detail page
+    // Check the URL for the userRole query parameter. 
+    const urlParams = new URLSearchParams(window.location.search);
+    const userRole = urlParams.get('userRole');
+    const homeLink = document.getElementById('HomeLink');
+    
+    // Redirect based on userRole
+    if (userRole === 'Admin') {
+        homeLink.setAttribute('href', 'Admin-InstituteDetail.html');
+    } else if (userRole === 'Institute') {
+        homeLink.setAttribute('href', 'institute-landing-page.html');
+    }
+	else if (userRole === 'Admin-IRM') {
+        homeLink.setAttribute('href', 'Admin-InstituteDetail.html');
+    }
+	else if (userRole === 'Admin-ISRM') {
+        homeLink.setAttribute('href', 'Admin-InstituteDetail.html');
+    }
+</script>
 </body>
 </html>

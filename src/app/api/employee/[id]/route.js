@@ -31,7 +31,7 @@ export async function GET(request, { params }) {
     // 🔧 FIX: Await params before accessing properties
     const resolvedParams = await params;
     const userId = parseInt(resolvedParams.id, 10);
-    console.log("Employee user id:", userId);
+    
 
     // --- Added Check ---
     if (isNaN(userId)) {
@@ -54,7 +54,6 @@ export async function GET(request, { params }) {
     // Fetch employee data from database
     const employee = await getEmployeeByUserId(userId);
     
-    console.log("Employee:", employee);
 
     if (!employee) {
       return NextResponse.json(

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gya - Institute Landing Page</title>
+    <title>Gyat - AdminInstituteContactPage</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -18,11 +18,11 @@
             <div class="container">
                 <div class="inner">
                     <div class="lftbox">
-                        <a href="index.html" title="Gyatech - Get Your Admission" class="logo">
+                        <a href="index.html" title="Gyatech - Get Your Admission" class="logo" target="_blank">
                             <img src="images/logo.svg" alt="Gyatech - Get Your Admission">
                         </a>
                         <div class="coursescolleges-wrapper">
-                            <a href="courses.html" class="item" title="Courses">
+                            <a href="Admin-CoursesSearch.html" class="item" title="Courses">
                                 <span class="wrap">
                                     <span class="icon">
                                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -72,32 +72,40 @@
                                     </span>
                                 </span>
                             </a>
-			    <a href="institute-landing-page.html" class="item" title="Admin Home">
-    				<span class="wrap">
-        				<span class="icon">
-            				<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-               	 			<path d="M15 3L3 12H6V25H12V18H18V25H24V12H27L15 3Z" fill="#A0A0A0"/>
-            				</svg>
-        				</span>
-        				<span class="title">
-            				Admin Home
-        				</span>
-    				</span>
-			    </a>
+				<a href="Admin-HomePage.html" class="item" title="Admin Home" 
+    				id="adminHomeLink">
+    					<span class="wrap">
+        					<span class="icon">
+            						<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                					<path id="adminIcon" d="M15 3L3 12H6V25H12V18H18V25H24V12H27L15 3Z" fill="#A0A0A0"/>
+            						</svg>
+        					</span>
+        					<span class="title" id="adminTitle">
+            					Admin
+        					</span>
+    					</span>
+				</a>
+
+<script>
+    // Function to update styles on page load
+    window.onload = function() {
+        const adminLink = document.getElementById('adminHomeLink');
+        const adminIcon = document.getElementById('adminIcon');
+        const adminTitle = document.getElementById('adminTitle');
+
+        if (adminLink && adminIcon && adminTitle) {
+            adminIcon.setAttribute('fill', '#0273F0'); // Change icon color
+            adminTitle.style.color = '#0273F0'; // Change text color
+             // Change background color
+        }
+    };
+</script>
                         </div>
                     </div>
                     <div class="rgtbox">
                         <div class="wrap">
-                            <a href="contact-us.html" title="Help" class="item">
-                                <span class="icon">
-                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20.0015 9.5306C19.9489 9.07127 19.7399 8.66945 19.4392 8.40222C19.3725 3.75775 15.6129 0 11 0C6.38719 0 2.62737 3.75775 2.56074 8.40222C2.26025 8.66933 2.05128 9.07077 1.99852 9.52979C1.15156 9.73507 0.520584 10.4994 0.520584 11.4087V13.4004C0.520584 14.3096 1.15156 15.074 1.99852 15.2793C2.09372 16.1087 2.69995 16.7504 3.43163 16.7504H4.17132C4.96896 16.7504 5.61775 15.9881 5.61775 15.0511V9.75795C5.61775 9.23423 5.41497 8.76522 5.09691 8.45329C5.13636 5.19362 7.76911 2.55399 11 2.55399C14.2309 2.55399 16.8636 5.19356 16.9032 8.45317C16.5849 8.76509 16.382 9.23417 16.382 9.75795V15.0511C16.382 15.9489 16.978 16.6859 17.7297 16.7459V18.2352C17.7297 19.2518 16.9026 20.0789 15.886 20.0789H14.3688C14.1734 19.5075 13.6314 19.0953 12.9947 19.0953H11.9834C11.1826 19.0953 10.5312 19.7469 10.5312 20.5477C10.5312 21.3485 11.1827 22 11.9834 22H12.9947C13.6315 22 14.1734 21.5879 14.3688 21.0165H15.886C17.4195 21.0165 18.6673 19.7688 18.6673 18.2352V16.7459C19.3542 16.6911 19.911 16.0705 20.0015 15.2785C20.8484 15.0732 21.4795 14.3095 21.4795 13.4004V11.4086C21.4794 10.4995 20.8484 9.73588 20.0015 9.5306ZM1.98508 14.2766C1.67215 14.1088 1.45824 13.7798 1.45824 13.4004V11.4087C1.45824 11.0293 1.67215 10.7002 1.98508 10.5324V14.2766ZM12.9947 21.0623H11.9834C11.6997 21.0623 11.4689 20.8315 11.4689 20.5477C11.4689 20.2639 11.6997 20.033 11.9834 20.033H12.9947C13.2785 20.033 13.5093 20.2639 13.5093 20.5477C13.5093 20.8315 13.2785 21.0623 12.9947 21.0623ZM4.68009 15.0511C4.68009 15.4568 4.44237 15.8127 4.17132 15.8127H3.43157C3.16053 15.8127 2.92267 15.4568 2.92267 15.0511V9.75795C2.92267 9.35225 3.16053 8.99632 3.43157 8.99632H4.17132C4.44237 8.99632 4.68009 9.35219 4.68009 9.75795V15.0511ZM11 1.61633C7.38355 1.61633 4.41417 4.46581 4.17476 8.05885C4.17351 8.05885 4.17245 8.05873 4.17132 8.05873H3.51171C3.75194 4.09119 7.01836 0.937657 11 0.937657C14.9815 0.937657 18.2479 4.09125 18.4882 8.05873H17.8287C17.8277 8.05873 17.8267 8.05885 17.8257 8.05885C17.5863 4.46581 14.6166 1.61633 11 1.61633ZM19.0772 15.0511C19.0772 15.4568 18.8395 15.8127 18.5683 15.8127H17.8287C17.5575 15.8127 17.3196 15.4568 17.3196 15.0511V9.75795C17.3196 9.35225 17.5575 8.99632 17.8287 8.99632H18.5683C18.8395 8.99632 19.0772 9.35219 19.0772 9.75795V15.0511ZM20.5418 13.4004C20.5418 13.7798 20.3278 14.109 20.0148 14.2767V10.5326C20.3278 10.7004 20.5418 11.0293 20.5418 11.4087V13.4004Z" fill="#4A4A4A"/>
-                                    </svg>
-                                </span>
-                                <span class="txt">
-                                    Help
-                                </span>
-                            </a>
+                            
+
                             <span class="item account-dropdown">
                                 <span class="title-account">
                                     <span class="icon">
@@ -106,7 +114,7 @@
                                         </svg>
                                     </span>
                                     <span class="txt">
-                                        Institution Name
+                                        Employee Name
                                     </span>
                                     <span class="arrow">
                                         <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -141,26 +149,21 @@
                                     </svg>
                                 </span>
                             </span>
-                            <span class="namewith-txt">Relationship manager: Greg Martinez </span>
+                            <span class="namewith-txt">Relationship manager: Greg Martinez &nbsp </span>
+			    <span class="namewith-txt">&vert; Institute Name: Catholicate &nbsp </span>
+			    <span class="namewith-txt">&vert; Contact Person: Ravi &nbsp </span>
                         </div>
                     </div>
                 </div>
-		<div class="rgtbox" style="display: inline-block;">
-    			<a href="course-data-entry.html" title="Add/Update course details" class="btn-typ5">
-        			<span class="inner">
-            				<span class="txt">
-                			Add/update course details
-            				</span>
-        			</span>
-    			</a>
-    			<a href="institute-data-entry.html" title="Add my institute details" class="btn-typ5">
-        			<span class="inner">
-            				<span class="txt">
-                			Add/Update institute details
-            				</span>
-        			</span>
-    			</a>
-		</div>
+                <div class="rgtbox">
+                    <a href="add-my-institute-details.html" title="Back" class="btn-typ5">
+                        <span class="inner">
+                            <span class="txt">
+                                Back
+                            </span>
+                        </span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -717,27 +720,25 @@
         <div class="container">
             <div class="wrapper">
                 <div class="ft-logo">
-                    <a href="index.html" title="Gyatech - Get Your Admission">
+                    <a href="index.html" title="Gyatech - Get Your Admission" target="_blank">
                         <img src="images/logo-footer.svg" alt="Gyatech - Get Your Admission">
                     </a>   
                 </div>
                 <div class="quick-links">
                     <ul>
                         <li>
-                            <a href="index.html" title="Home">Home</a>
+                            <a href="index.html" title="Home" target="_blank">Home</a>
                         </li>
                         <!-- <li>
-                            <a href="javascript:;" title="About Us">About Us</a>
+                            <a href="javascript:;" title="About Us" target="_blank">About Us</a>
                         </li> -->
                         <li>
-                            <a href="courses.html" title="Courses">Courses</a>
+                            <a href="courses.html" title="Courses" target="_blank">Courses</a>
                         </li>
                         <li>
-                            <a href="institutes.html" title="Institutes">Institutes</a>
+                            <a href="institutes.html" title="Institutes" target="_blank">Institutes</a>
                         </li>
-                        <li>
-                            <a href="contact-us.html" title="Contact Us">Contact Us</a>
-                        </li>
+
                     </ul>
                 </div>
                 <div class="ft-bottom">
@@ -860,6 +861,59 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/slick.min.js"></script>
     <script src="js/custom.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get 'userRole' from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userRole = urlParams.get("userRole");
+    const page = urlParams.get("page");
+
+    // Select the back button
+    const backButton = document.querySelector("a[href='add-my-institute-details.html']");
+
+    if (backButton) {
+      backButton.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default behavior
+
+        let redirectUrl = '';
+
+        // Determine the redirect URL based on the 'page' parameter
+        if (page === 'newInstituteReview') {
+          redirectUrl = 'Admin-NewInstituteReview.html';
+        } else if (page === 'AdminInstituteDetail') {
+          redirectUrl = 'Admin-InstituteDetail.html';
+        } else if (page === 'AdminCourseDetail') {
+          redirectUrl = 'Admin-CourseDetail.html';
+        }else if (page === 'MyNewMessages') {
+          redirectUrl = 'Admin-MyNewMessages.html';
+        }
+
+        // Add 'userRole' if it exists in the URL
+        if (redirectUrl && userRole) {
+          const separator = redirectUrl.includes("?") ? "&" : "?";
+          redirectUrl += separator + "userRole=" + encodeURIComponent(userRole);
+
+          // Redirect to the new URL
+          window.location.href = redirectUrl;
+        }
+      });
+    }
+
+    // Existing code to append userRole to anchor tags (this is reused from your original code)
+    if (userRole) {
+      const links = document.querySelectorAll("a[href]");
+      links.forEach(link => {
+        let href = link.getAttribute("href");
+
+        if (href && !href.includes("userRole=") && !href.startsWith("http") && !href.startsWith("#")) {
+          const separator = href.includes("?") ? "&" : "?";
+          link.setAttribute("href", href + separator + "userRole=" + encodeURIComponent(userRole));
+        }
+      });
+    }
+  });
+</script>
+
     <script>
         document.addEventListener('scroll', function() {
             const parent = document.querySelector('.enrolment-section');
@@ -1273,29 +1327,5 @@
             }
         });
     </script>
-<script>
-	//adding user role with url
-  document.addEventListener("DOMContentLoaded", function () {
-    // Get 'userRole' from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const userRole = urlParams.get("userRole");
-
-    if (userRole) {
-      // Select all anchor tags on the page
-      const links = document.querySelectorAll("a[href]");
-
-      links.forEach(link => {
-        let href = link.getAttribute("href");
-
-        // Ensure the href is not empty, not already containing userRole, and is not an external link
-        if (href && !href.includes("userRole=") && !href.startsWith("http") && !href.startsWith("#")) {
-          // Check if the URL already has query parameters
-          const separator = href.includes("?") ? "&" : "?";
-          link.setAttribute("href", href + separator + "userRole=" + encodeURIComponent(userRole) + "&fromPage=InstiLandPage");
-        }
-      });
-    }
-  });
-</script>
 </body>
 </html>

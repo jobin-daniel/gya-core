@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gyatech &ndash; Add Institute Details</title>
+    <title>Gya - Course Data Entry</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -74,6 +74,19 @@
                                     </span>
                                 </span>
                             </a>
+				<a href="institute-landing-page.html" class="item" title="My Home" 
+    				id="HomeLink">
+    					<span class="wrap">
+        					<span class="icon">
+            						<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                					<path id="adminIcon" d="M15 3L3 12H6V25H12V18H18V25H24V12H27L15 3Z" fill="#A0A0A0"/>
+            						</svg>
+        					</span>
+        					<span class="title" id="adminTitle">
+            					Admin
+        					</span>
+    					</span>
+				</a>
                         </div>
                     </div>
                     <div class="rgtbox">
@@ -125,21 +138,43 @@
     </section>
     <section class="addmyinstitute-section">
         <div class="container">
-            <div class="inner-wrap">
+            <div class="inner-wrap" style="border-radius: 25px; overflow: hidden;">
                 <div class="wrapper-addmyinstitute" style="margin-top: 0; padding-top: 0;">
                     <div class="educationalinstitute-box">
-                    	<a href="institute-landing-page.html" title="Back" class="back-btn" style="margin-top: 25px; ">
-                        	<span class="inner">
-                                    <span class="icon">
-                                        <svg width="10" height="17" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8.75125 16.4982C8.62125 16.4982 8.49625 16.4482 8.39625 16.3532L0.89625 8.8532C0.70125 8.6582 0.70125 8.3432 0.89625 8.1482L8.39625 0.648203C8.59125 0.453203 8.90625 0.453203 9.10125 0.648203C9.29625 0.843203 9.29625 1.1582 9.10125 1.3532L1.95625 8.4982L9.10125 15.6432C9.29625 15.8382 9.29625 16.1532 9.10125 16.3482C9.00625 16.4482 8.88125 16.4982 8.75125 16.4982Z" fill="#4A4A4A"/>
-                                        </svg>                                    
-                                    </span>
-                                <span class="txt">
-                                       Back
-                                </span>
-                               </span>
-                            </a>
+<a href="institute-landing-page.html" title="Back" class="back-btn" style="margin-top: 25px;" id="backButton">
+    <span class="inner">
+        <span class="icon">
+            <svg width="10" height="17" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.75125 16.4982C8.62125 16.4982 8.49625 16.4482 8.39625 16.3532L0.89625 8.8532C0.70125 8.6582 0.70125 8.3432 0.89625 8.1482L8.39625 0.648203C8.59125 0.453203 8.90625 0.453203 9.10125 0.648203C9.29625 0.843203 9.29625 1.1582 9.10125 1.3532L1.95625 8.4982L9.10125 15.6432C9.29625 15.8382 9.29625 16.1532 9.10125 16.3482C9.00625 16.4482 8.88125 16.4982 8.75125 16.4982Z" fill="#4A4A4A"/>
+            </svg>
+        </span>
+        <span class="txt">Back</span>
+    </span>
+</a>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get 'fromPage' from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const fromPage = urlParams.get("fromPage");
+
+        // Select the back button
+        const backButton = document.getElementById("backButton");
+
+        // Determine the redirect URL based on 'fromPage'
+        let redirectUrl = 'institute-landing-page.html'; // Default URL
+
+        if (fromPage === 'newInstituteReview') {
+            redirectUrl = 'Admin-NewInstituteReview.html';
+        } else if (fromPage === 'InstiLandPage') {
+            redirectUrl = 'institute-landing-page.html';
+        } else if (fromPage === 'AdminInstituteDetail') {
+            redirectUrl = 'Admin-InstituteDetail.html';
+        }
+
+        // Update the 'href' of the back button
+        backButton.setAttribute("href", redirectUrl);
+    });
+</script>
                 <div class="sep-line">&nbsp;</div>
                 <div class="wrapper-addcourse">
                     <div class="addcourse-box">
@@ -192,7 +227,7 @@
 					   <ul>
                                                 <li>
                                                     <div class="frm-field">
-                                                        <input type="text" placeholder="Coursename*">
+                                                        <input type="text" placeholder="Course name*">
                                                     </div>
                                                 </li>
                                                 <li>
@@ -335,6 +370,26 @@
         							<div id="add-fees" onclick="addFeesField(this)" style="cursor: pointer; font-size: 32px; color: lightgray; display: inline;">+</div>
     							</li>
 						</ul>
+					</div>
+					<!-- Documents Required for admission -->
+					<div class="form-addcourse" style="margin-bottom: 10px;">
+<ul id="document-list">
+    <!-- Existing document name input -->
+    <li>
+        <div class="list-item">
+            <label class="document-label">
+                <span contenteditable="true">Enter document name here</span>
+            </label>
+        </div>
+    </li>
+
+    <!-- Initial "+" sign to add new document fields -->
+    <li id="add-docs-container">
+        <div id="add-docs" onclick="addDocumentField(this)" style="cursor: pointer; font-size: 32px; color: lightgray; display: inline;">+</div>
+    </li>
+</ul>
+
+
 					</div>
 
                                         <div class="form-addcourse">
@@ -836,6 +891,34 @@ function addFeesField(buttonElement) {
 }
 </script>
 <script>
+    // Function to add a new row for Document Name
+    function addDocumentField(buttonElement) {
+        const section = buttonElement.closest('#document-list'); // Ensure the section is correct
+        if (!section) return;
+
+        // Create a new li for Document Name without a checkbox
+        const documentItem = document.createElement('li');
+        documentItem.innerHTML = `
+            <div class="list-item">
+                <label class="document-label">
+                    <span contenteditable="true">Enter document name here</span>
+                </label>
+            </div>
+        `;
+
+        // Insert the new row above the "+" button
+        section.insertBefore(documentItem, buttonElement.closest('li'));
+
+        // Ensure the "+" button is always at the end
+        const addButtonItem = section.querySelector('#add-docs-container');
+        if (addButtonItem) {
+            section.appendChild(addButtonItem);
+        }
+    }
+</script>
+
+
+<script>
 function addEligibilityField(buttonElement) {
     // Find the closest eligibility list where the button was clicked
     const section = buttonElement.closest('#Eligibility-list');
@@ -1031,5 +1114,29 @@ function setupAddFieldButtons(parentElement) {
         var requestreviewModalElement = document.getElementById('requestreviewModal');
         requestreviewModalElement.classList.remove('fade');
     </script>
+<script>
+	//adding user role with url
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get 'userRole' from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userRole = urlParams.get("userRole");
+
+    if (userRole) {
+      // Select all anchor tags on the page
+      const links = document.querySelectorAll("a[href]");
+
+      links.forEach(link => {
+        let href = link.getAttribute("href");
+
+        // Ensure the href is not empty, not already containing userRole, and is not an external link
+        if (href && !href.includes("userRole=") && !href.startsWith("http") && !href.startsWith("#")) {
+          // Check if the URL already has query parameters
+          const separator = href.includes("?") ? "&" : "?";
+          link.setAttribute("href", href + separator + "userRole=" + encodeURIComponent(userRole));
+        }
+      });
+    }
+  });
+</script>
 </body>
 </html>

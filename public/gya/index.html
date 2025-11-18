@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gyatech &ndash; Get Your Admission</title>
+    <title>Gya - Get Your Admission</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -72,6 +72,16 @@
                                     </span>
                                 </span>
                             </a>
+<a href="#" class="item" title="My Home" id="HomeLink">
+    <span class="wrap">
+        <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <path id="adminIcon" d="M15 3L3 12H6V25H12V18H18V25H24V12H27L15 3Z" fill="#A0A0A0"/>
+            </svg>
+        </span>
+        <span class="title" id="adminTitle">My Home</span>
+    </span>
+</a>
                         </div>
                     </div>
                     <div class="rgtbox" data-aos="fade-left" data-aos-duration="1000">
@@ -2874,5 +2884,42 @@
             homelink.style.cursor = 'default';
         })
     </script>
+<script>
+	//adding user role with url
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get 'userRole' from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userRole = urlParams.get("userRole");
+
+    if (userRole) {
+      // Select all anchor tags on the page
+      const links = document.querySelectorAll("a[href]");
+
+      links.forEach(link => {
+        let href = link.getAttribute("href");
+
+        // Ensure the href is not empty, not already containing userRole, and is not an external link
+        if (href && !href.includes("userRole=") && !href.startsWith("http") && !href.startsWith("#")) {
+          // Check if the URL already has query parameters
+          const separator = href.includes("?") ? "&" : "?";
+          link.setAttribute("href", href + separator + "userRole=" + encodeURIComponent(userRole));
+        }
+      });
+    }
+  });
+</script>
+<script>
+    // Check the URL for the userRole query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const userRole = urlParams.get('userRole');
+    const homeLink = document.getElementById('HomeLink');
+    
+    // Redirect based on userRole
+    if (userRole === 'Student') {
+        homeLink.setAttribute('href', 'student-landing-page.html');
+    } else if (userRole === 'Institute') {
+        homeLink.setAttribute('href', 'institute-landing-page.html');
+    }
+</script>
 </body>
 </html>
