@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
-import { getEmployeeByUserId } from "../../../../lib/db.js";
-import { verifyToken } from "../../../../lib/auth.js";
 
+
+import { NextResponse } from "next/server";
+import { getEmployeeByUserId } from "@/lib/db.js";
+import { verifyToken } from "@/lib/auth.js";
 export async function GET(request, { params }) {
   try {
     // Check for token in cookies
@@ -28,7 +29,7 @@ export async function GET(request, { params }) {
       );
     }
 
-    // 🔧 FIX: Await params before accessing properties
+    
     const resolvedParams = await params;
     const userId = parseInt(resolvedParams.id, 10);
     

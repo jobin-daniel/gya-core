@@ -17,6 +17,10 @@
  * ---------------------------------------------------------
  */
 
+import bcrypt from "bcryptjs";
+import fs from "fs/promises";
+import path from "path";
+
 import mysql from "mysql2/promise";
 
 // Create connection pool
@@ -68,7 +72,7 @@ export async function query(sql, params = []) {
  */
 export async function getUserByEmail(email) {
   const sql = `
-    SELECT 
+    SELECT
       u.UserId as id,
       CONCAT(u.FirstName, ' ', u.LastName) as name,
       u.Email as email,
@@ -79,8 +83,8 @@ export async function getUserByEmail(email) {
     LEFT JOIN userrolemappings urm ON u.UserId = urm.UserId
     LEFT JOIN userroles ur ON urm.RoleId = ur.RoleId
     WHERE u.Email = ?
-    ORDER BY 
-      CASE 
+    ORDER BY
+      CASE
         WHEN ur.RoleName = 'SuperAdmin' THEN 1
         WHEN ur.RoleName = 'Admin' THEN 2
         ELSE 3
@@ -100,7 +104,7 @@ export async function getUserByEmail(email) {
  */
 export async function getUserByMobile(mobile) {
   const sql = `
-    SELECT 
+    SELECT
       u.UserId as id,
       CONCAT(u.FirstName, ' ', u.LastName) as name,
       u.Email as email,
@@ -111,8 +115,8 @@ export async function getUserByMobile(mobile) {
     LEFT JOIN userrolemappings urm ON u.UserId = urm.UserId
     LEFT JOIN userroles ur ON urm.RoleId = ur.RoleId
     WHERE u.PhoneNumber = ?
-    ORDER BY 
-      CASE 
+    ORDER BY
+      CASE
         WHEN ur.RoleName = 'SuperAdmin' THEN 1
         WHEN ur.RoleName = 'Admin' THEN 2
         ELSE 3
@@ -141,7 +145,7 @@ export function hasRequiredRole(role, allowedRoles = ["Admin", "SuperAdmin"]) {
  */
 export async function getEmployeeByUserId(userId) {
   const sql = `
-    SELECT 
+    SELECT
       e.EmployeeId,
       e.UserId,
       CONCAT(e.FirstName, ' ', COALESCE(e.MiddleName, ''), ' ', e.LastName) as FullName,
@@ -154,7 +158,7 @@ export async function getEmployeeByUserId(userId) {
       e.District,
       e.State,
       e.PostalCode,
-      CONCAT_WS(', ', 
+      CONCAT_WS(', ',
         NULLIF(e.HouseNumberName, ''),
         NULLIF(e.AddressLine1, ''),
         NULLIF(e.AddressLine2, ''),
@@ -177,9 +181,180 @@ export async function getEmployeeByUserId(userId) {
     WHERE e.UserId = ?
     LIMIT 1
   `;
-console.log("User id in db:" , userId);
+  console.log("User id in db:", userId);
   const results = await query(sql, [userId]);
   return results.length > 0 ? results[0] : null;
 }
 
+/**
+ * Get all employees with user information
+ * @returns {Promise} Array of employee objects
+ */
+export async function getAllEmployees() {
+  const sql = `
+    SELECT
+      e.EmployeeId,
+      e.UserId,
+      CONCAT(e.FirstName, ' ', COALESCE(e.MiddleName, ''), ' ', e.LastName) as FullName,
+      e.FirstName,
+      e.MiddleName,
+      e.LastName,
+      e.EmailID,
+      e.PhoneNumber,
+      e.Role,
+      e.JoiningDate,
+      e.CreatedAt,
+      e.UpdatedAt,
+      COALESCE(COUNT(DISTINCT sa.StudentId), 0) as StudentsAssigned,
+      COALESCE(COUNT(DISTINCT ia.InstituteId), 0) as InstitutesAssigned
+    FROM employees e
+    LEFT JOIN studentassignments sa ON sa.EmployeeId = e.EmployeeId
+    LEFT JOIN instituteassignments ia ON ia.AssignedEmployeeId = e.EmployeeId
+    GROUP BY
+      e.EmployeeId,
+      e.UserId,
+      e.FirstName,
+      e.MiddleName,
+      e.LastName,
+      e.EmailID,
+      e.PhoneNumber,
+      e.Role,
+      e.JoiningDate,
+      e.CreatedAt,
+      e.UpdatedAt
+    ORDER BY e.CreatedAt DESC
+  `;
+
+  const results = await query(sql);
+  return results;
+}
+
+/**
+ * Delete employees by IDs
+ * @param {Array} employeeIds - Array of employee IDs to delete
+ * @returns {Promise} Result of deletion
+ */
+export async function deleteEmployees(employeeIds) {
+  if (!employeeIds || employeeIds.length === 0) {
+    throw new Error("No employee IDs provided");
+  }
+
+  const placeholders = employeeIds.map(() => "?").join(",");
+  const sql = `DELETE FROM employees WHERE EmployeeId IN (${placeholders})`;
+
+  const results = await query(sql, employeeIds);
+  return results;
+}
+
 export default pool;
+
+/**
+ * Create a new employee with user account and roles
+ * @param {Object} employeeData - Employee data
+ * @param {Array} roles - Array of role names
+ * @param {File} photoFile - Photo file (optional)
+ * @returns {Promise} Created employee object
+ */
+export async function createEmployee(employeeData, roles, photoFile = null) {
+  const connection = await pool.getConnection();
+
+  try {
+    await connection.beginTransaction();
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(employeeData.password, 10);
+
+    // Insert into users table
+    const userSql = `
+      INSERT INTO users (FirstName, LastName, Email, PhoneNumber, PasswordHash, CreatedAt, UpdatedAt)
+      VALUES (?, ?, ?, ?, ?, NOW(), NOW())
+    `;
+    const userValues = [employeeData.firstName, employeeData.lastName, employeeData.email, employeeData.phoneNumber, hashedPassword];
+
+    const [userResult] = await connection.execute(userSql, userValues);
+    const userId = userResult.insertId;
+
+    // Handle photo upload if provided
+    let photoUrl = null;
+    if (photoFile) {
+      const uploadDir = path.join(process.cwd(), "public", "images", "EmployeePhotos", userId.toString());
+      await fs.mkdir(uploadDir, { recursive: true });
+
+      const fileExtension = path.extname(photoFile.name);
+      const fileName = `photo${fileExtension}`;
+      const filePath = path.join(uploadDir, fileName);
+
+      const buffer = Buffer.from(await photoFile.arrayBuffer());
+      await fs.writeFile(filePath, buffer);
+
+      photoUrl = `/images/EmployeePhotos/${userId}/${fileName}`;
+    }
+
+    // Parse dates from DD/MM/YYYY to YYYY-MM-DD
+    const parseDob = employeeData.dob ? employeeData.dob.split("/").reverse().join("-") : null;
+    const parseJoiningDate = employeeData.joiningDate ? employeeData.joiningDate.split("/").reverse().join("-") : null;
+
+    // Insert into employees table
+    const employeeSql = `
+      INSERT INTO employees (
+        UserId, FirstName, MiddleName, LastName, HouseNumberName, AddressLine1, AddressLine2,
+        District, State, PostalCode, EmailID, PhoneNumber, ImmediateToKin, EmergencyContact,
+        TotalYearsOfExp, DOB, JoiningDate, Role, PhotoURL, CreatedAt, UpdatedAt
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
+    `;
+    const employeeValues = [
+      userId,
+      employeeData.firstName,
+      employeeData.middleName || null,
+      employeeData.lastName,
+      employeeData.houseNumber || null,
+      employeeData.addressLine1 || null,
+      employeeData.addressLine2 || null,
+      employeeData.district || null,
+      employeeData.state || null,
+      employeeData.postalCode,
+      employeeData.email,
+      employeeData.phoneNumber,
+      employeeData.emergencyContact || null,
+      employeeData.emergencyContact || null,
+      employeeData.yearsOfExp || null,
+      parseDob,
+      parseJoiningDate,
+      roles.join(", "),
+      photoUrl,
+    ];
+
+    const [employeeResult] = await connection.execute(employeeSql, employeeValues);
+    const employeeId = employeeResult.insertId;
+
+    // Insert roles into userrolemappings
+    for (const roleName of roles) {
+      const roleSql = `SELECT RoleId FROM userroles WHERE RoleName = ?`;
+      const [roleResult] = await connection.execute(roleSql, [roleName]);
+
+      if (roleResult.length > 0) {
+        const roleId = roleResult[0].RoleId;
+        const mappingSql = `INSERT INTO userrolemappings (UserId, RoleId) VALUES (?, ?)`;
+        await connection.execute(mappingSql, [userId, roleId]);
+      }
+    }
+
+    await connection.commit();
+
+    return {
+      EmployeeId: employeeId,
+      UserId: userId,
+      FullName: `${employeeData.firstName} ${employeeData.middleName || ""} ${employeeData.lastName}`.trim(),
+      EmailID: employeeData.email,
+      PhoneNumber: employeeData.phoneNumber,
+      Role: roles.join(", "),
+      PhotoURL: photoUrl,
+    };
+  } catch (error) {
+    await connection.rollback();
+    console.error("❌ Error creating employee:", error);
+    throw error;
+  } finally {
+    connection.release();
+  }
+}
